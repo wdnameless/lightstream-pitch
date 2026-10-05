@@ -1,4 +1,51 @@
-<!DOCTYPE html>
+import os
+import json
+
+metrics_path = r"D:\lightstream\pitch-site\metrics.json"
+with open(metrics_path, "r", encoding="utf-8") as f:
+    metrics_data = json.load(f)
+
+json_str = json.dumps(metrics_data, ensure_ascii=False, indent=2)
+
+matrix_rows_html = ""
+for row in metrics_data.get("comparison_matrix", {}).get("rows", []):
+    def tag(v):
+        if v == "YES": return '<span class="status-tag yes">YES ✓</span>'
+        if v == "SOON": return '<span class="status-tag soon">SOON ⚡</span>'
+        if v == "PARTIAL": return '<span class="status-tag partial">PARTIAL</span>'
+        return '<span class="status-tag no">NO ✕</span>'
+    
+    matrix_rows_html += f"""            <tr>
+              <td>
+                <strong>{row['feature']}</strong>
+                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">{row['note']}</div>
+              </td>
+              <td>{tag(row['lightstream'])}</td>
+              <td>{tag(row['netflix'])}</td>
+              <td>{tag(row['kinopoisk'])}</td>
+              <td>{tag(row['pirate_sites'])}</td>
+            </tr>\n"""
+
+deals_html = ""
+for idx, deal in enumerate(metrics_data.get("deal_options", [])):
+    badge = deal.get("badge", f"Опция {idx+1}")
+    primary_cls = " primary" if idx == 0 else ""
+    pts = "".join([f"<li>{pt}</li>" for pt in deal.get("features", [])])
+    deals_html += f"""        <div class="deal-card{primary_cls}">
+          <div>
+            <span class="deal-badge">{badge}</span>
+            <h3 class="deal-title">{deal['title']}</h3>
+            <p class="deal-sub">{deal['subtitle']}</p>
+            <ul class="deal-points">
+              {pts}
+            </ul>
+          </div>
+          <div class="deal-footer">
+            Кому подходит: <strong>{deal['best_for']}</strong>
+          </div>
+        </div>\n"""
+
+html_template = f'''<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +56,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
+    :root {{
       --bg: #09090b;
       --card-bg: #111114;
       --card-border: #222226;
@@ -26,16 +73,16 @@
       --badge-bg: #18181b;
       --mono: 'JetBrains Mono', monospace;
       --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+    }}
 
-    * {
+    * {{
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
-    }
+    }}
 
-    html, body {
+    html, body {{
       width: 100%;
       max-width: 100vw;
       overflow-x: hidden;
@@ -44,22 +91,22 @@
       font-family: var(--sans);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-    }
+    }}
 
-    body {
+    body {{
       padding-bottom: 96px;
-    }
+    }}
 
-    .container {
+    .container {{
       width: 100%;
       max-width: 1120px;
       margin: 0 auto;
       padding: 0 20px;
       box-sizing: border-box;
-    }
+    }}
 
     /* Sticky Header */
-    header {
+    header {{
       position: sticky;
       top: 0;
       z-index: 100;
@@ -69,16 +116,16 @@
       border-bottom: 1px solid var(--line);
       padding: 12px 0;
       width: 100%;
-    }
+    }}
 
-    .nav {
+    .nav {{
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: relative;
-    }
+    }}
 
-    .logo-group {
+    .logo-group {{
       display: flex;
       align-items: center;
       gap: 10px;
@@ -86,9 +133,9 @@
       color: inherit;
       min-height: 40px;
       flex-shrink: 0;
-    }
+    }}
 
-    .logo-icon {
+    .logo-icon {{
       width: 24px;
       height: 24px;
       background: var(--text-main);
@@ -98,9 +145,9 @@
       justify-content: center;
       position: relative;
       flex-shrink: 0;
-    }
+    }}
 
-    .logo-icon::before {
+    .logo-icon::before {{
       content: '';
       width: 0;
       height: 0;
@@ -108,15 +155,15 @@
       border-bottom: 5px solid transparent;
       border-left: 8px solid #09090b;
       margin-left: 2px;
-    }
+    }}
 
-    .logo-text {
+    .logo-text {{
       font-size: 16px;
       font-weight: 700;
       letter-spacing: -0.02em;
-    }
+    }}
 
-    .header-badge {
+    .header-badge {{
       font-family: var(--mono);
       font-size: 11px;
       padding: 3px 8px;
@@ -127,16 +174,16 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
       white-space: nowrap;
-    }
+    }}
 
-    .header-right {
+    .header-right {{
       display: flex;
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
-    }
+    }}
 
-    .btn {
+    .btn {{
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -149,32 +196,32 @@
       cursor: pointer;
       white-space: nowrap;
       min-height: 38px;
-    }
+    }}
 
-    .btn-secondary {
+    .btn-secondary {{
       background: #18181b;
       border: 1px solid var(--card-border);
       color: var(--text-main);
-    }
+    }}
 
-    .btn-secondary:hover {
+    .btn-secondary:hover {{
       background: var(--card-hover);
       border-color: #3f3f46;
-    }
+    }}
 
-    .btn-primary {
+    .btn-primary {{
       background: var(--text-main);
       color: #09090b;
       font-weight: 600;
       border: 1px solid var(--text-main);
-    }
+    }}
 
-    .btn-primary:hover {
+    .btn-primary:hover {{
       background: #e4e4e7;
-    }
+    }}
 
     /* Dropdown Menu Trigger & Popover */
-    .menu-btn {
+    .menu-btn {{
       display: inline-flex;
       align-items: center;
       gap: 7px;
@@ -189,23 +236,23 @@
       transition: all 0.15s ease;
       min-height: 38px;
       flex-shrink: 0;
-    }
+    }}
 
-    .menu-btn:hover, .menu-btn.active {
+    .menu-btn:hover, .menu-btn.active {{
       background: #202026;
       border-color: #52525b;
-    }
+    }}
 
-    .menu-btn .chevron {
+    .menu-btn .chevron {{
       font-size: 10px;
       transition: transform 0.2s ease;
-    }
+    }}
 
-    .menu-btn.active .chevron {
+    .menu-btn.active .chevron {{
       transform: rotate(180deg);
-    }
+    }}
 
-    .dropdown-menu {
+    .dropdown-menu {{
       position: absolute;
       top: calc(100% + 10px);
       right: 0;
@@ -221,27 +268,27 @@
       gap: 6px;
       z-index: 1000;
       animation: dropdownFadeIn 0.18s ease forwards;
-    }
+    }}
 
-    @keyframes dropdownFadeIn {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes dropdownFadeIn {{
+      from {{ opacity: 0; transform: translateY(-8px); }}
+      to {{ opacity: 1; transform: translateY(0); }}
+    }}
 
-    .dropdown-menu.show {
+    .dropdown-menu.show {{
       display: flex;
-    }
+    }}
 
-    .dropdown-category {
+    .dropdown-category {{
       font-size: 10px;
       font-family: var(--mono);
       color: var(--text-dim);
       text-transform: uppercase;
       letter-spacing: 0.08em;
       padding: 8px 10px 4px;
-    }
+    }}
 
-    .dropdown-link {
+    .dropdown-link {{
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -251,45 +298,45 @@
       text-decoration: none;
       font-size: 13px;
       transition: all 0.12s ease;
-    }
+    }}
 
-    .dropdown-link:hover {
+    .dropdown-link:hover {{
       background: #1c1c22;
       color: var(--text-main);
-    }
+    }}
 
-    .dropdown-link span {
+    .dropdown-link span {{
       display: flex;
       align-items: center;
       gap: 10px;
-    }
+    }}
 
-    .dropdown-link .tag {
+    .dropdown-link .tag {{
       font-family: var(--mono);
       font-size: 10px;
       color: var(--text-dim);
-    }
+    }}
 
-    .dropdown-divider {
+    .dropdown-divider {{
       height: 1px;
       background: var(--line);
       margin: 4px 0;
-    }
+    }}
 
-    .dropdown-actions-mobile {
+    .dropdown-actions-mobile {{
       display: none;
       flex-direction: column;
       gap: 8px;
       padding-top: 6px;
-    }
+    }}
 
     /* Hero Section */
-    .hero {
+    .hero {{
       padding: 52px 0 40px;
       border-bottom: 1px solid var(--line);
-    }
+    }}
 
-    .hero-eyebrow {
+    .hero-eyebrow {{
       font-family: var(--mono);
       font-size: 12px;
       color: var(--text-dim);
@@ -299,18 +346,18 @@
       display: flex;
       align-items: center;
       gap: 10px;
-    }
+    }}
 
-    .pulse-dot {
+    .pulse-dot {{
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: var(--accent-green);
       box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
       flex-shrink: 0;
-    }
+    }}
 
-    h1 {
+    h1 {{
       font-size: clamp(24px, 4vw, 42px);
       font-weight: 700;
       line-height: 1.25;
@@ -319,9 +366,9 @@
       max-width: 960px;
       word-wrap: break-word;
       overflow-wrap: break-word;
-    }
+    }}
 
-    .hero-sub {
+    .hero-sub {{
       font-size: clamp(14px, 2vw, 17px);
       color: var(--text-muted);
       line-height: 1.6;
@@ -329,13 +376,13 @@
       margin-bottom: 28px;
       word-wrap: break-word;
       overflow-wrap: break-word;
-    }
+    }}
 
-    .hero-sub strong {
+    .hero-sub strong {{
       color: var(--text-main);
-    }
+    }}
 
-    .hero-meta-grid {
+    .hero-meta-grid {{
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
@@ -345,60 +392,60 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 8px;
-    }
+    }}
 
-    .hero-meta-item {
+    .hero-meta-item {{
       display: flex;
       flex-direction: column;
       gap: 3px;
-    }
+    }}
 
-    .hero-meta-item .label {
+    .hero-meta-item .label {{
       color: var(--text-dim);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-    }
+    }}
 
-    .hero-meta-item .val {
+    .hero-meta-item .val {{
       color: var(--text-main);
       font-weight: 500;
       word-break: break-all;
-    }
+    }}
 
     /* Section Global */
-    .section {
+    .section {{
       padding: 60px 0;
       border-bottom: 1px solid var(--line);
-    }
+    }}
 
-    .section-header {
+    .section-header {{
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       margin-bottom: 30px;
       flex-wrap: wrap;
       gap: 16px;
-    }
+    }}
 
-    .section-title {
+    .section-title {{
       font-size: clamp(20px, 3vw, 26px);
       font-weight: 600;
       letter-spacing: -0.02em;
       margin-bottom: 6px;
       word-wrap: break-word;
-    }
+    }}
 
-    .section-desc {
+    .section-desc {{
       font-size: 14px;
       color: var(--text-muted);
       max-width: 720px;
       line-height: 1.55;
       word-wrap: break-word;
-    }
+    }}
 
     /* Infographic Card Containers */
-    .info-card {
+    .info-card {{
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 10px;
@@ -406,252 +453,252 @@
       position: relative;
       overflow: hidden;
       max-width: 100%;
-    }
+    }}
 
-    .info-card-header {
+    .info-card-header {{
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 20px;
       flex-wrap: wrap;
       gap: 10px;
-    }
+    }}
 
-    .info-card-title {
+    .info-card-title {{
       font-size: 16px;
       font-weight: 600;
       letter-spacing: -0.01em;
       word-wrap: break-word;
-    }
+    }}
 
-    .info-card-sub {
+    .info-card-sub {{
       font-size: 12px;
       color: var(--text-dim);
       margin-top: 2px;
       word-wrap: break-word;
-    }
+    }}
 
     /* Infographics Grid (Dual Top) */
-    .infographics-grid {
+    .infographics-grid {{
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
       margin-bottom: 24px;
-    }
+    }}
 
     /* SVG Traffic Chart */
-    .traffic-chart-wrap {
+    .traffic-chart-wrap {{
       width: 100%;
       height: 220px;
       position: relative;
       overflow: hidden;
-    }
+    }}
 
-    .traffic-chart-svg {
+    .traffic-chart-svg {{
       width: 100%;
       height: 100%;
       display: block;
-    }
+    }}
 
-    .chart-stats-row {
+    .chart-stats-row {{
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin-top: 18px;
       padding-top: 16px;
       border-top: 1px solid var(--line);
-    }
+    }}
 
-    .chart-stat-item {
+    .chart-stat-item {{
       display: flex;
       flex-direction: column;
-    }
+    }}
 
-    .chart-stat-item .k {
+    .chart-stat-item .k {{
       font-size: 11px;
       font-family: var(--mono);
       color: var(--text-dim);
       text-transform: uppercase;
-    }
+    }}
 
-    .chart-stat-item .v {
+    .chart-stat-item .v {{
       font-size: 18px;
       font-weight: 700;
       font-family: var(--mono);
       color: var(--text-main);
       margin-top: 2px;
-    }
+    }}
 
-    .chart-stat-item .tag {
+    .chart-stat-item .tag {{
       font-size: 11px;
       color: var(--accent-green);
       font-family: var(--mono);
-    }
+    }}
 
     /* Radar Chart (Netflix vs LightStream) */
-    .radar-chart-wrap {
+    .radar-chart-wrap {{
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       gap: 16px;
       width: 100%;
-    }
+    }}
 
-    .radar-svg-box {
+    .radar-svg-box {{
       width: 100%;
       max-width: 360px;
       height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
+    }}
 
-    .radar-legend {
+    .radar-legend {{
       display: flex;
       justify-content: center;
       gap: 16px;
       font-family: var(--mono);
       font-size: 12px;
       flex-wrap: wrap;
-    }
+    }}
 
-    .legend-item {
+    .legend-item {{
       display: flex;
       align-items: center;
       gap: 8px;
-    }
+    }}
 
-    .legend-color {
+    .legend-color {{
       width: 10px;
       height: 10px;
       border-radius: 2px;
       flex-shrink: 0;
-    }
+    }}
 
-    .color-lightstream {
+    .color-lightstream {{
       background: #fafafa;
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-    }
+    }}
 
-    .color-netflix {
+    .color-netflix {{
       background: #ef4444;
-    }
+    }}
 
     /* Devices & GEO Breakdown */
-    .devices-geo-grid {
+    .devices-geo-grid {{
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
       margin-bottom: 24px;
-    }
+    }}
 
-    .bar-list {
+    .bar-list {{
       display: flex;
       flex-direction: column;
       gap: 14px;
-    }
+    }}
 
-    .bar-item {
+    .bar-item {{
       display: flex;
       flex-direction: column;
       gap: 5px;
-    }
+    }}
 
-    .bar-item-header {
+    .bar-item-header {{
       display: flex;
       justify-content: space-between;
       font-size: 12px;
       gap: 8px;
-    }
+    }}
 
-    .bar-item-title {
+    .bar-item-title {{
       font-weight: 500;
       display: flex;
       align-items: center;
       gap: 8px;
       word-wrap: break-word;
-    }
+    }}
 
-    .bar-item-val {
+    .bar-item-val {{
       font-family: var(--mono);
       color: var(--text-main);
       font-weight: 600;
       white-space: nowrap;
-    }
+    }}
 
-    .bar-track {
+    .bar-track {{
       height: 6px;
       background: #1c1c22;
       border-radius: 3px;
       overflow: hidden;
       width: 100%;
-    }
+    }}
 
-    .bar-fill {
+    .bar-fill {{
       height: 100%;
       background: var(--text-main);
       border-radius: 3px;
       transition: width 0.4s ease;
-    }
+    }}
 
     /* Punchcard Heatmap */
-    .punchcard-card {
+    .punchcard-card {{
       margin-bottom: 24px;
       max-width: 100%;
       overflow: hidden;
-    }
+    }}
 
-    .punchcard-scroll {
+    .punchcard-scroll {{
       width: 100%;
       max-width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       display: block;
       padding-bottom: 8px;
-    }
+    }}
 
-    .punchcard-table {
+    .punchcard-table {{
       min-width: 580px;
       width: 100%;
       border-collapse: collapse;
       font-size: 11px;
       font-family: var(--mono);
-    }
+    }}
 
-    .punchcard-table th {
+    .punchcard-table th {{
       padding: 6px 8px;
       color: var(--text-dim);
       font-weight: 500;
       text-align: center;
-    }
+    }}
 
-    .punchcard-table td {
+    .punchcard-table td {{
       padding: 8px;
       text-align: center;
-    }
+    }}
 
-    .punchcard-day-col {
+    .punchcard-day-col {{
       text-align: left !important;
       color: var(--text-muted);
       font-weight: 600;
       width: 50px;
-    }
+    }}
 
-    .punch-dot {
+    .punch-dot {{
       display: inline-block;
       border-radius: 50%;
       background: var(--text-main);
       transition: all 0.15s ease;
-    }
+    }}
 
-    .punch-dot:hover {
+    .punch-dot:hover {{
       transform: scale(1.4);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    }
+    }}
 
     /* Stage Controller & Metrics */
-    .stage-switch {
+    .stage-switch {{
       display: inline-flex;
       background: #121215;
       padding: 4px;
@@ -659,9 +706,9 @@
       border: 1px solid var(--card-border);
       gap: 4px;
       max-width: 100%;
-    }
+    }}
 
-    .stage-tab {
+    .stage-tab {{
       padding: 6px 14px;
       font-size: 12px;
       font-family: var(--mono);
@@ -672,60 +719,60 @@
       cursor: pointer;
       transition: all 0.15s ease;
       white-space: nowrap;
-    }
+    }}
 
-    .stage-tab.active {
+    .stage-tab.active {{
       background: #27272a;
       color: var(--text-main);
       font-weight: 500;
-    }
+    }}
 
-    .metrics-grid {
+    .metrics-grid {{
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin-bottom: 20px;
-    }
+    }}
 
-    .metric-card {
+    .metric-card {{
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 8px;
       padding: 20px;
       transition: border-color 0.15s ease;
       max-width: 100%;
-    }
+    }}
 
-    .metric-card:hover {
+    .metric-card:hover {{
       border-color: #3f3f46;
-    }
+    }}
 
-    .metric-label {
+    .metric-label {{
       font-size: 11px;
       color: var(--text-dim);
       font-family: var(--mono);
       margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-    }
+    }}
 
-    .metric-value {
+    .metric-value {{
       font-size: clamp(24px, 3.2vw, 32px);
       font-weight: 700;
       font-family: var(--mono);
       color: var(--text-main);
       letter-spacing: -0.03em;
       margin-bottom: 4px;
-    }
+    }}
 
-    .metric-note {
+    .metric-note {{
       font-size: 12px;
       color: var(--text-muted);
       line-height: 1.4;
       word-wrap: break-word;
-    }
+    }}
 
-    .growth-insight-box {
+    .growth-insight-box {{
       background: #121216;
       border: 1px solid #27272a;
       border-left: 3px solid #fafafa;
@@ -735,30 +782,30 @@
       color: var(--text-muted);
       line-height: 1.6;
       word-wrap: break-word;
-    }
+    }}
 
-    .growth-insight-box strong {
+    .growth-insight-box strong {{
       color: var(--text-main);
-    }
+    }}
 
     /* Interactive Sponsor ROI Calculator */
-    .calculator-box {
+    .calculator-box {{
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 10px;
       padding: 24px;
       margin-top: 24px;
       max-width: 100%;
-    }
+    }}
 
-    .calc-controls {
+    .calc-controls {{
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
       margin-bottom: 24px;
-    }
+    }}
 
-    .calc-field label {
+    .calc-field label {{
       display: flex;
       justify-content: space-between;
       font-size: 12px;
@@ -766,14 +813,14 @@
       color: var(--text-dim);
       margin-bottom: 10px;
       gap: 8px;
-    }
+    }}
 
-    .calc-field label span strong {
+    .calc-field label span strong {{
       color: var(--text-main);
       font-size: 14px;
-    }
+    }}
 
-    .calc-slider {
+    .calc-slider {{
       width: 100%;
       height: 8px;
       background: #27272a;
@@ -781,9 +828,9 @@
       outline: none;
       -webkit-appearance: none;
       cursor: pointer;
-    }
+    }}
 
-    .calc-slider::-webkit-slider-thumb {
+    .calc-slider::-webkit-slider-thumb {{
       -webkit-appearance: none;
       width: 22px;
       height: 22px;
@@ -791,9 +838,9 @@
       background: #fafafa;
       border: 2px solid #09090b;
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
-    }
+    }}
 
-    .calc-results {
+    .calc-results {{
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 14px;
@@ -801,34 +848,34 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 18px;
-    }
+    }}
 
-    .calc-res-item {
+    .calc-res-item {{
       display: flex;
       flex-direction: column;
-    }
+    }}
 
-    .calc-res-label {
+    .calc-res-label {{
       font-size: 11px;
       font-family: var(--mono);
       color: var(--text-dim);
       margin-bottom: 4px;
-    }
+    }}
 
-    .calc-res-val {
+    .calc-res-val {{
       font-size: clamp(18px, 2.5vw, 22px);
       font-weight: 700;
       font-family: var(--mono);
       color: var(--text-main);
-    }
+    }}
 
-    .calc-res-sub {
+    .calc-res-sub {{
       font-size: 11px;
       color: var(--text-muted);
-    }
+    }}
 
     /* Comparison Matrix */
-    .matrix-wrap {
+    .matrix-wrap {{
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       background: var(--card-bg);
@@ -838,35 +885,35 @@
       width: 100%;
       max-width: 100%;
       display: block;
-    }
+    }}
 
-    .matrix-table {
+    .matrix-table {{
       width: 100%;
       min-width: 680px;
       border-collapse: collapse;
       font-size: 13px;
       text-align: left;
-    }
+    }}
 
-    .matrix-table th, .matrix-table td {
+    .matrix-table th, .matrix-table td {{
       padding: 14px 18px;
       border-bottom: 1px solid var(--line);
-    }
+    }}
 
-    .matrix-table th {
+    .matrix-table th {{
       background: #141418;
       font-family: var(--mono);
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--text-dim);
-    }
+    }}
 
-    .matrix-table tr:last-child td {
+    .matrix-table tr:last-child td {{
       border-bottom: none;
-    }
+    }}
 
-    .status-tag {
+    .status-tag {{
       display: inline-flex;
       align-items: center;
       padding: 2px 7px;
@@ -875,30 +922,30 @@
       font-size: 11px;
       font-weight: 600;
       white-space: nowrap;
-    }
+    }}
 
-    .status-tag.yes {
+    .status-tag.yes {{
       background: #064e3b;
       color: #34d399;
-    }
+    }}
 
-    .status-tag.soon {
+    .status-tag.soon {{
       background: #27272a;
       color: #e4e4e7;
       border: 1px solid #3f3f46;
-    }
+    }}
 
-    .status-tag.partial {
+    .status-tag.partial {{
       background: #422006;
       color: #fbbf24;
-    }
+    }}
 
-    .status-tag.no {
+    .status-tag.no {{
       background: #1c1917;
       color: #78716c;
-    }
+    }}
 
-    .score-summary-banner {
+    .score-summary-banner {{
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -909,36 +956,36 @@
       flex-wrap: wrap;
       gap: 12px;
       max-width: 100%;
-    }
+    }}
 
-    .score-banner-text {
+    .score-banner-text {{
       font-size: 13px;
       color: var(--text-muted);
       max-width: 720px;
       flex: 1 1 300px;
-    }
+    }}
 
-    .score-banner-score {
+    .score-banner-score {{
       font-family: var(--mono);
       font-size: 17px;
       font-weight: 700;
       color: var(--text-main);
       white-space: nowrap;
-    }
+    }}
 
     /* ==========================================================================
        FEATURE TIMELINE ARROW (Based on Reference: Vertical central arrow with alternating branch nodes)
        ========================================================================== */
-    .timeline-container {
+    .timeline-container {{
       position: relative;
       max-width: 980px;
       margin: 40px auto 20px;
       padding: 20px 0 60px;
       width: 100%;
-    }
+    }}
 
     /* Central vertical line / arrow stem */
-    .timeline-stem {
+    .timeline-stem {{
       position: absolute;
       top: 0;
       bottom: 20px;
@@ -947,10 +994,10 @@
       background: linear-gradient(180deg, #3f3f46 0%, #71717a 50%, #ffffff 100%);
       transform: translateX(-50%);
       border-radius: 2px;
-    }
+    }}
 
     /* Downward arrow tip at bottom of stem */
-    .timeline-stem::after {
+    .timeline-stem::after {{
       content: '';
       position: absolute;
       bottom: -16px;
@@ -962,31 +1009,31 @@
       border-right: 10px solid transparent;
       border-top: 18px solid #ffffff;
       filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7));
-    }
+    }}
 
-    .timeline-item {
+    .timeline-item {{
       position: relative;
       margin-bottom: 36px;
       width: 50%;
       display: flex;
       align-items: center;
       box-sizing: border-box;
-    }
+    }}
 
-    .timeline-item.left {
+    .timeline-item.left {{
       left: 0;
       padding-right: 54px;
       justify-content: flex-end;
-    }
+    }}
 
-    .timeline-item.right {
+    .timeline-item.right {{
       left: 50%;
       padding-left: 54px;
       justify-content: flex-start;
-    }
+    }}
 
     /* Central circle marker on the stem */
-    .timeline-node {
+    .timeline-node {{
       position: absolute;
       top: 50%;
       width: 34px;
@@ -1006,55 +1053,55 @@
       box-shadow: 0 0 0 4px #09090b;
       transition: all 0.2s ease;
       flex-shrink: 0;
-    }
+    }}
 
-    .timeline-item.left .timeline-node {
+    .timeline-item.left .timeline-node {{
       right: -17px;
-    }
+    }}
 
-    .timeline-item.right .timeline-node {
+    .timeline-item.right .timeline-node {{
       left: -17px;
-    }
+    }}
 
     /* Connecting horizontal dashed arm */
-    .timeline-arm {
+    .timeline-arm {{
       position: absolute;
       top: 50%;
       height: 2px;
       border-top: 2px dashed #52525b;
       width: 38px;
       z-index: 1;
-    }
+    }}
 
-    .timeline-item.left .timeline-arm {
+    .timeline-item.left .timeline-arm {{
       right: 17px;
-    }
+    }}
 
-    .timeline-item.right .timeline-arm {
+    .timeline-item.right .timeline-arm {{
       left: 17px;
-    }
+    }}
 
     /* Status variants for nodes */
-    .node-live {
+    .node-live {{
       border-color: #10b981;
       background: #064e3b;
       box-shadow: 0 0 10px rgba(16, 185, 129, 0.5), 0 0 0 4px #09090b;
-    }
+    }}
 
-    .node-progress {
+    .node-progress {{
       border-color: #3b82f6;
       background: #1e3a8a;
       box-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 0 4px #09090b;
-    }
+    }}
 
-    .node-planned {
+    .node-planned {{
       border-color: #e4e4e7;
       background: #27272a;
       box-shadow: 0 0 8px rgba(228, 228, 231, 0.3), 0 0 0 4px #09090b;
-    }
+    }}
 
     /* Content Card */
-    .timeline-card {
+    .timeline-card {{
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 8px;
@@ -1064,80 +1111,80 @@
       position: relative;
       transition: all 0.2s ease;
       box-sizing: border-box;
-    }
+    }}
 
-    .timeline-card:hover {
+    .timeline-card:hover {{
       border-color: #52525b;
       transform: translateY(-2px);
-    }
+    }}
 
-    .timeline-header-row {
+    .timeline-header-row {{
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 6px;
       gap: 8px;
       flex-wrap: wrap;
-    }
+    }}
 
-    .timeline-badge {
+    .timeline-badge {{
       font-size: 10px;
       font-family: var(--mono);
       padding: 2px 6px;
       border-radius: 4px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
-    }
+    }}
 
-    .timeline-stage-tag {
+    .timeline-stage-tag {{
       font-size: 10px;
       font-family: var(--mono);
       color: var(--text-dim);
-    }
+    }}
 
-    .timeline-title {
+    .timeline-title {{
       font-size: 14px;
       font-weight: 600;
       color: var(--text-main);
       margin-bottom: 4px;
       line-height: 1.35;
       word-wrap: break-word;
-    }
+    }}
 
-    .timeline-desc {
+    .timeline-desc {{
       font-size: 12px;
       color: var(--text-muted);
       line-height: 1.5;
       word-wrap: break-word;
-    }
+    }}
 
     /* Final Grand Milestone Card */
-    .timeline-final-item {
+    .timeline-final-item {{
       max-width: 580px;
       margin: 40px auto 0;
       text-align: center;
       position: relative;
       z-index: 10;
       box-sizing: border-box;
-    }
+    }}
 
-    .timeline-final-card {
+    .timeline-final-card {{
       background: #141419;
       border: 1px solid #52525b;
       border-radius: 10px;
       padding: 22px;
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
       box-sizing: border-box;
-    }
+    }}
 
     /* Deals Section */
-    .deals-grid {
+    .deals-grid {{
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-    }
+    }}
 
-    .deal-card {
+    .deal-card {{
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 10px;
@@ -1147,14 +1194,14 @@
       justify-content: space-between;
       box-sizing: border-box;
       max-width: 100%;
-    }
+    }}
 
-    .deal-card.primary {
+    .deal-card.primary {{
       border-color: #52525b;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
-    }
+    }}
 
-    .deal-badge {
+    .deal-badge {{
       font-family: var(--mono);
       font-size: 10px;
       padding: 2px 6px;
@@ -1164,25 +1211,25 @@
       display: inline-block;
       color: var(--text-muted);
       align-self: flex-start;
-    }
+    }}
 
-    .deal-title {
+    .deal-title {{
       font-size: 17px;
       font-weight: 600;
       margin-bottom: 6px;
       letter-spacing: -0.01em;
       word-wrap: break-word;
-    }
+    }}
 
-    .deal-sub {
+    .deal-sub {{
       font-size: 12px;
       color: var(--text-muted);
       margin-bottom: 18px;
       line-height: 1.45;
       word-wrap: break-word;
-    }
+    }}
 
-    .deal-points {
+    .deal-points {{
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -1191,31 +1238,31 @@
       color: var(--text-muted);
       margin-bottom: 24px;
       flex-grow: 1;
-    }
+    }}
 
-    .deal-points li {
+    .deal-points li {{
       padding-left: 14px;
       position: relative;
       word-wrap: break-word;
-    }
+    }}
 
-    .deal-points li::before {
+    .deal-points li::before {{
       content: '•';
       position: absolute;
       left: 0;
       color: var(--text-dim);
-    }
+    }}
 
-    .deal-footer {
+    .deal-footer {{
       font-size: 11px;
       color: var(--text-dim);
       border-top: 1px solid var(--line);
       padding-top: 12px;
       word-wrap: break-word;
-    }
+    }}
 
     /* CTA Section */
-    .cta-box {
+    .cta-box {{
       background: #141418;
       border: 1px solid #3f3f46;
       border-radius: 12px;
@@ -1228,37 +1275,37 @@
       margin-top: 48px;
       box-sizing: border-box;
       max-width: 100%;
-    }
+    }}
 
-    .cta-content {
+    .cta-content {{
       max-width: 640px;
       flex: 1 1 300px;
-    }
+    }}
 
-    .cta-title {
+    .cta-title {{
       font-size: clamp(20px, 3vw, 24px);
       font-weight: 700;
       margin-bottom: 8px;
       letter-spacing: -0.02em;
       word-wrap: break-word;
-    }
+    }}
 
-    .cta-desc {
+    .cta-desc {{
       font-size: 14px;
       color: var(--text-muted);
       line-height: 1.55;
       word-wrap: break-word;
-    }
+    }}
 
-    .cta-actions {
+    .cta-actions {{
       display: flex;
       flex-direction: column;
       gap: 10px;
       flex-shrink: 0;
-    }
+    }}
 
     /* Footer */
-    footer {
+    footer {{
       margin-top: 56px;
       font-size: 12px;
       color: var(--text-dim);
@@ -1271,87 +1318,87 @@
       padding-top: 24px;
       border-top: 1px solid var(--line);
       width: 100%;
-    }
+    }}
 
     /* Responsive Breakpoints & Mobile Adaptations */
-    @media (max-width: 992px) {
-      .infographics-grid, .devices-geo-grid {
+    @media (max-width: 992px) {{
+      .infographics-grid, .devices-geo-grid {{
         grid-template-columns: 1fr;
-      }
-      .deals-grid {
+      }}
+      .deals-grid {{
         grid-template-columns: 1fr;
-      }
-      .hero-meta-grid {
+      }}
+      .hero-meta-grid {{
         grid-template-columns: repeat(2, 1fr);
-      }
-      .metrics-grid {
+      }}
+      .metrics-grid {{
         grid-template-columns: repeat(2, 1fr);
-      }
-      .calc-controls {
+      }}
+      .calc-controls {{
         grid-template-columns: 1fr;
-      }
-      .calc-results {
+      }}
+      .calc-results {{
         grid-template-columns: repeat(2, 1fr);
-      }
-    }
+      }}
+    }}
 
     /* Mobile Timeline Adaptation (Arrow aligned to the left, cards stack cleanly) */
-    @media (max-width: 768px) {
-      .timeline-container {
+    @media (max-width: 768px) {{
+      .timeline-container {{
         padding: 10px 0 40px;
         margin: 20px auto;
-      }
-      .timeline-stem {
+      }}
+      .timeline-stem {{
         left: 20px;
         transform: none;
-      }
-      .timeline-item {
+      }}
+      .timeline-item {{
         width: 100%;
         left: 0 !important;
         padding-left: 54px !important;
         padding-right: 0 !important;
         justify-content: flex-start !important;
         box-sizing: border-box;
-      }
-      .timeline-node {
+      }}
+      .timeline-node {{
         left: 3px !important;
         right: auto !important;
-      }
-      .timeline-arm {
+      }}
+      .timeline-arm {{
         left: 20px !important;
         right: auto !important;
         width: 34px;
-      }
-      .timeline-card {
+      }}
+      .timeline-card {{
         max-width: 100%;
         padding: 14px 16px;
         box-sizing: border-box;
-      }
-      .timeline-final-item {
+      }}
+      .timeline-final-item {{
         padding-left: 54px;
         text-align: left;
         margin-top: 24px;
         box-sizing: border-box;
-      }
-    }
+      }}
+    }}
 
-    @media (max-width: 640px) {
-      .container {
+    @media (max-width: 640px) {{
+      .container {{
         padding: 0 16px;
-      }
-      .logo-group .header-badge {
+      }}
+      .logo-group .header-badge {{
         display: none;
-      }
-      .nav {
+      }}
+      .nav {{
         gap: 8px;
-      }
-      .header-right .btn {
+      }}
+      .header-right .btn {{
         display: none;
-      }
-      .dropdown-actions-mobile {
+      }}
+      .dropdown-actions-mobile {{
         display: flex;
-      }
-      .dropdown-menu {
+      }}
+      .dropdown-menu {{
         position: fixed;
         top: 60px;
         left: 14px;
@@ -1364,58 +1411,58 @@
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
         max-height: 82vh;
         overflow-y: auto;
-      }
-      .hero {
+      }}
+      .hero {{
         padding: 36px 0 32px;
-      }
-      .section {
+      }}
+      .section {{
         padding: 44px 0;
-      }
-      .hero-meta-grid {
+      }}
+      .hero-meta-grid {{
         grid-template-columns: 1fr;
         gap: 10px;
-      }
-      .metrics-grid {
+      }}
+      .metrics-grid {{
         grid-template-columns: 1fr;
-      }
-      .calc-results {
+      }}
+      .calc-results {{
         grid-template-columns: 1fr;
-      }
-      .chart-stats-row {
+      }}
+      .chart-stats-row {{
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-      }
-      .stage-switch {
+      }}
+      .stage-switch {{
         width: 100%;
         overflow-x: auto;
-      }
-      .stage-tab {
+      }}
+      .stage-tab {{
         flex: 1;
         text-align: center;
         padding: 8px 10px;
-      }
-      .score-summary-banner {
+      }}
+      .score-summary-banner {{
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
-      }
-      .score-banner-score {
+      }}
+      .score-banner-score {{
         font-size: 15px;
-      }
-      .cta-box {
+      }}
+      .cta-box {{
         padding: 24px 20px;
-      }
-      .cta-actions {
+      }}
+      .cta-actions {{
         width: 100%;
-      }
-      .cta-actions .btn {
+      }}
+      .cta-actions .btn {{
         width: 100%;
-      }
-      footer {
+      }}
+      footer {{
         flex-direction: column;
         align-items: flex-start;
-      }
-    }
+      }}
+    }}
   </style>
 </head>
 <body>
@@ -2039,97 +2086,7 @@
             </tr>
           </thead>
           <tbody id="matrixBody">
-            <tr>
-              <td>
-                <strong>Bookmarks & Library (Закладки и история)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Синхронизация прогресса с точностью до секунды</div>
-              </td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag partial">PARTIAL</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Watch Party (Совместный просмотр)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Синхронное воспроизведение и чат для друзей</div>
-              </td>
-              <td><span class="status-tag soon">SOON ⚡</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Smart Subtitles (Двуязычные субтитры)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Оригинальный звук + умное переключение дорожек</div>
-              </td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag partial">PARTIAL</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Keyboard Shortcuts (Горячие клавиши плеера)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Управление воспроизведением без лишних кликов</div>
-              </td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag partial">PARTIAL</span></td>
-              <td><span class="status-tag partial">PARTIAL</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Native TMDB Integration (Метаданные)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Рейтинги, актеры, трейлеры, даты выхода в 1 клик</div>
-              </td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag partial">PARTIAL</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Comprehensive Movie Info (Полная карточка)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Кастомный UI карточки тайтла с рекомендациями</div>
-              </td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag yes">YES ✓</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Music Recognition / Shazam (Треки из фильма)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Определение саундтрека прямо во время сцены</div>
-              </td>
-              <td><span class="status-tag soon">SOON ⚡</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Audio Enhancement (Улучшение голоса)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Выравнивание громкости и усиление диалогов</div>
-              </td>
-              <td><span class="status-tag soon">SOON ⚡</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-            </tr>
-            <tr>
-              <td>
-                <strong>AI Assistant (Умный подбор по настроению)</strong>
-                <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">Поиск кино на естественном языке без шаблонных тегов</div>
-              </td>
-              <td><span class="status-tag soon">SOON ⚡</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-              <td><span class="status-tag no">NO ✕</span></td>
-            </tr>
-          </tbody>
+{matrix_rows_html}          </tbody>
         </table>
       </div>
 
@@ -2314,46 +2271,7 @@
       </div>
 
       <div class="deals-grid" id="dealsContainer">
-        <div class="deal-card primary">
-          <div>
-            <span class="deal-badge">Рекомендуемый</span>
-            <h3 class="deal-title">Генеральное спонсорство (100% Эксклюзив)</h3>
-            <p class="deal-sub">Фиксированный месячный ретейнер за весь рекламный инвентарь платформы</p>
-            <ul class="deal-points">
-              <li>Полный монопольный эксклюзив без единого конкурента</li><li>Интерактивный нативный видео-оверлей перед стартом и на паузе</li><li>100% обход AdBlock (нативный рендеринг в канвасе плеера)</li><li>Сквозная кликабельная брендированная плашка с переходом</li><li>Фиксация ставки на 3–6 месяцев до кратного масштабирования</li>
-            </ul>
-          </div>
-          <div class="deal-footer">
-            Кому подходит: <strong>Букмекеры и топ-казино, выстраивающие монопольный бренд-оффер</strong>
-          </div>
-        </div>
-        <div class="deal-card">
-          <div>
-            <span class="deal-badge">Конверсионный</span>
-            <h3 class="deal-title">Эксклюзивный CPA / Hybrid с гарантией объема</h3>
-            <p class="deal-sub">Высокая ставка за первый депозит (FTD) + бейслайн под кинозрителя</p>
-            <ul class="deal-points">
-              <li>Персональный промокод и трекер под кинотеатр</li><li>Кастомные триггерные кнопки («Смотри без рекламы с бонусом от партнера»)</li><li>Раздельный таргетинг по гео (раздельные офферы под РФ, КЗ, Бурж)</li><li>Еженедельная сверка и прозрачные когорты конверсий</li>
-            </ul>
-          </div>
-          <div class="deal-footer">
-            Кому подходит: <strong>Партнерские сети с сильным конвертом и гибкими бейслайнами</strong>
-          </div>
-        </div>
-        <div class="deal-card">
-          <div>
-            <span class="deal-badge">M&A / Asset Sale</span>
-            <h3 class="deal-title">Полный выкуп платформы (Asset / Acqui-hire)</h3>
-            <p class="deal-sub">Передача исходного кода, видеоинфраструктуры, домена и пайплайнов</p>
-            <ul class="deal-points">
-              <li>Полный стек: SvelteKit + Bun + Hono + HLS/DASH видео-пайплайн</li><li>Домен app.lightstream.ws + сетка сопутствующих каналов дистрибуции</li><li>Команда готова сопровождать интеграцию и масштабирование под ключ</li>
-            </ul>
-          </div>
-          <div class="deal-footer">
-            Кому подходит: <strong>Медиахолдинги и гемблинг-операторы, строящие свою медиасеть</strong>
-          </div>
-        </div>
-      </div>
+{deals_html}      </div>
     </section>
 
     <!-- Direct CTA -->
@@ -2383,620 +2301,72 @@
   </main>
 
   <script>
-    const DEFAULT_METRICS = {
-  "updated_at": "2026-10-05",
-  "product": {
-    "name": "LightStream",
-    "url": "https://app.lightstream.ws",
-    "tagline": "Next-Gen Ad-Free Web Cinema · 100% Share of Voice",
-    "status": "Production (Month 2)",
-    "category": "Next-Gen Ad-Free Web Cinema",
-    "stack": "SvelteKit · Bun · Hono · HLS/DASH Adaptive Streaming · Subtitles · Zero AdBlock Loss"
-  },
-  "verified_analytics_90d": {
-    "views": 26600,
-    "views_growth": "+100%",
-    "visits": 5820,
-    "visits_growth": "+100%",
-    "visitors": 2880,
-    "visitors_growth": "+100%",
-    "bounce_rate": "53%",
-    "avg_duration": "4m 18s",
-    "peak_daily_views": "2,100+",
-    "top_browsers": [
-      {
-        "name": "Google Chrome",
-        "share": 43,
-        "count": 1210
-      },
-      {
-        "name": "iOS Safari",
-        "share": 19,
-        "count": 538
-      },
-      {
-        "name": "iOS Webview",
-        "share": 14,
-        "count": 391
-      },
-      {
-        "name": "Chrome Webview",
-        "share": 9,
-        "count": 254
-      }
-    ],
-    "top_locations": [
-      {
-        "country": "United States (США)",
-        "share": 24,
-        "count": 499,
-        "tier": "Tier-1 Global"
-      },
-      {
-        "country": "Belarus (Беларусь)",
-        "share": 14,
-        "count": 294,
-        "tier": "Tier-1 CIS"
-      },
-      {
-        "country": "Ukraine (Украина)",
-        "share": 14,
-        "count": 291,
-        "tier": "Tier-1 CIS"
-      },
-      {
-        "country": "Kazakhstan (Казахстан)",
-        "share": 12,
-        "count": 247,
-        "tier": "Tier-2 CIS"
-      },
-      {
-        "country": "Poland (Польша)",
-        "share": 11,
-        "count": 222,
-        "tier": "Tier-1 EU"
-      }
-    ]
-  },
-  "stages": {
-    "current": {
-      "key": "current",
-      "label": "Текущий прод (Месяц 2)",
-      "badge": "Actual Live Metrics",
-      "dau": 220,
-      "mau": 5400,
-      "monthly_views": 18500,
-      "avg_session_min": 42.5,
-      "total_watch_hours_month": 13100,
-      "share_of_voice": "100%",
-      "adblock_bypass_rate": "100%",
-      "active_competitor_ads": 0,
-      "note_mau": "Органическая база киноманов и повторных сессий",
-      "note_views": "100% чистые досмотры в адаптивном плеере"
-    },
-    "q4_projection": {
-      "key": "q4_projection",
-      "label": "Проекция на закрытие сделки (Q4)",
-      "badge": "3-Month Sales Run-Rate",
-      "dau": 1800,
-      "mau": 45000,
-      "monthly_views": 160000,
-      "avg_session_min": 44.0,
-      "total_watch_hours_month": 117000,
-      "share_of_voice": "100%",
-      "adblock_bypass_rate": "100%",
-      "active_competitor_ads": 0,
-      "note_mau": "Масштабирование SEO и партизанских каналов",
-      "note_views": "Емкость рекламного инвентаря на момент контракта"
-    },
-    "scale": {
-      "key": "scale",
-      "label": "Масштабирование (Q1)",
-      "badge": "Full Scale Pipeline",
-      "dau": 5500,
-      "mau": 140000,
-      "monthly_views": 520000,
-      "avg_session_min": 45.0,
-      "total_watch_hours_month": 390000,
-      "share_of_voice": "100%",
-      "adblock_bypass_rate": "100%",
-      "active_competitor_ads": 0,
-      "note_mau": "Подключение AI-шортсов и мультиязычной сетки",
-      "note_views": "Максимальный объем видеоинвентаря"
-    }
-  },
-  "geo_distribution": [
-    {
-      "region": "США & Global Tier-1 (США, Польша, ЕС)",
-      "share_pct": 35,
-      "profile": "Высокая платежеспособность, крипто-бренды, просмотр на Desktop & iOS",
-      "tier": "Tier-1 Global",
-      "payment_compat": "Crypto, Visa/Mastercard, Apple Pay"
-    },
-    {
-      "region": "РФ & Беларусь (Tier-1 CIS)",
-      "share_pct": 28,
-      "profile": "Высокий LTV, топовый средний депозит, просмотр кино и премьер",
-      "tier": "Tier-1 CIS",
-      "payment_compat": "СБП, Карты МИР, P2P, Белкарт"
-    },
-    {
-      "region": "Казахстан (Tier-2 CIS)",
-      "share_pct": 14,
-      "profile": "Высокая мобильная активность, растущий средний чек",
-      "tier": "Tier-2 CIS",
-      "payment_compat": "Kaspi Bank, Halyk, Карты"
-    },
-    {
-      "region": "Украина & Другие страны СНГ",
-      "share_pct": 23,
-      "profile": "Динамичный рост, сериалы и новинки проката, чистая органика",
-      "tier": "Tier-2 CIS",
-      "payment_compat": "P2P, Моно, Приват, Uzcard/Humo"
-    }
-  ],
-  "comparison_matrix": {
-    "title": "Honest comparison. Data instead of marketing.",
-    "radar_axes": [
-      "Library",
-      "Player",
-      "Integrations",
-      "AI",
-      "Subtitles",
-      "Audio"
-    ],
-    "score_lightstream": "7/9",
-    "score_netflix": "2/9",
-    "rows": [
-      {
-        "feature": "Bookmarks & Library (Закладки и история)",
-        "lightstream": "YES",
-        "netflix": "YES",
-        "kinopoisk": "YES",
-        "pirate_sites": "PARTIAL",
-        "note": "Синхронизация прогресса с точностью до секунды"
-      },
-      {
-        "feature": "Watch Party (Совместный просмотр)",
-        "lightstream": "SOON",
-        "netflix": "NO",
-        "kinopoisk": "NO",
-        "pirate_sites": "NO",
-        "note": "Синхронное воспроизведение и чат для друзей"
-      },
-      {
-        "feature": "Smart Subtitles (Двуязычные субтитры)",
-        "lightstream": "YES",
-        "netflix": "YES",
-        "kinopoisk": "PARTIAL",
-        "pirate_sites": "NO",
-        "note": "Оригинальный звук + умное переключение дорожек"
-      },
-      {
-        "feature": "Keyboard Shortcuts (Горячие клавиши плеера)",
-        "lightstream": "YES",
-        "netflix": "PARTIAL",
-        "kinopoisk": "PARTIAL",
-        "pirate_sites": "NO",
-        "note": "Управление воспроизведением без лишних кликов"
-      },
-      {
-        "feature": "Native TMDB Integration (Метаданные)",
-        "lightstream": "YES",
-        "netflix": "NO",
-        "kinopoisk": "NO",
-        "pirate_sites": "PARTIAL",
-        "note": "Рейтинги, актеры, трейлеры, даты выхода в 1 клик"
-      },
-      {
-        "feature": "Comprehensive Movie Info (Полная карточка)",
-        "lightstream": "YES",
-        "netflix": "NO",
-        "kinopoisk": "YES",
-        "pirate_sites": "NO",
-        "note": "Кастомный UI карточки тайтла с рекомендациями"
-      },
-      {
-        "feature": "Music Recognition / Shazam (Треки из фильма)",
-        "lightstream": "SOON",
-        "netflix": "NO",
-        "kinopoisk": "NO",
-        "pirate_sites": "NO",
-        "note": "Определение саундтрека прямо во время сцены"
-      },
-      {
-        "feature": "Audio Enhancement (Улучшение голоса)",
-        "lightstream": "SOON",
-        "netflix": "NO",
-        "kinopoisk": "NO",
-        "pirate_sites": "NO",
-        "note": "Выравнивание громкости и усиление диалогов"
-      },
-      {
-        "feature": "AI Assistant (Умный подбор по настроению)",
-        "lightstream": "SOON",
-        "netflix": "NO",
-        "kinopoisk": "NO",
-        "pirate_sites": "NO",
-        "note": "Поиск кино на естественном языке без шаблонных тегов"
-      }
-    ]
-  },
-  "roadmap": [
-    {
-      "category": "Core Engine",
-      "status": "DONE",
-      "badge": "В проде",
-      "title": "HLS/DASH Адаптивный плеер",
-      "desc": "Сверхбыстрая буферизация, поддержка 1080p, переключение дорожек, субтитры, 0 подвисаний."
-    },
-    {
-      "category": "SEO & Growth",
-      "status": "DONE",
-      "badge": "В проде",
-      "title": "SEO Оптимизация + Agentic пайплайн",
-      "desc": "Автоматическая генерация тайтл-страниц, TMDB-синк, индексация поисковиками, чистый органический трафик."
-    },
-    {
-      "category": "Distribution",
-      "status": "IN_PROGRESS",
-      "badge": "В процессе (Q4)",
-      "title": "Партизанский рост (Threads & TG Automation)",
-      "desc": "Автоматизированные пайплайны дистрибуции вирусных синефильских нарезок, генерация рилсов и привлечение трафика."
-    },
-    {
-      "category": "Content",
-      "status": "IN_PROGRESS",
-      "badge": "В процессе (Q4)",
-      "title": "Выделенный раздел «Дорамы» (Asian Dramas)",
-      "desc": "Азиатские сериалы с огромным LTV зрительниц и регулярными повторными визитами."
-    },
-    {
-      "category": "Identity",
-      "status": "IN_PROGRESS",
-      "badge": "В процессе (Q4)",
-      "title": "Google One-Tap Login & Username Aliases",
-      "desc": "Бесшовный онбординг зрителей без обязательного ввода паролей для роста возвратности."
-    },
-    {
-      "category": "Player Innovation",
-      "status": "PLANNED",
-      "badge": "Планы (Q1)",
-      "title": "In-Player Shazam (Распознавание музыки)",
-      "desc": "Кнопка в плеере: определить трек в текущей сцене и открыть его в Spotify / Apple Music."
-    },
-    {
-      "category": "Social Streaming",
-      "status": "PLANNED",
-      "badge": "Планы (Q1)",
-      "title": "Watch Party (Синхронный просмотр)",
-      "desc": "Совместный просмотр кино друзьями по единой ссылке с текстовым и голосовым чатом."
-    },
-    {
-      "category": "AI Discovery",
-      "status": "PLANNED",
-      "badge": "Планы (Q1)",
-      "title": "AI Кино-Ассистент",
-      "desc": "Подбор фильмов по вайбу: «хочу триллер с неожиданным финалом в дождливом городе»."
-    },
-    {
-      "category": "Video Engine",
-      "status": "PLANNED",
-      "badge": "Планы (Q1)",
-      "title": "Shorts / Reels витрина лучших сцен",
-      "desc": "Вертикальная лента вирусных фрагментов кино с мгновенным переходом к просмотру фильма в 1 тап."
-    }
-  ],
-  "deal_options": [
-    {
-      "id": "sponsorship",
-      "badge": "Рекомендуемый",
-      "title": "Генеральное спонсорство (100% Эксклюзив)",
-      "subtitle": "Фиксированный месячный ретейнер за весь рекламный инвентарь платформы",
-      "features": [
-        "Полный монопольный эксклюзив без единого конкурента",
-        "Интерактивный нативный видео-оверлей перед стартом и на паузе",
-        "100% обход AdBlock (нативный рендеринг в канвасе плеера)",
-        "Сквозная кликабельная брендированная плашка с переходом",
-        "Фиксация ставки на 3–6 месяцев до кратного масштабирования"
-      ],
-      "best_for": "Букмекеры и топ-казино, выстраивающие монопольный бренд-оффер"
-    },
-    {
-      "id": "cpa_hybrid",
-      "badge": "Конверсионный",
-      "title": "Эксклюзивный CPA / Hybrid с гарантией объема",
-      "subtitle": "Высокая ставка за первый депозит (FTD) + бейслайн под кинозрителя",
-      "features": [
-        "Персональный промокод и трекер под кинотеатр",
-        "Кастомные триггерные кнопки («Смотри без рекламы с бонусом от партнера»)",
-        "Раздельный таргетинг по гео (раздельные офферы под РФ, КЗ, Бурж)",
-        "Еженедельная сверка и прозрачные когорты конверсий"
-      ],
-      "best_for": "Партнерские сети с сильным конвертом и гибкими бейслайнами"
-    },
-    {
-      "id": "acquisition",
-      "badge": "M&A / Asset Sale",
-      "title": "Полный выкуп платформы (Asset / Acqui-hire)",
-      "subtitle": "Передача исходного кода, видеоинфраструктуры, домена и пайплайнов",
-      "features": [
-        "Полный стек: SvelteKit + Bun + Hono + HLS/DASH видео-пайплайн",
-        "Домен app.lightstream.ws + сетка сопутствующих каналов дистрибуции",
-        "Команда готова сопровождать интеграцию и масштабирование под ключ"
-      ],
-      "best_for": "Медиахолдинги и гемблинг-операторы, строящие свою медиасеть"
-    }
-  ],
-  "contacts": {
-    "founder_telegram": "@shitmane",
-    "founder_telegram_url": "https://t.me/shitmane",
-    "email": "good22067@gmail.com",
-    "platform_url": "https://app.lightstream.ws"
-  },
-  "analytics_chart_data": {
-    "summary": {
-      "views": "26.6k",
-      "views_growth": "+100%",
-      "visits": "5.82k",
-      "visitors": "2.88k",
-      "bounce_rate": "53%",
-      "avg_duration": "4m 18s",
-      "peak_day": "9 сентября",
-      "peak_views": "2,100+"
-    },
-    "monthly_bars": [
-      {
-        "period": "Июль (W1-W4)",
-        "views": 450,
-        "visitors": 95,
-        "label": "Запуск и закрытая бета",
-        "growth": "Старт"
-      },
-      {
-        "period": "Август (W1-W2)",
-        "views": 1850,
-        "visitors": 340,
-        "label": "Первая органика и SEO-индекс",
-        "growth": "+310%"
-      },
-      {
-        "period": "Август (W3-W4)",
-        "views": 4200,
-        "visitors": 620,
-        "label": "Подключение сериалов и TMDB",
-        "growth": "+127%"
-      },
-      {
-        "period": "Сентябрь (Пик W1-W2)",
-        "views": 12800,
-        "visitors": 1150,
-        "label": "Вирусный рост и рекордные просмотры",
-        "growth": "+204%"
-      },
-      {
-        "period": "Сентябрь (W3-W4)",
-        "views": 7300,
-        "visitors": 675,
-        "label": "Стабилизация постоянного ядра",
-        "growth": "Ядро"
-      }
-    ],
-    "radar_metrics": [
-      {
-        "axis": "Библиотека (Library)",
-        "lightstream": 95,
-        "netflix": 85,
-        "note": "TMDB + мульти-балансеры"
-      },
-      {
-        "axis": "Плеер (Player UX)",
-        "lightstream": 100,
-        "netflix": 70,
-        "note": "0 рекламы, uBlock bypass"
-      },
-      {
-        "axis": "Интеграции (Integrations)",
-        "lightstream": 90,
-        "netflix": 30,
-        "note": "TMDB, озвучки, Shazam"
-      },
-      {
-        "axis": "ИИ-поиск (AI Discovery)",
-        "lightstream": 85,
-        "netflix": 20,
-        "note": "Семантический подбор"
-      },
-      {
-        "axis": "Субтитры (Subtitles)",
-        "lightstream": 95,
-        "netflix": 75,
-        "note": "Smart dual RU+EN словарь"
-      },
-      {
-        "axis": "Аудио (Audio Enhancement)",
-        "lightstream": 90,
-        "netflix": 40,
-        "note": "Выравнивание громкости и голос"
-      }
-    ],
-    "activity_punchcard": {
-      "peak_window": "Среда 14:00 и будни 19:00–23:00",
-      "days": [
-        "Вс",
-        "Пн",
-        "Вт",
-        "Ср",
-        "Чт",
-        "Пт",
-        "Сб"
-      ],
-      "hours": [
-        "00",
-        "03",
-        "06",
-        "09",
-        "12",
-        "14",
-        "16",
-        "18",
-        "20",
-        "22"
-      ],
-      "intensity_grid": [
-        [
-          2,
-          1,
-          0,
-          1,
-          3,
-          4,
-          3,
-          5,
-          7,
-          6
-        ],
-        [
-          3,
-          1,
-          0,
-          2,
-          4,
-          6,
-          5,
-          8,
-          9,
-          7
-        ],
-        [
-          3,
-          1,
-          0,
-          2,
-          5,
-          7,
-          6,
-          8,
-          9,
-          8
-        ],
-        [
-          4,
-          2,
-          1,
-          3,
-          6,
-          10,
-          7,
-          9,
-          10,
-          9
-        ],
-        [
-          3,
-          1,
-          0,
-          2,
-          5,
-          7,
-          6,
-          8,
-          9,
-          8
-        ],
-        [
-          4,
-          2,
-          1,
-          2,
-          5,
-          7,
-          7,
-          9,
-          10,
-          9
-        ],
-        [
-          5,
-          2,
-          1,
-          1,
-          4,
-          5,
-          6,
-          8,
-          9,
-          8
-        ]
-      ]
-    }
-  }
-};
+    const DEFAULT_METRICS = {json_str};
     let appData = DEFAULT_METRICS;
 
-    async function init() {
+    async function init() {{
       bindDropdownMenu();
       bindCalculator();
 
-      try {
+      try {{
         const res = await fetch('./metrics.json?v=' + Date.now());
-        if (res.ok) {
+        if (res.ok) {{
           appData = await res.json();
           document.getElementById('updatedAtLabel').textContent = 'Обновлено: ' + (appData.updated_at || '2026-10-05');
-        }
-      } catch (err) {
+        }}
+      }} catch (err) {{
         console.warn('Using embedded fallback metrics:', err);
-      }
+      }}
 
       renderMatrix();
       renderDeals();
       bindStageSwitch();
       updateStage('current');
-    }
+    }}
 
-    function bindDropdownMenu() {
+    function bindDropdownMenu() {{
       const toggle = document.getElementById('menuToggle');
       const menu = document.getElementById('dropdownMenu');
       const links = document.querySelectorAll('.dropdown-link[data-close]');
 
-      function toggleMenu(e) {
+      function toggleMenu(e) {{
         e.stopPropagation();
         const isOpen = menu.classList.contains('show');
-        if (isOpen) {
+        if (isOpen) {{
           menu.classList.remove('show');
           toggle.classList.remove('active');
           toggle.setAttribute('aria-expanded', 'false');
-        } else {
+        }} else {{
           menu.classList.add('show');
           toggle.classList.add('active');
           toggle.setAttribute('aria-expanded', 'true');
-        }
-      }
+        }}
+      }}
 
-      function closeMenu() {
+      function closeMenu() {{
         menu.classList.remove('show');
         toggle.classList.remove('active');
         toggle.setAttribute('aria-expanded', 'false');
-      }
+      }}
 
       toggle.addEventListener('click', toggleMenu);
 
-      links.forEach(link => {
+      links.forEach(link => {{
         link.addEventListener('click', closeMenu);
-      });
+      }});
 
-      document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && e.target !== toggle && !toggle.contains(e.target)) {
+      document.addEventListener('click', (e) => {{
+        if (!menu.contains(e.target) && e.target !== toggle && !toggle.contains(e.target)) {{
           closeMenu();
-        }
-      });
+        }}
+      }});
 
-      document.addEventListener('keydown', (e) => {
+      document.addEventListener('keydown', (e) => {{
         if (e.key === 'Escape') closeMenu();
-      });
-    }
+      }});
+    }}
 
-    function updateStage(stageKey) {
+    function updateStage(stageKey) {{
       if (!appData.stages) return;
       const stage = appData.stages[stageKey] || appData.stages.current;
       document.getElementById('valMau').textContent = Number(stage.mau).toLocaleString() + '+';
@@ -3004,26 +2374,26 @@
       document.getElementById('valViews').textContent = Number(stage.monthly_views).toLocaleString() + '+';
       document.getElementById('noteMau').textContent = stage.note_mau || 'Органическая база киноманов';
       document.getElementById('noteViews').textContent = stage.note_views || '100% чистые досмотры в адаптивном плеере';
-    }
+    }}
 
-    function bindStageSwitch() {
+    function bindStageSwitch() {{
       const tabs = document.querySelectorAll('.stage-tab');
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+      tabs.forEach(tab => {{
+        tab.addEventListener('click', () => {{
           tabs.forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
           updateStage(tab.dataset.stage);
-        });
-      });
-    }
+        }});
+      }});
+    }}
 
-    function bindCalculator() {
+    function bindCalculator() {{
       const sliderMau = document.getElementById('sliderMau');
       const sliderCtr = document.getElementById('sliderCtr');
       const dispMau = document.getElementById('calcMauDisplay');
       const dispCtr = document.getElementById('calcCtrDisplay');
 
-      function recalculate() {
+      function recalculate() {{
         const mau = Number(sliderMau.value);
         const ctr = Number(sliderCtr.value);
 
@@ -3038,67 +2408,73 @@
 
         document.getElementById('resImpressions').textContent = impressions.toLocaleString();
         document.getElementById('resClicks').textContent = clicks.toLocaleString();
-        document.getElementById('resFtd').textContent = `${ftdMin.toLocaleString()} – ${ftdMax.toLocaleString()}`;
-        document.getElementById('resVal').textContent = `$${cpaVal.toLocaleString()}+`;
-      }
+        document.getElementById('resFtd').textContent = `${{ftdMin.toLocaleString()}} – ${{ftdMax.toLocaleString()}}`;
+        document.getElementById('resVal').textContent = `$${{cpaVal.toLocaleString()}}+`;
+      }}
 
       sliderMau.addEventListener('input', recalculate);
       sliderCtr.addEventListener('input', recalculate);
       recalculate();
-    }
+    }}
 
-    function renderMatrix() {
+    function renderMatrix() {{
       const tbody = document.getElementById('matrixBody');
       if (!tbody || !appData.comparison_matrix) return;
       tbody.innerHTML = '';
 
-      function renderStatus(val) {
+      function renderStatus(val) {{
         if (val === 'YES') return '<span class="status-tag yes">YES ✓</span>';
         if (val === 'SOON') return '<span class="status-tag soon">SOON ⚡</span>';
         if (val === 'PARTIAL') return '<span class="status-tag partial">PARTIAL</span>';
         return '<span class="status-tag no">NO ✕</span>';
-      }
+      }}
 
-      appData.comparison_matrix.rows.forEach(row => {
+      appData.comparison_matrix.rows.forEach(row => {{
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td>
-            <strong>${row.feature}</strong>
-            <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">${row.note}</div>
+            <strong>${{row.feature}}</strong>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 2px;">${{row.note}}</div>
           </td>
-          <td>${renderStatus(row.lightstream)}</td>
-          <td>${renderStatus(row.netflix)}</td>
-          <td>${renderStatus(row.kinopoisk)}</td>
-          <td>${renderStatus(row.pirate_sites)}</td>
+          <td>${{renderStatus(row.lightstream)}}</td>
+          <td>${{renderStatus(row.netflix)}}</td>
+          <td>${{renderStatus(row.kinopoisk)}}</td>
+          <td>${{renderStatus(row.pirate_sites)}}</td>
         `;
         tbody.appendChild(tr);
-      });
-    }
+      }});
+    }}
 
-    function renderDeals() {
+    function renderDeals() {{
       const container = document.getElementById('dealsContainer');
       if (!container || !appData.deal_options) return;
       container.innerHTML = '';
-      appData.deal_options.forEach((deal, idx) => {
+      appData.deal_options.forEach((deal, idx) => {{
         const card = document.createElement('div');
         card.className = 'deal-card' + (idx === 0 ? ' primary' : '');
-        const points = (deal.features || []).map(f => `<li>${f}</li>`).join('');
+        const points = (deal.features || []).map(f => `<li>${{f}}</li>`).join('');
         card.innerHTML = `
           <div>
-            <span class="deal-badge">${deal.badge || 'Опция ' + (idx + 1)}</span>
-            <h3 class="deal-title">${deal.title}</h3>
-            <p class="deal-sub">${deal.subtitle}</p>
-            <ul class="deal-points">${points}</ul>
+            <span class="deal-badge">${{deal.badge || 'Опция ' + (idx + 1)}}</span>
+            <h3 class="deal-title">${{deal.title}}</h3>
+            <p class="deal-sub">${{deal.subtitle}}</p>
+            <ul class="deal-points">${{points}}</ul>
           </div>
           <div class="deal-footer">
-            Кому подходит: <strong>${deal.best_for}</strong>
+            Кому подходит: <strong>${{deal.best_for}}</strong>
           </div>
         `;
         container.appendChild(card);
-      });
-    }
+      }});
+    }}
 
     init();
   </script>
 </body>
 </html>
+'''
+
+with open(r"D:\lightstream\pitch-site\index.html", "w", encoding="utf-8") as f:
+    f.write(html_template)
+
+print(f"Generated index.html with static pre-rendered fallback & mobile responsive rules! Size: {os.path.getsize(r'D:\lightstream\pitch-site\index.html')} bytes")
