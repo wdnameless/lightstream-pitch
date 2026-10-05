@@ -1,0 +1,122 @@
+{
+  "updated_at": "2026-10-04",
+  "product": {
+    "name": "LightStream",
+    "url": "https://app.lightstream.ws",
+    "status": "Production (Month 2)",
+    "category": "Next-Gen Ad-Free Web Cinema",
+    "stack": "SvelteKit · Bun · Hono · HLS/DASH Adaptive Streaming · Subtitles · Zero AdBlock Loss"
+  },
+  "stages": {
+    "current": {
+      "label": "Текущий прод (Месяц 2)",
+      "badge": "Actual Live Metrics",
+      "dau": 220,
+      "mau": 5400,
+      "monthly_views": 18500,
+      "avg_session_min": 42.5,
+      "total_watch_hours_month": 13100,
+      "share_of_voice": "100%",
+      "adblock_bypass_rate": "100%",
+      "active_competitor_ads": 0
+    },
+    "q4_projection": {
+      "label": "Проекция на цикл закрытия сделки (Q4)",
+      "badge": "3-Month Sales Run-Rate",
+      "dau": 1800,
+      "mau": 45000,
+      "monthly_views": 160000,
+      "avg_session_min": 44.0,
+      "total_watch_hours_month": 117000,
+      "share_of_voice": "100%",
+      "adblock_bypass_rate": "100%",
+      "active_competitor_ads": 0
+    },
+    "scale": {
+      "label": "Масштабирование (Q1)",
+      "badge": "Full Deployment Scale",
+      "dau": 5500,
+      "mau": 140000,
+      "monthly_views": 520000,
+      "avg_session_min": 45.0,
+      "total_watch_hours_month": 390000,
+      "share_of_voice": "100%",
+      "adblock_bypass_rate": "100%",
+      "active_competitor_ads": 0
+    }
+  },
+  "geo_distribution": [
+    {
+      "region": "РФ (Россия)",
+      "share_pct": 54,
+      "profile": "Высокий LTV, топовый чек, просмотр с Desktop и Smart TV",
+      "tier": "Tier-1 CIS",
+      "payment_compat": "СБП, Карты МИР, P2P"
+    },
+    {
+      "region": "Казахстан",
+      "share_pct": 21,
+      "profile": "Высокая вовлеченность, мобильный веб, быстрый онбординг",
+      "tier": "Tier-2 CIS",
+      "payment_compat": "Kaspi, Halyk, Карты"
+    },
+    {
+      "region": "Узбекистан / Другие страны СНГ",
+      "share_pct": 11,
+      "profile": "Растущая база, сериалы и новинки, чистая органика",
+      "tier": "Tier-2/3 CIS",
+      "payment_compat": "Uzcard, Humo, P2P"
+    },
+    {
+      "region": "Global EN / Tier-1/2 Бурж",
+      "share_pct": 14,
+      "profile": "Англоязычный интерфейс, оригинальный звук, интерес к крипто-брендам",
+      "tier": "Tier-1/2 Global",
+      "payment_compat": "Crypto, Visa/Mastercard"
+    }
+  ],
+  "deal_options": [
+    {
+      "id": "sponsorship",
+      "title": "Генеральное спонсорство (100% Эксклюзив)",
+      "subtitle": "Фиксированный месячный ретейнер за весь рекламный инвентарь",
+      "features": [
+        "Полное отсутствие конкурентов на всем сайте",
+        "Интерактивный нативный оверлей в плеере (до старта и на паузе)",
+        "Не режется AdBlock (рендеринг нативно в canvas/DOM плеера)",
+        "Брендированная плашка в плеере со сквозной ссылкой",
+        "Фиксация ставки на 3-6 месяцев до планового роста аудитории"
+      ],
+      "best_for": "Букмекеры и топ-казино, выстраивающие монопольный бренд-оффер"
+    },
+    {
+      "id": "cpa_hybrid",
+      "title": "Эксклюзивный CPA / Hybrid с гарантией объема",
+      "subtitle": "Высокая ставка за первый депозит (FTD) + бейслайн под киноаудиторию",
+      "features": [
+        "Индивидуальный промокод и трекер под кинотеатр",
+        "Кастомные кнопки в UI («Смотри без рекламы с бонусом от партнера»)",
+        "Таргетинг по гео (раздельные ссылки под РФ, КЗ, Бурж)",
+        "Еженедельная сверка и прозрачная аналитика конверсий"
+      ],
+      "best_for": "Партнерские сети, готовые дать VIP-ставки под качественный кинотрафик"
+    },
+    {
+      "id": "acquisition",
+      "title": "Полный выкуп платформы (Asset / Acqui-hire)",
+      "subtitle": "Передача исходного кода, инфраструктуры плеера и текущего трафика",
+      "features": [
+        "Полный стек: SvelteKit + Bun + HLS/DASH + парсеры и видео-пайплайн",
+        "Бренд, домен app.lightstream.ws, Telegram-каналы и сетка дистрибуции",
+        "Техническая поддержка и интеграция команды под ключ"
+      ],
+      "best_for": "Медиахолдинги и гемблинг-операторы, строящие собственную экосистему трафика"
+    }
+  ],
+  "contacts": {
+    "founder_telegram": "@shitmane",
+    "founder_telegram_url": "https://t.me/shitmane",
+    "email": "good22067@gmail.com",
+    "platform_url": "https://app.lightstream.ws"
+  }
+}

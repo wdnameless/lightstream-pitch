@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LightStream — Партнерство, спонсорство и выкуп платформы</title>
+  <meta name="description" content="Инвестиционное и коммерческое предложение для прямого рекламодателя. Браузерный онлайн-кинотеатр нового поколения: 100% Share of Voice, 0 рекламы, обход AdBlock.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #09090b;
+      --card-bg: #121215;
+      --card-border: #27272a;
+      --card-hover: #1c1c21;
+      --text-main: #fafafa;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+      --accent-white: #ffffff;
+      --line: #222226;
+      --badge-bg: #18181b;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--sans);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header & Nav */
+    header {
+      border-bottom: 1px solid var(--line);
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(9, 9, 11, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-mark {
+      width: 24px;
+      height: 24px;
+      background: var(--text-main);
+      mask: radial-gradient(circle at center, transparent 4px, black 4.5px);
+      -webkit-mask: radial-gradient(circle at center, transparent 4px, black 4.5px);
+    }
+
+    .logo-text {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--badge-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      background: #18181b;
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--card-hover);
+      border-color: #3f3f46;
+    }
+
+    .btn-primary {
+      background: var(--text-main);
+      color: #09090b;
+      font-weight: 600;
+      border: 1px solid var(--text-main);
+    }
+
+    .btn-primary:hover {
+      background: #e4e4e7;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      max-width: 900px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 820px;
+      margin-bottom: 32px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .hero-meta span strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Stage Controller (Run-rate vs Current) */
+    .section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 620px;
+    }
+
+    .stage-switch {
+      display: inline-flex;
+      background: #121215;
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      gap: 4px;
+    }
+
+    .stage-tab {
+      padding: 6px 14px;
+      font-size: 12px;
+      font-family: var(--mono);
+      border-radius: 6px;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .stage-tab.active {
+      background: #27272a;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 20px;
+      transition: border-color 0.15s ease;
+    }
+
+    .metric-card:hover {
+      border-color: #3f3f46;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-value {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .metric-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Callout Note */
+    .growth-insight-box {
+      background: #121216;
+      border: 1px solid #27272a;
+      border-left: 3px solid #fafafa;
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .growth-insight-box strong {
+      color: var(--text-main);
+    }
+
+    /* GEO Split Section */
+    .geo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .geo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .geo-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .geo-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .geo-share {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .geo-bar {
+      height: 4px;
+      background: #27272a;
+      border-radius: 2px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .geo-bar-fill {
+      height: 100%;
+      background: var(--text-main);
+      border-radius: 2px;
+    }
+
+    .geo-meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+
+    .geo-meta-label {
+      color: var(--text-dim);
+    }
+
+    .geo-meta-val {
+      color: var(--text-muted);
+      font-family: var(--mono);
+      text-align: right;
+    }
+
+    /* Comparison / Unfair Advantage */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .compare-card {
+      padding: 24px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+    }
+
+    .compare-card.dimmed {
+      opacity: 0.6;
+      border-style: dashed;
+    }
+
+    .compare-badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .compare-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .feature-list li::before {
+      content: '—';
+      color: var(--text-dim);
+      font-family: var(--mono);
+    }
+
+    /* Deal Structures */
+    .deals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .deal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .deal-card.primary {
+      border-color: #52525b;
+      position: relative;
+    }
+
+    .deal-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 6px;
+      background: #27272a;
+      border-radius: 4px;
+      margin-bottom: 14px;
+      display: inline-block;
+      color: var(--text-muted);
+      align-self: flex-start;
+    }
+
+    .deal-title {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .deal-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.45;
+    }
+
+    .deal-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .deal-points li {
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .deal-points li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--text-dim);
+    }
+
+    .deal-footer {
+      font-size: 11px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    /* CTA / Contact */
+    .cta-box {
+      background: #141418;
+      border: 1px solid #3f3f46;
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .cta-content {
+      max-width: 600px;
+    }
+
+    .cta-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 56px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .deals-grid {
+        grid-template-columns: 1fr;
+      }
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+      .geo-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav">
+      <a href="https://app.lightstream.ws" target="_blank" class="logo-group">
+        <div class="logo-mark"></div>
+        <div class="logo-text">LightStream</div>
+        <span class="badge">Commercial Brief</span>
+      </a>
+      <div class="header-actions">
+        <a href="https://app.lightstream.ws" target="_blank" class="btn btn-secondary">Смотреть платформу ↗</a>
+        <a href="https://t.me/shitmane" target="_blank" class="btn btn-primary">Связаться в TG</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span>Статус: Production (2 месяца в проде) · 0 сторонней рекламы</span>
+      </div>
+      <h1>Браузерный кинотеатр нового поколения: 100% Share of Voice для одного прямого рекламодателя</h1>
+      <p class="hero-sub">
+        Мы не продаем баннерные клики на перегруженных пиратских сайтах с 15 поп-апами.
+        LightStream отдает весь видеоплеер <strong>одному генеральному партнеру</strong> на условиях монопольного присутствия, нативного обхода AdBlock и 40+ минут непрерывного внимания на зрителя.
+      </p>
+      <div class="hero-meta">
+        <span>Платформа: <strong>app.lightstream.ws</strong></span>
+        <span>Стек: <strong>SvelteKit · Bun · HLS/DASH · Subtitles</strong></span>
+        <span>Рекламный шум: <strong>0 баннеров (чистый UI)</strong></span>
+        <span>Формат: <strong>Exclusive Sponsor / CPA Hybrid / Asset Sale</strong></span>
+      </div>
+    </section>
+
+    <!-- Metrics Section with Dynamic Stage Toggle -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Аудитория и метрики внимания</h2>
+          <p class="section-desc">
+            Кинотрафик измеряется не поверхностными кликами, а глубиной сессии и месячной емкостью зрителей. Переключайте срез для оценки текущего ядра и планового закрытия сделки.
+          </p>
+        </div>
+        <div class="stage-switch" id="stageControls">
+          <button class="stage-tab active" data-stage="current">Факт (Месяц 2)</button>
+          <button class="stage-tab" data-stage="q4_projection">Run-Rate (Q4)</button>
+          <button class="stage-tab" data-stage="scale">Масштаб (Q1)</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Metric Cards -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-label">MAU (Ежемесячный охват)</div>
+          <div class="metric-value" id="valMau">5,400+</div>
+          <div class="metric-note" id="noteMau">Чистая органическая база киноманов</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Средняя сессия</div>
+          <div class="metric-value" id="valSession">42.5 мин</div>
+          <div class="metric-note">В 18 раз дольше социальных сетей и прелендингов</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Просмотры видео / мес</div>
+          <div class="metric-value" id="valViews">18,500+</div>
+          <div class="metric-note" id="noteViews">100% досмотры в адаптивном HLS плеере</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Share of Voice</div>
+          <div class="metric-value">100%</div>
+          <div class="metric-note">Ноль сторонних брендов, ноль конкурентных слотов</div>
+        </div>
+      </div>
+
+      <div class="growth-insight-box">
+        <strong>💡 Заметка для медиабайинга и инвестиционного комитета:</strong>
+        Согласование корпоративных интеграций с топ-букмекерами (1xBet, Winline, Fonbet, Parimatch) занимает от 1.5 до 3 месяцев. 
+        За время прохождения комплаенса и интеграции LightStream масштабируется в соответствии с run-rate показателями (вкладка <em>Run-Rate Q4</em>). 
+        Ранний вход позволяет зафиксировать ставку генерального спонсора до кратного роста стоимости инвентаря.
+      </div>
+    </section>
+
+    <!-- GEO Breakdown Section -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Сегментация по регионам (GEO Split)</h2>
+          <p class="section-desc">
+            Мы не обобщаем трафик как «RU/EN». Аудитория точно разделена по платежной инфраструктуре, среднему чеку и регуляторным зонам.
+          </p>
+        </div>
+      </div>
+
+      <div class="geo-grid" id="geoContainer">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- Why It Converts (Unfair Advantage) -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Почему наш плеер конвертит в разы выше пиратских сайтов</h2>
+          <p class="section-desc">
+            Сравнение типичного пиратского агрегатора с чистой архитектурой LightStream.
+          </p>
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-card dimmed">
+          <span class="compare-badge">Обычные кино-сайты</span>
+          <div class="compare-title">Баннерная помойка и бан за спам</div>
+          <ul class="feature-list">
+            <li>12–18 баннеров на одной странице (1win, Vavada, 1xBet одновременно)</li>
+            <li>Агрессивные кликандеры и всплывающие окна, вызывающие отток</li>
+            <li>75%+ зрителей сидят с AdBlock / Brave и срезают рекламу в ноль</li>
+            <li>Баннерная слепота: пользователь закрывает рекламу рефлекторно</li>
+            <li>Отсутствие доверия к продукту: пиратский визуальный мусор</li>
+          </ul>
+        </div>
+
+        <div class="compare-card">
+          <span class="compare-badge" style="color:#fafafa;">Стандарт LightStream</span>
+          <div class="compare-title">Монопольное присутствие и 100% внимание</div>
+          <ul class="feature-list">
+            <li><strong>100% Share of Voice:</strong> бренд партнера — единственный на всей платформе</li>
+            <li><strong>Иммунитет к AdBlock:</strong> видео-плашки и оверлеи вшиты нативно в плеер (canvas/HLS stream)</li>
+            <li><strong>Премиальный UX:</strong> кинотеатр выглядит как дорогой западный стриминг (Apple TV style)</li>
+            <li><strong>Высокое доверие:</strong> зрители благодарны сервису за отсутствие спама и легко кликают по партнерскому офферу</li>
+            <li><strong>Кликабельные нативные CTA:</strong> пауза, преролл с пропуском и брендированная кнопка перехода</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deal Formats -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Форматы сотрудничества</h2>
+          <p class="section-desc">
+            Мы открыты к трем понятным моделям работы — от фиксированного рекламного ретейнера до полной продажи актива.
+          </p>
+        </div>
+      </div>
+
+      <div class="deals-grid" id="dealsContainer">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- Direct CTA -->
+    <div class="cta-box">
+      <div class="cta-content">
+        <div class="cta-title">Обсудить партнерство или получить прямой контакт</div>
+        <div class="cta-desc">
+          Мы на прямой связи в Telegram для быстрого созвона, согласования рекламных креативов или предоставления доступа к сырым логам веб-аналитики.
+        </div>
+      </div>
+      <div class="cta-actions">
+        <a href="https://t.me/shitmane" target="_blank" class="btn btn-primary" style="padding: 12px 24px; font-size: 14px;">
+          Написать фаундеру: @shitmane ↗
+        </a>
+        <a href="mailto:good22067@gmail.com" class="btn btn-secondary" style="padding: 10px 20px;">
+          good22067@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div>LightStream Media Group · app.lightstream.ws</div>
+      <div id="updatedAtLabel">Обновлено: 2026-10-04</div>
+    </footer>
+
+  </main>
+
+  <script>
+    // Embedded Fallback in case opened directly or local file://
+    const fallbackData = {
+      "updated_at": "2026-10-04",
+      "stages": {
+        "current": {
+          "label": "Текущий прод (Месяц 2)",
+          "dau": 220,
+          "mau": 5400,
+          "monthly_views": 18500,
+          "avg_session_min": 42.5,
+          "note_mau": "Органическая база лояльных зрителей",
+          "note_views": "Чистые досмотры в плеере"
+        },
+        "q4_projection": {
+          "label": "Проекция Run-Rate (Q4)",
+          "dau": 1800,
+          "mau": 45000,
+          "monthly_views": 160000,
+          "avg_session_min": 44.0,
+          "note_mau": "Масштабирование каналов дистрибуции",
+          "note_views": "Емкость инвентаря на момент контракта"
+        },
+        "scale": {
+          "label": "Масштабирование (Q1)",
+          "dau": 5500,
+          "mau": 140000,
+          "monthly_views": 520000,
+          "avg_session_min": 45.0,
+          "note_mau": "Полномасштабный релиз веб-платформы",
+          "note_views": "Максимальный объем видеоинвентаря"
+        }
+      },
+      "geo_distribution": [
+        {
+          "region": "РФ (Россия)",
+          "share_pct": 54,
+          "profile": "Высокий LTV, топовый средний депозит, просмотр Desktop & TV",
+          "tier": "Tier-1 CIS",
+          "payment_compat": "СБП, Карты МИР, P2P"
+        },
+        {
+          "region": "Казахстан",
+          "share_pct": 21,
+          "profile": "Высокая вовлеченность, мобильный трафик, быстрый онбординг",
+          "tier": "Tier-2 CIS",
+          "payment_compat": "Kaspi, Halyk, Карты"
+        },
+        {
+          "region": "Узбекистан / Другие страны СНГ",
+          "share_pct": 11,
+          "profile": "Динамичный рост, сериалы и топовые премьеры, органика",
+          "tier": "Tier-2/3 CIS",
+          "payment_compat": "Uzcard, Humo, P2P"
+        },
+        {
+          "region": "Global EN / Tier-1/2 Бурж",
+          "share_pct": 14,
+          "profile": "Англоязычный интерфейс, оригинальный звук, интерес к крипто-брендам",
+          "tier": "Tier-1/2 Global",
+          "payment_compat": "Crypto, Visa/Mastercard"
+        }
+      ],
+      "deal_options": [
+        {
+          "badge": "Рекомендуемый",
+          "title": "Генеральное спонсорство (100% Эксклюзив)",
+          "subtitle": "Фиксированный ретейнер за весь рекламный инвентарь платформы",
+          "features": [
+            "Полный монопольный эксклюзив без конкурентов",
+            "Нативный видео-оверлей перед стартом и на паузе",
+            "100% обход AdBlock (рендеринг в плеере)",
+            "Сквозная кликабельная брендированная плашка",
+            "Фиксация цены на 3–6 месяцев до масштабирования"
+          ],
+          "best_for": "Букмекеры и топ-казино, выстраивающие монопольный бренд-оффер"
+        },
+        {
+          "badge": "Конверсионный",
+          "title": "Эксклюзивный CPA / Hybrid с объемом",
+          "subtitle": "Высокая ставка за FTD + адаптированный бейслайн под кинозрителя",
+          "features": [
+            "Персональный промокод и трекинг под платформу",
+            "Кастомные триггерные кнопки в интерфейсе стриминга",
+            "Раздельные трекинг-ссылки под гео (РФ, КЗ, Бурж)",
+            "Еженедельная верификация и прозрачные когорты"
+          ],
+          "best_for": "Партнерские сети с сильным конвертом и гибкими бейслайнами"
+        },
+        {
+          "badge": "M&A",
+          "title": "Полный выкуп платформы (Asset / Acqui-hire)",
+          "subtitle": "Передача исходного кода, видеоинфраструктуры и домена",
+          "features": [
+            "Полный современный стек: SvelteKit + Bun + HLS пайплайн",
+            "Домен app.lightstream.ws + сопутствующие медиаканалы",
+            "Команда готова сопровождать интеграцию под ключ"
+          ],
+          "best_for": "Медиахолдинги и гемблинг-операторы, строящие свою медиасеть"
+        }
+      ]
+    };
+
+    let appData = fallbackData;
+
+    // Load data dynamically from metrics.json
+    async function initData() {
+      try {
+        const res = await fetch('./metrics.json?v=' + Date.now());
+        if (res.ok) {
+          const json = await res.json();
+          appData = {
+            ...fallbackData,
+            ...json,
+            stages: json.stages || fallbackData.stages,
+            geo_distribution: json.geo_distribution || fallbackData.geo_distribution,
+            deal_options: json.deal_options || fallbackData.deal_options
+          };
+          if (json.updated_at) {
+            document.getElementById('updatedAtLabel').textContent = 'Обновлено: ' + json.updated_at;
+          }
+        }
+      } catch (e) {
+        console.warn('Using embedded fallback data:', e);
+      }
+      renderGeo();
+      renderDeals();
+      bindStageSwitch();
+      updateStage('current');
+    }
+
+    function updateStage(stageKey) {
+      const stage = appData.stages[stageKey] || appData.stages.current;
+      document.getElementById('valMau').textContent = Number(stage.mau).toLocaleString() + '+';
+      document.getElementById('valSession').textContent = stage.avg_session_min + ' мин';
+      document.getElementById('valViews').textContent = Number(stage.monthly_views).toLocaleString() + '+';
+      document.getElementById('noteMau').textContent = stage.note_mau || 'Ежемесячный охват киноманов';
+      document.getElementById('noteViews').textContent = stage.note_views || '100% просмотры в плеере';
+    }
+
+    function bindStageSwitch() {
+      const tabs = document.querySelectorAll('.stage-tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const stageKey = tab.dataset.stage;
+          updateStage(stageKey);
+        });
+      });
+    }
+
+    function renderGeo() {
+      const container = document.getElementById('geoContainer');
+      container.innerHTML = '';
+      appData.geo_distribution.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'geo-card';
+        card.innerHTML = `
+          <div class="geo-top">
+            <span class="geo-name">${item.region}</span>
+            <span class="geo-share">${item.share_pct}%</span>
+          </div>
+          <div class="geo-bar">
+            <div class="geo-bar-fill" style="width: ${item.share_pct}%;"></div>
+          </div>
+          <div class="geo-meta-row">
+            <span class="geo-meta-label">Категория:</span>
+            <span class="geo-meta-val">${item.tier}</span>
+          </div>
+          <div class="geo-meta-row">
+            <span class="geo-meta-label">Платежные шлюзы:</span>
+            <span class="geo-meta-val">${item.payment_compat}</span>
+          </div>
+          <div class="geo-meta-row" style="margin-top: 8px;">
+            <span class="geo-meta-label">Характеристика:</span>
+            <span class="geo-meta-val" style="font-family: var(--sans); font-size: 11px;">${item.profile}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderDeals() {
+      const container = document.getElementById('dealsContainer');
+      container.innerHTML = '';
+      appData.deal_options.forEach((deal, idx) => {
+        const card = document.createElement('div');
+        card.className = 'deal-card' + (idx === 0 ? ' primary' : '');
+        const points = (deal.features || []).map(f => `<li>${f}</li>`).join('');
+        card.innerHTML = `
+          <div>
+            <span class="deal-badge">${deal.badge || 'Опция ' + (idx + 1)}</span>
+            <h3 class="deal-title">${deal.title}</h3>
+            <p class="deal-sub">${deal.subtitle}</p>
+            <ul class="deal-points">${points}</ul>
+          </div>
+          <div class="deal-footer">
+            Кому подходит: <strong>${deal.best_for}</strong>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    initData();
+  </script>
+</body>
+</html>
