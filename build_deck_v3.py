@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+# Script to build the updated LightStream pitch deck with hand-drawn blueprint aesthetics,
+# off-canvas burger drawer, bilingual RU/EN support, and strict sales funnel.
+import os
+import json
+
+metrics_path = r"D:\lightstream\pitch-site\metrics.json"
+with open(metrics_path, "r", encoding="utf-8") as f:
+    metrics = json.load(f)
+
+json_str = json.dumps(metrics, ensure_ascii=False)
+
+html_content = r'''<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -2875,3 +2886,10 @@
   </script>
 </body>
 </html>
+'''
+
+output_path = r"D:\lightstream\pitch-site\index.html"
+with open(output_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Successfully compiled hand-drawn blueprint pitch deck to {output_path}! File size: {os.path.getsize(output_path)} bytes")
