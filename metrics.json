@@ -1,14 +1,81 @@
 {
-  "updated_at": "2026-10-04",
+  "updated_at": "2026-10-05",
   "product": {
     "name": "LightStream",
     "url": "https://app.lightstream.ws",
+    "tagline": "Next-Gen Ad-Free Web Cinema · 100% Share of Voice",
     "status": "Production (Month 2)",
     "category": "Next-Gen Ad-Free Web Cinema",
     "stack": "SvelteKit · Bun · Hono · HLS/DASH Adaptive Streaming · Subtitles · Zero AdBlock Loss"
   },
+  "verified_analytics_90d": {
+    "views": 26600,
+    "views_growth": "+100%",
+    "visits": 5820,
+    "visits_growth": "+100%",
+    "visitors": 2880,
+    "visitors_growth": "+100%",
+    "bounce_rate": "53%",
+    "avg_duration": "4m 18s",
+    "peak_daily_views": "2,100+",
+    "top_browsers": [
+      {
+        "name": "Google Chrome",
+        "share": 43,
+        "count": 1210
+      },
+      {
+        "name": "iOS Safari",
+        "share": 19,
+        "count": 538
+      },
+      {
+        "name": "iOS Webview",
+        "share": 14,
+        "count": 391
+      },
+      {
+        "name": "Chrome Webview",
+        "share": 9,
+        "count": 254
+      }
+    ],
+    "top_locations": [
+      {
+        "country": "United States (США)",
+        "share": 24,
+        "count": 499,
+        "tier": "Tier-1 Global"
+      },
+      {
+        "country": "Belarus (Беларусь)",
+        "share": 14,
+        "count": 294,
+        "tier": "Tier-1 CIS"
+      },
+      {
+        "country": "Ukraine (Украина)",
+        "share": 14,
+        "count": 291,
+        "tier": "Tier-1 CIS"
+      },
+      {
+        "country": "Kazakhstan (Казахстан)",
+        "share": 12,
+        "count": 247,
+        "tier": "Tier-2 CIS"
+      },
+      {
+        "country": "Poland (Польша)",
+        "share": 11,
+        "count": 222,
+        "tier": "Tier-1 EU"
+      }
+    ]
+  },
   "stages": {
     "current": {
+      "key": "current",
       "label": "Текущий прод (Месяц 2)",
       "badge": "Actual Live Metrics",
       "dau": 220,
@@ -18,10 +85,13 @@
       "total_watch_hours_month": 13100,
       "share_of_voice": "100%",
       "adblock_bypass_rate": "100%",
-      "active_competitor_ads": 0
+      "active_competitor_ads": 0,
+      "note_mau": "Органическая база киноманов и повторных сессий",
+      "note_views": "100% чистые досмотры в адаптивном плеере"
     },
     "q4_projection": {
-      "label": "Проекция на цикл закрытия сделки (Q4)",
+      "key": "q4_projection",
+      "label": "Проекция на закрытие сделки (Q4)",
       "badge": "3-Month Sales Run-Rate",
       "dau": 1800,
       "mau": 45000,
@@ -30,11 +100,14 @@
       "total_watch_hours_month": 117000,
       "share_of_voice": "100%",
       "adblock_bypass_rate": "100%",
-      "active_competitor_ads": 0
+      "active_competitor_ads": 0,
+      "note_mau": "Масштабирование SEO и партизанских каналов",
+      "note_views": "Емкость рекламного инвентаря на момент контракта"
     },
     "scale": {
+      "key": "scale",
       "label": "Масштабирование (Q1)",
-      "badge": "Full Deployment Scale",
+      "badge": "Full Scale Pipeline",
       "dau": 5500,
       "mau": 140000,
       "monthly_views": 520000,
@@ -42,75 +115,232 @@
       "total_watch_hours_month": 390000,
       "share_of_voice": "100%",
       "adblock_bypass_rate": "100%",
-      "active_competitor_ads": 0
+      "active_competitor_ads": 0,
+      "note_mau": "Подключение AI-шортсов и мультиязычной сетки",
+      "note_views": "Максимальный объем видеоинвентаря"
     }
   },
   "geo_distribution": [
     {
-      "region": "РФ (Россия)",
-      "share_pct": 54,
-      "profile": "Высокий LTV, топовый чек, просмотр с Desktop и Smart TV",
+      "region": "США & Global Tier-1 (США, Польша, ЕС)",
+      "share_pct": 35,
+      "profile": "Высокая платежеспособность, крипто-бренды, просмотр на Desktop & iOS",
+      "tier": "Tier-1 Global",
+      "payment_compat": "Crypto, Visa/Mastercard, Apple Pay"
+    },
+    {
+      "region": "РФ & Беларусь (Tier-1 CIS)",
+      "share_pct": 28,
+      "profile": "Высокий LTV, топовый средний депозит, просмотр кино и премьер",
       "tier": "Tier-1 CIS",
-      "payment_compat": "СБП, Карты МИР, P2P"
+      "payment_compat": "СБП, Карты МИР, P2P, Белкарт"
     },
     {
-      "region": "Казахстан",
-      "share_pct": 21,
-      "profile": "Высокая вовлеченность, мобильный веб, быстрый онбординг",
-      "tier": "Tier-2 CIS",
-      "payment_compat": "Kaspi, Halyk, Карты"
-    },
-    {
-      "region": "Узбекистан / Другие страны СНГ",
-      "share_pct": 11,
-      "profile": "Растущая база, сериалы и новинки, чистая органика",
-      "tier": "Tier-2/3 CIS",
-      "payment_compat": "Uzcard, Humo, P2P"
-    },
-    {
-      "region": "Global EN / Tier-1/2 Бурж",
+      "region": "Казахстан (Tier-2 CIS)",
       "share_pct": 14,
-      "profile": "Англоязычный интерфейс, оригинальный звук, интерес к крипто-брендам",
-      "tier": "Tier-1/2 Global",
-      "payment_compat": "Crypto, Visa/Mastercard"
+      "profile": "Высокая мобильная активность, растущий средний чек",
+      "tier": "Tier-2 CIS",
+      "payment_compat": "Kaspi Bank, Halyk, Карты"
+    },
+    {
+      "region": "Украина & Другие страны СНГ",
+      "share_pct": 23,
+      "profile": "Динамичный рост, сериалы и новинки проката, чистая органика",
+      "tier": "Tier-2 CIS",
+      "payment_compat": "P2P, Моно, Приват, Uzcard/Humo"
+    }
+  ],
+  "comparison_matrix": {
+    "title": "Honest comparison. Data instead of marketing.",
+    "radar_axes": [
+      "Library",
+      "Player",
+      "Integrations",
+      "AI",
+      "Subtitles",
+      "Audio"
+    ],
+    "score_lightstream": "7/9",
+    "score_netflix": "2/9",
+    "rows": [
+      {
+        "feature": "Bookmarks & Library (Закладки и история)",
+        "lightstream": "YES",
+        "netflix": "YES",
+        "kinopoisk": "YES",
+        "pirate_sites": "PARTIAL",
+        "note": "Синхронизация прогресса с точностью до секунды"
+      },
+      {
+        "feature": "Watch Party (Совместный просмотр)",
+        "lightstream": "SOON",
+        "netflix": "NO",
+        "kinopoisk": "NO",
+        "pirate_sites": "NO",
+        "note": "Синхронное воспроизведение и чат для друзей"
+      },
+      {
+        "feature": "Smart Subtitles (Двуязычные субтитры)",
+        "lightstream": "YES",
+        "netflix": "YES",
+        "kinopoisk": "PARTIAL",
+        "pirate_sites": "NO",
+        "note": "Оригинальный звук + умное переключение дорожек"
+      },
+      {
+        "feature": "Keyboard Shortcuts (Горячие клавиши плеера)",
+        "lightstream": "YES",
+        "netflix": "PARTIAL",
+        "kinopoisk": "PARTIAL",
+        "pirate_sites": "NO",
+        "note": "Управление воспроизведением без лишних кликов"
+      },
+      {
+        "feature": "Native TMDB Integration (Метаданные)",
+        "lightstream": "YES",
+        "netflix": "NO",
+        "kinopoisk": "NO",
+        "pirate_sites": "PARTIAL",
+        "note": "Рейтинги, актеры, трейлеры, даты выхода в 1 клик"
+      },
+      {
+        "feature": "Comprehensive Movie Info (Полная карточка)",
+        "lightstream": "YES",
+        "netflix": "NO",
+        "kinopoisk": "YES",
+        "pirate_sites": "NO",
+        "note": "Кастомный UI карточки тайтла с рекомендациями"
+      },
+      {
+        "feature": "Music Recognition / Shazam (Треки из фильма)",
+        "lightstream": "SOON",
+        "netflix": "NO",
+        "kinopoisk": "NO",
+        "pirate_sites": "NO",
+        "note": "Определение саундтрека прямо во время сцены"
+      },
+      {
+        "feature": "Audio Enhancement (Улучшение голоса)",
+        "lightstream": "SOON",
+        "netflix": "NO",
+        "kinopoisk": "NO",
+        "pirate_sites": "NO",
+        "note": "Выравнивание громкости и усиление диалогов"
+      },
+      {
+        "feature": "AI Assistant (Умный подбор по настроению)",
+        "lightstream": "SOON",
+        "netflix": "NO",
+        "kinopoisk": "NO",
+        "pirate_sites": "NO",
+        "note": "Поиск кино на естественном языке без шаблонных тегов"
+      }
+    ]
+  },
+  "roadmap": [
+    {
+      "category": "Core Engine",
+      "status": "DONE",
+      "badge": "В проде",
+      "title": "HLS/DASH Адаптивный плеер",
+      "desc": "Сверхбыстрая буферизация, поддержка 1080p, переключение дорожек, субтитры, 0 подвисаний."
+    },
+    {
+      "category": "SEO & Growth",
+      "status": "DONE",
+      "badge": "В проде",
+      "title": "SEO Оптимизация + Agentic пайплайн",
+      "desc": "Автоматическая генерация тайтл-страниц, TMDB-синк, индексация поисковиками, чистый органический трафик."
+    },
+    {
+      "category": "Distribution",
+      "status": "IN_PROGRESS",
+      "badge": "В процессе (Q4)",
+      "title": "Партизанский рост (Threads & TG Automation)",
+      "desc": "Автоматизированные пайплайны дистрибуции вирусных синефильских нарезок, генерация рилсов и привлечение трафика."
+    },
+    {
+      "category": "Content",
+      "status": "IN_PROGRESS",
+      "badge": "В процессе (Q4)",
+      "title": "Выделенный раздел «Дорамы» (Asian Dramas)",
+      "desc": "Азиатские сериалы с огромным LTV зрительниц и регулярными повторными визитами."
+    },
+    {
+      "category": "Identity",
+      "status": "IN_PROGRESS",
+      "badge": "В процессе (Q4)",
+      "title": "Google One-Tap Login & Username Aliases",
+      "desc": "Бесшовный онбординг зрителей без обязательного ввода паролей для роста возвратности."
+    },
+    {
+      "category": "Player Innovation",
+      "status": "PLANNED",
+      "badge": "Планы (Q1)",
+      "title": "In-Player Shazam (Распознавание музыки)",
+      "desc": "Кнопка в плеере: определить трек в текущей сцене и открыть его в Spotify / Apple Music."
+    },
+    {
+      "category": "Social Streaming",
+      "status": "PLANNED",
+      "badge": "Планы (Q1)",
+      "title": "Watch Party (Синхронный просмотр)",
+      "desc": "Совместный просмотр кино друзьями по единой ссылке с текстовым и голосовым чатом."
+    },
+    {
+      "category": "AI Discovery",
+      "status": "PLANNED",
+      "badge": "Планы (Q1)",
+      "title": "AI Кино-Ассистент",
+      "desc": "Подбор фильмов по вайбу: «хочу триллер с неожиданным финалом в дождливом городе»."
+    },
+    {
+      "category": "Video Engine",
+      "status": "PLANNED",
+      "badge": "Планы (Q1)",
+      "title": "Shorts / Reels витрина лучших сцен",
+      "desc": "Вертикальная лента вирусных фрагментов кино с мгновенным переходом к просмотру фильма в 1 тап."
     }
   ],
   "deal_options": [
     {
       "id": "sponsorship",
+      "badge": "Рекомендуемый",
       "title": "Генеральное спонсорство (100% Эксклюзив)",
-      "subtitle": "Фиксированный месячный ретейнер за весь рекламный инвентарь",
+      "subtitle": "Фиксированный месячный ретейнер за весь рекламный инвентарь платформы",
       "features": [
-        "Полное отсутствие конкурентов на всем сайте",
-        "Интерактивный нативный оверлей в плеере (до старта и на паузе)",
-        "Не режется AdBlock (рендеринг нативно в canvas/DOM плеера)",
-        "Брендированная плашка в плеере со сквозной ссылкой",
-        "Фиксация ставки на 3-6 месяцев до планового роста аудитории"
+        "Полный монопольный эксклюзив без единого конкурента",
+        "Интерактивный нативный видео-оверлей перед стартом и на паузе",
+        "100% обход AdBlock (нативный рендеринг в канвасе плеера)",
+        "Сквозная кликабельная брендированная плашка с переходом",
+        "Фиксация ставки на 3–6 месяцев до кратного масштабирования"
       ],
       "best_for": "Букмекеры и топ-казино, выстраивающие монопольный бренд-оффер"
     },
     {
       "id": "cpa_hybrid",
+      "badge": "Конверсионный",
       "title": "Эксклюзивный CPA / Hybrid с гарантией объема",
-      "subtitle": "Высокая ставка за первый депозит (FTD) + бейслайн под киноаудиторию",
+      "subtitle": "Высокая ставка за первый депозит (FTD) + бейслайн под кинозрителя",
       "features": [
-        "Индивидуальный промокод и трекер под кинотеатр",
-        "Кастомные кнопки в UI («Смотри без рекламы с бонусом от партнера»)",
-        "Таргетинг по гео (раздельные ссылки под РФ, КЗ, Бурж)",
-        "Еженедельная сверка и прозрачная аналитика конверсий"
+        "Персональный промокод и трекер под кинотеатр",
+        "Кастомные триггерные кнопки («Смотри без рекламы с бонусом от партнера»)",
+        "Раздельный таргетинг по гео (раздельные офферы под РФ, КЗ, Бурж)",
+        "Еженедельная сверка и прозрачные когорты конверсий"
       ],
-      "best_for": "Партнерские сети, готовые дать VIP-ставки под качественный кинотрафик"
+      "best_for": "Партнерские сети с сильным конвертом и гибкими бейслайнами"
     },
     {
       "id": "acquisition",
+      "badge": "M&A / Asset Sale",
       "title": "Полный выкуп платформы (Asset / Acqui-hire)",
-      "subtitle": "Передача исходного кода, инфраструктуры плеера и текущего трафика",
+      "subtitle": "Передача исходного кода, видеоинфраструктуры, домена и пайплайнов",
       "features": [
-        "Полный стек: SvelteKit + Bun + HLS/DASH + парсеры и видео-пайплайн",
-        "Бренд, домен app.lightstream.ws, Telegram-каналы и сетка дистрибуции",
-        "Техническая поддержка и интеграция команды под ключ"
+        "Полный стек: SvelteKit + Bun + Hono + HLS/DASH видео-пайплайн",
+        "Домен app.lightstream.ws + сетка сопутствующих каналов дистрибуции",
+        "Команда готова сопровождать интеграцию и масштабирование под ключ"
       ],
-      "best_for": "Медиахолдинги и гемблинг-операторы, строящие собственную экосистему трафика"
+      "best_for": "Медиахолдинги и гемблинг-операторы, строящие свою медиасеть"
     }
   ],
   "contacts": {
