@@ -1166,13 +1166,17 @@
       gap: 8px;
     }
 
-    .t-badge {
-      font-family: var(--mono);
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      font-weight: 600;
+    .t-badge.done {
+      background: #064e3b;
+      color: #34d399;
+    }
+    .t-badge.wip {
+      background: #1e3a8a;
+      color: #60a5fa;
+    }
+    .t-badge.plan {
+      background: #252632;
+      color: #e4e4e7;
     }
 
     .t-stage {
@@ -1323,7 +1327,7 @@
     /* Footer */
     footer {
       margin-top: 56px;
-      padding-top: 24px;
+      padding: 32px 0 64px;
       border-top: 1px solid #1f202b;
       display: flex;
       justify-content: space-between;
@@ -2129,136 +2133,136 @@
             Вектор развития продукта: от уже запущенного видеодвижка до социальных и ИИ-инноваций следующего поколения. Без абстрактных дат — строго по фичам и статусам внедрения.
           </p>
         </div>
-        <span class="hand-badge">Timeline Arrow</span>
+        <span class="hand-badge" data-i18n="road_hand_badge">★ 01–08 Архитектура & Фичи</span>
       </div>
 
       <div class="timeline-wrap">
         <div class="timeline-stem"></div>
 
-        <!-- 01: Core Player (Left) -->
+        <!-- 01: Largest Library & Multi-CDN Player (Left) -->
         <div class="timeline-row left">
           <div class="timeline-circle node-done">01</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#064e3b; color:#34d399;" data-i18n="st_done">В проде ✓</span>
-              <span class="t-stage">Core Engine</span>
+              <span class="t-badge done" data-i18n="st_done">В проде ✓</span>
+              <span class="t-stage">Largest Library & Engine</span>
             </div>
-            <div class="t-title" data-i18n="rm_01_t">HLS/DASH Адаптивный видеодвижок</div>
+            <div class="t-title" data-i18n="rm_01_t">Самая большая библиотека & Мульти-CDN плеер</div>
             <div class="t-desc" data-i18n="rm_01_d">
-              Мульти-CDN агрегация с автопереключением источников, 1080p, мгновенная буферизация и uBlock-обход за счет нативного рендеринга.
+              Агрегация всех CDN-балансеров в едином адаптивном HLS/DASH плеере: автопереключение источников при сбоях, 1080p, мгновенный старт. Все топовые русские озвучки (Red Head Sound, LostFilm, HDRezka, Кубик в Кубе) + оригинальный звук.
             </div>
           </div>
         </div>
 
-        <!-- 02: SEO & Agentic TMDB (Right) -->
+        <!-- 02: 2-Way TMDB Sync & Omnibox (Right) -->
         <div class="timeline-row right">
           <div class="timeline-circle node-done">02</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#064e3b; color:#34d399;" data-i18n="st_done">В проде ✓</span>
-              <span class="t-stage">Growth Pipeline</span>
+              <span class="t-badge done" data-i18n="st_done">В проде ✓</span>
+              <span class="t-stage">2-Way TMDB Sync</span>
             </div>
-            <div class="t-title" data-i18n="rm_02_t">SEO Оптимизация & Agentic TMDB-синк</div>
+            <div class="t-title" data-i18n="rm_02_t">Двусторонняя синхронизация с TMDB & Живой поиск</div>
             <div class="t-desc" data-i18n="rm_02_d">
-              Автоматическая генерация тайтл-карточек, актерских страниц, трейлеров и рейтингов. Быстрая индексация поисковиками и чистая органика.
+              Мгновенный Omnibox-поиск любого фильма, сериала или аниме прямо на сайте. Полные карточки: актеры, фильмографии, бюджеты, рейтинги, кадры, трейлеры и факты. Двусторонняя синхронизация списков и каталогов в реальном времени.
             </div>
           </div>
         </div>
 
-        <!-- 03: Threads & Telegram Viral Machine (Left) -->
+        <!-- 03: Smart Bilingual Subs & Language Learning (Left) -->
         <div class="timeline-row left">
-          <div class="timeline-circle node-wip">03</div>
+          <div class="timeline-circle node-done">03</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#1e3a8a; color:#60a5fa;" data-i18n="st_wip">В работе ⚡</span>
-              <span class="t-stage">Viral Distribution</span>
+              <span class="t-badge done" data-i18n="st_done">В проде ✓</span>
+              <span class="t-stage">Smart Subtitles & EdTech</span>
             </div>
-            <div class="t-title" data-i18n="rm_03_t">Threads & Telegram вирусный трафик</div>
+            <div class="t-title" data-i18n="rm_03_t">Smart Subtitles & Изучение языка по кино</div>
             <div class="t-desc" data-i18n="rm_03_d">
-              Автоматизированная фабрика синефильских нарезок и трейлеров. Партизанский маркетинг, привлекающий зрителей с CAC = $0.
+              Двойные параллельные субтитры RU + EN. Мгновенный перевод любого незнакомого слова по клику или тапу прямо во время просмотра. Интерактивный личный словарь и сохранение вордлистов для прокачки английского по фильмам.
             </div>
           </div>
         </div>
 
-        <!-- 04: Asian Dramas (Right) -->
+        <!-- 04: Custom Subtitles (.srt/.vtt) & Skip Intro (Right) -->
         <div class="timeline-row right">
-          <div class="timeline-circle node-wip">04</div>
+          <div class="timeline-circle node-done">04</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#1e3a8a; color:#60a5fa;" data-i18n="st_wip">В работе ⚡</span>
-              <span class="t-stage">Content Expansion</span>
+              <span class="t-badge done" data-i18n="st_done">В проде ✓</span>
+              <span class="t-stage">Custom Subs & IntroDB</span>
             </div>
-            <div class="t-title" data-i18n="rm_04_t">Хаб азиатского контента («Дорамы»)</div>
+            <div class="t-title" data-i18n="rm_04_t">Свои субтитры (.srt/.vtt) & Skip Intro (TheIntroDB)</div>
             <div class="t-desc" data-i18n="rm_04_d">
-              Выделенные рельсы и подборки корейских и китайских сериалов с высочайшим retention, глубиной досмотра и повторными визитами.
+              Возможность загрузить собственные файлы субтитров к любому тайтлу прямо в плеер. Автоматический пропуск опенингов и заставок сериалов в один клик через базу TheIntroDB без ручной перемотки.
             </div>
           </div>
         </div>
 
-        <!-- 05: Google One-Tap & Cloud Aliases (Left) -->
+        <!-- 05: Cloud Library & Second-Accurate Sync (Left) -->
         <div class="timeline-row left">
-          <div class="timeline-circle node-wip">05</div>
+          <div class="timeline-circle node-done">05</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#1e3a8a; color:#60a5fa;" data-i18n="st_wip">В работе ⚡</span>
-              <span class="t-stage">User Identity</span>
+              <span class="t-badge done" data-i18n="st_done">В проде ✓</span>
+              <span class="t-stage">Cloud Library & Sync</span>
             </div>
-            <div class="t-title" data-i18n="rm_05_t">Google One-Tap Login & Алиасы</div>
+            <div class="t-title" data-i18n="rm_05_t">Облачная библиотека & Точный синк до секунды</div>
             <div class="t-desc" data-i18n="rm_05_d">
-              Вход без паролей в один клик. Сквозная синхронизация истории просмотров, избранного и персональных закладок на десктопе и смартфоне.
+              Умные закладки, папки («Буду смотреть», «Избранное»), история просмотров и функция «Продолжить просмотр» с точностью до секунды. Бесшовная кросс-девайс синхронизация между ПК, смартфоном и планшетом. Персональные AI-рекомендации.
             </div>
           </div>
         </div>
 
-        <!-- 06: In-Player Shazam (Right) -->
+        <!-- 06: Live AI Subs & Voice EQ (Right) -->
         <div class="timeline-row right">
-          <div class="timeline-circle node-plan">06</div>
+          <div class="timeline-circle node-wip">06</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#252632; color:#e4e4e7;" data-i18n="st_plan">Запланировано</span>
-              <span class="t-stage">Player Innovation</span>
+              <span class="t-badge wip" data-i18n="st_wip">В работе ⚡</span>
+              <span class="t-stage">AI Audio & Subtitle Engine</span>
             </div>
-            <div class="t-title" data-i18n="rm_06_t">In-Player Shazam (Музыка в кадре)</div>
+            <div class="t-title" data-i18n="rm_06_t">AI-перевод субтитров на лету & Voice EQ</div>
             <div class="t-desc" data-i18n="rm_06_d">
-              Распознавание саундтрека в реальном времени прямо во время просмотра сцены с возможностью добавить трек в Spotify или Apple Music.
+              Мгновенная генерация и перевод субтитров нейросетями для свежайших мировых премьер, у которых еще нет официального дубляжа. Ночной режим нормализации звука: четкие диалоги поверх оглушающих спецэффектов.
             </div>
           </div>
         </div>
 
-        <!-- 07: Watch Party Sync (Left) -->
+        <!-- 07: Watch Party & Timestamp Share (Left) -->
         <div class="timeline-row left">
-          <div class="timeline-circle node-plan">07</div>
+          <div class="timeline-circle node-wip">07</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#252632; color:#e4e4e7;" data-i18n="st_plan">Запланировано</span>
-              <span class="t-stage">Social Streaming</span>
+              <span class="t-badge wip" data-i18n="st_wip">В работе ⚡</span>
+              <span class="t-stage">Social Streaming & Sharing</span>
             </div>
-            <div class="t-title" data-i18n="rm_07_t">Watch Party (Совместный просмотр)</div>
+            <div class="t-title" data-i18n="rm_07_t">Social Watch Party & Таймкод-шаринг моментов</div>
             <div class="t-desc" data-i18n="rm_07_d">
-              Синхронный просмотр фильмов друзьями по единой ссылке: синхронная перемотка, реакции и текстово-голосовой чат поверх плеера.
+              Синхронный совместный просмотр фильмов и сериалов с друзьями по одной ссылке: единая перемотка, реакции и текстово-голосовой чат. Мгновенный шаринг любимых сцен с точным таймкодом и цитатами.
             </div>
           </div>
         </div>
 
-        <!-- 08: AI Movie Assistant (Right) -->
+        <!-- 08: Semantic AI Search & Multi-Profiles (Right) -->
         <div class="timeline-row right">
           <div class="timeline-circle node-plan">08</div>
           <div class="timeline-connector"></div>
           <div class="sketch-card t-card">
             <div class="t-card-head">
-              <span class="t-badge" style="background:#252632; color:#e4e4e7;" data-i18n="st_plan">Запланировано</span>
-              <span class="t-stage">Frontier AI</span>
+              <span class="t-badge plan" data-i18n="st_plan">Запланировано</span>
+              <span class="t-stage">Semantic Discovery & Multi-Profile</span>
             </div>
-            <div class="t-title" data-i18n="rm_08_t">AI Кино-Ассистент & Семантический поиск</div>
+            <div class="t-title" data-i18n="rm_08_t">Семантический AI-поиск по вайбу & Мультипрофили</div>
             <div class="t-desc" data-i18n="rm_08_d">
-              Умный подбор кино на естественном языке: «найди напряженный детектив в дождливом городе с неожиданным финалом».
+              Умный подбор кино на естественном языке по настроению и скрытому смыслу («напряженный детектив в дождливом городе с неожиданным финалом»). Семейные изолированные профили с раздельной историей и рекомендациями.
             </div>
           </div>
         </div>
@@ -2267,10 +2271,10 @@
       <!-- Final Goal Milestone Card -->
       <div class="timeline-grand">
         <div class="sketch-card grand-card">
-          <span class="t-badge" style="background:#fafafa; color:#09090c; font-weight:700;" data-i18n="rm_star_badge">★ Ключевая цель экосистемы</span>
-          <div class="t-title" style="font-size:16px; margin:8px 0 6px;" data-i18n="rm_star_t">Shorts & Reels Витрина лучших сцен</div>
+          <span class="t-badge done" style="background:#fafafa; color:#09090c; font-weight:700;" data-i18n="rm_star_badge">★ Ключевая цель экосистемы</span>
+          <div class="t-title" style="font-size:16px; margin:8px 0 6px;" data-i18n="rm_star_t">Витрина лучших сцен (Reels/Shorts) с бесшовным переходом в плеер</div>
           <div class="t-desc" data-i18n="rm_star_d">
-            Вертикальная вирусная лента ключевых моментов кино с мгновенным переходом к просмотру полного фильма в один тап без регистрации.
+            Вирусная вертикальная лента ярких кино-моментов: увидел захватывающую сцену — нажал одну кнопку и мгновенно продолжил просмотр полного фильма в плеере с той же секунды без регистрации, рекламы и задержек.
           </div>
         </div>
       </div>
@@ -2399,28 +2403,29 @@
         th_pirates: "Пиратские сайты",
         road_title: "Timeline-роадмап фичей",
         road_desc: "Вектор развития продукта: от уже запущенного видеодвижка до социальных и ИИ-инноваций следующего поколения. Без абстрактных дат — строго по фичам и статусам внедрения.",
+        road_hand_badge: "★ 01–08 Архитектура & Фичи",
         st_done: "В проде ✓",
         st_wip: "В работе ⚡",
         st_plan: "Запланировано",
-        rm_01_t: "HLS/DASH Адаптивный видеодвижок",
-        rm_01_d: "Мульти-CDN агрегация с автопереключением источников, 1080p, мгновенная буферизация и uBlock-обход за счет нативного рендеринга.",
-        rm_02_t: "SEO Оптимизация & Agentic TMDB-синк",
-        rm_02_d: "Автоматическая генерация тайтл-карточек, актерских страниц, трейлеров и рейтингов. Быстрая индексация поисковиками и чистая органика.",
-        rm_03_t: "Threads & Telegram вирусный трафик",
-        rm_03_d: "Автоматизированная фабрика синефильских нарезок и трейлеров. Партизанский маркетинг, привлекающий зрителей с CAC = $0.",
-        rm_04_t: "Хаб азиатского контента («Дорамы»)",
-        rm_04_d: "Выделенные рельсы и подборки корейских и китайских сериалов с высочайшим retention, глубиной досмотра и повторными визитами.",
-        rm_05_t: "Google One-Tap Login & Алиасы",
-        rm_05_d: "Вход без паролей в один клик. Сквозная синхронизация истории просмотров, избранного и персональных закладок на десктопе и смартфоне.",
-        rm_06_t: "In-Player Shazam (Музыка в кадре)",
-        rm_06_d: "Распознавание саундтрека в реальном времени прямо во время просмотра сцены с возможностью добавить трек в Spotify или Apple Music.",
-        rm_07_t: "Watch Party (Совместный просмотр)",
-        rm_07_d: "Синхронный просмотр фильмов друзьями по единой ссылке: синхронная перемотка, реакции и текстово-голосовой чат поверх плеера.",
-        rm_08_t: "AI Кино-Ассистент & Семантический поиск",
-        rm_08_d: "Умный подбор кино на естественном языке: «найди напряженный детектив в дождливом городе с неожиданным финалом».",
+        rm_01_t: "Самая большая библиотека & Мульти-CDN плеер",
+        rm_01_d: "Агрегация всех CDN-балансеров в едином адаптивном HLS/DASH плеере: автопереключение источников при сбоях, 1080p, мгновенный старт. Все топовые русские озвучки (Red Head Sound, LostFilm, HDRezka, Кубик в Кубе) + оригинальный звук.",
+        rm_02_t: "Двусторонняя синхронизация с TMDB & Живой поиск",
+        rm_02_d: "Мгновенный Omnibox-поиск любого фильма, сериала или аниме прямо на сайте. Полные карточки: актеры, фильмографии, бюджеты, рейтинги, кадры, трейлеры и факты. Двусторонняя синхронизация списков и каталогов в реальном времени.",
+        rm_03_t: "Smart Subtitles & Изучение языка по кино",
+        rm_03_d: "Двойные параллельные субтитры RU + EN. Мгновенный перевод любого незнакомого слова по клику или тапу прямо во время просмотра. Интерактивный личный словарь и сохранение вордлистов для прокачки английского по фильмам.",
+        rm_04_t: "Свои субтитры (.srt/.vtt) & Skip Intro (TheIntroDB)",
+        rm_04_d: "Возможность загрузить собственные файлы субтитров к любому тайтлу прямо в плеер. Автоматический пропуск опенингов и заставок сериалов в один клик через базу TheIntroDB без ручной перемотки.",
+        rm_05_t: "Облачная библиотека & Точный синк до секунды",
+        rm_05_d: "Умные закладки, папки («Буду смотреть», «Избранное»), история просмотров и функция «Продолжить просмотр» с точностью до секунды. Бесшовная кросс-девайс синхронизация между ПК, смартфоном и планшетом. Персональные AI-рекомендации.",
+        rm_06_t: "AI-перевод субтитров на лету & Voice EQ",
+        rm_06_d: "Мгновенная генерация и перевод субтитров нейросетями для свежайших мировых премьер, у которых еще нет официального дубляжа. Ночной режим нормализации звука: четкие диалоги поверх оглушающих спецэффектов.",
+        rm_07_t: "Social Watch Party & Таймкод-шаринг моментов",
+        rm_07_d: "Синхронный совместный просмотр фильмов и сериалов с друзьями по одной ссылке: единая перемотка, реакции и текстово-голосовой чат. Мгновенный шаринг любимых сцен с точным таймкодом и цитатами.",
+        rm_08_t: "Семантический AI-поиск по вайбу & Мультипрофили",
+        rm_08_d: "Умный подбор кино на естественном языке по настроению и скрытому смыслу («напряженный детектив в дождливом городе с неожиданным финалом»). Семейные изолированные профили с раздельной историей и рекомендациями.",
         rm_star_badge: "★ Ключевая цель экосистемы",
-        rm_star_t: "Shorts & Reels Витрина лучших сцен",
-        rm_star_d: "Вертикальная вирусная лента ключевых моментов кино с мгновенным переходом к просмотру полного фильма в один тап без регистрации.",
+        rm_star_t: "Витрина лучших сцен (Reels/Shorts) с бесшовным переходом в плеер",
+        rm_star_d: "Вирусная вертикальная лента ярких кино-моментов: увидел захватывающую сцену — нажал одну кнопку и мгновенно продолжил просмотр полного фильма в плеере с той же секунды без регистрации, рекламы и задержек.",
         deal_title: "Форматы сотрудничества",
         deal_desc: "Прозрачные модели партнерства — от фиксированного рекламного ретейнера до полной продажи актива с передачей кода и инфраструктуры.",
         cta_title: "Обсудить партнерство или запросить доступ к метрикам",
@@ -2503,28 +2508,29 @@
         th_pirates: "Legacy Pirated Sites",
         road_title: "Feature Timeline Roadmap",
         road_desc: "Product expansion path: from core streaming engine to social watch parties and frontier AI search. No artificial calendar dates — strictly feature milestones.",
+        road_hand_badge: "★ 01–08 Ecosystem Architecture",
         st_done: "Live In Prod ✓",
         st_wip: "In Progress ⚡",
         st_plan: "Planned",
-        rm_01_t: "HLS/DASH Adaptive Video Engine",
-        rm_01_d: "Multi-CDN aggregation with instant failover, 1080p, ultra-fast buffering, and native uBlock bypass.",
-        rm_02_t: "SEO Optimization & Agentic TMDB Sync",
-        rm_02_d: "Automated generation of title cards, cast profiles, trailers, and ratings. Rapid indexing and organic search traffic.",
-        rm_03_t: "Threads & Telegram Viral Traffic Machine",
-        rm_03_d: "Automated distribution pipeline turning cinephile scene clips and trailers into organic traffic at CAC = $0.",
-        rm_04_t: "Asian Dramas Hub («Дорамы»)",
-        rm_04_d: "Dedicated rails for Korean and Chinese dramas offering massive female viewer retention and frequent repeat visits.",
-        rm_05_t: "Google One-Tap Login & Cloud Aliases",
-        rm_05_d: "Frictionless password-free onboarding. Full sync of watch history, bookmarks, and likes across desktop and mobile.",
-        rm_06_t: "In-Player Shazam (Audio Recognition)",
-        rm_06_d: "Instant in-scene song detection with direct links to Spotify and Apple Music right from the player.",
-        rm_07_t: "Social Watch Party (Friend Rooms)",
-        rm_07_d: "Synchronized movie watching via single invite link: unified playback, voice chat, and live reactions.",
-        rm_08_t: "AI Movie Assistant & Semantic Search",
-        rm_08_d: "Natural-language movie discovery: «find a tense detective thriller in a rainy city with an unexpected twist».",
+        rm_01_t: "Largest Catalog & Multi-CDN Player Engine",
+        rm_01_d: "Multi-CDN aggregation with instant failover, 1080p, and adaptive HLS/DASH streaming. All premier dubs and original audio tracks with zero player latency.",
+        rm_02_t: "2-Way TMDB Sync & Instant Omnibox Search",
+        rm_02_d: "Real-time search for any movie, TV series, or anime right on-site. Complete metadata: cast, filmographies, box office, ratings, stills, trailers, and trivia. Bidirectional TMDB list syncing.",
+        rm_03_t: "Smart Bilingual Subtitles & Language Learning",
+        rm_03_d: "Dual parallel subtitles (RU + EN). Click-to-translate any unknown word in real time during playback. Interactive vocabulary builder to master languages through cinema.",
+        rm_04_t: "Custom Subtitles (.srt/.vtt) & Skip Intro (TheIntroDB)",
+        rm_04_d: "Upload personal subtitle files directly into the player. One-tap automated skipping of TV series intros and title sequences powered by TheIntroDB.",
+        rm_05_t: "Cloud Library & Second-Accurate Sync",
+        rm_05_d: "Smart bookmarks, custom watchlists, viewing history, and second-accurate resume across desktop, mobile, and tablet. Personalized AI-driven discovery.",
+        rm_06_t: "Live AI Subtitle Generation & Voice EQ",
+        rm_06_d: "Instant neural transcription and translation for day-one global releases without official voiceovers. Night-mode voice clarifier balancing dialogue over explosions.",
+        rm_07_t: "Social Watch Party & Timestamped Scene Sharing",
+        rm_07_d: "Synchronized co-watching with friends via single shareable room link: synchronized scrubbing, live chat, and reactions. Instant sharing of iconic moments with exact timestamps.",
+        rm_08_t: "Semantic AI Discovery & Isolated Multi-Profiles",
+        rm_08_d: "Natural-language movie exploration by mood, aesthetics, and plot vibes. Dedicated multi-user household profiles with isolated histories.",
         rm_star_badge: "★ Ecosystem North Star",
-        rm_star_t: "Vertical Shorts & Reels Scene Showcase",
-        rm_star_d: "Viral highlight feed with one-tap transition to watching the full movie with zero friction.",
+        rm_star_t: "Vertical Scene Feed (Reels/Shorts) with 1-Tap Playback",
+        rm_star_d: "Viral vertical feed of iconic movie moments: watch a gripping clip, tap once, and instantly resume the full film from that exact second with zero friction.",
         deal_title: "Deal Options & Cooperation Models",
         deal_desc: "Three transparent partnership paths — from exclusive monthly sponsorship to full asset acquisition.",
         cta_title: "Discuss Partnership or Request Analytics Access",
