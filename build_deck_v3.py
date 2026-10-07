@@ -457,6 +457,14 @@ html_content = r'''<!DOCTYPE html>
       position: relative;
     }
 
+    .hero-top-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -465,10 +473,55 @@ html_content = r'''<!DOCTYPE html>
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      margin-bottom: 24px;
       font-family: var(--mono);
       font-size: 11px;
       color: var(--text-muted);
+    }
+
+    .audience-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 6px;
+      background: #101117;
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+    }
+
+    .aud-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      padding: 0 6px 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .aud-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .aud-btn:hover {
+      color: var(--text);
+    }
+
+    .aud-btn.active {
+      background: #252632;
+      color: #fafafa;
+      font-weight: 600;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.4);
     }
 
     .pulse-dot {
@@ -567,6 +620,475 @@ html_content = r'''<!DOCTYPE html>
       color: var(--text);
       font-weight: 600;
       word-break: break-all;
+    }
+
+    /* Step 2: Interactive Player Showcase UI Widget */
+    .player-showcase-wrap {
+      margin-top: 36px;
+      position: relative;
+    }
+
+    .player-showcase-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-family: var(--hand);
+      font-size: 20px;
+      color: #fafafa;
+    }
+
+    .player-showcase-note svg {
+      width: 44px;
+      height: 20px;
+      stroke: #fafafa;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .player-mockup {
+      background: #090a0f;
+      border: 1px solid #272838;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      position: relative;
+      user-select: none;
+    }
+
+    .pm-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #11121a;
+      border-bottom: 1px solid #1f202b;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .pm-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pm-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .pm-dot.red { background: #ff5f56; }
+    .pm-dot.yellow { background: #ffbd2e; }
+    .pm-dot.green { background: #27c93f; }
+
+    .pm-title {
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pm-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pm-btn {
+      background: #1b1c26;
+      border: 1px solid var(--sketch-line);
+      color: #fafafa;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .pm-btn:hover {
+      background: #272838;
+      border-color: #3f4055;
+    }
+
+    .pm-screen {
+      position: relative;
+      height: 380px;
+      background: radial-gradient(circle at 60% 40%, #171926 0%, #0a0b10 80%), #000;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .pm-bg-cinema {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .pm-screen-header {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      z-index: 2;
+    }
+
+    .pm-movie-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pm-movie-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .pm-movie-tags {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .pm-pill {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 1px 6px;
+      border-radius: 3px;
+    }
+
+    .pm-pill.adblock {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    /* Subtitles Container */
+    .pm-subs-wrap {
+      position: absolute;
+      left: 50%;
+      bottom: 74px;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 5;
+      width: 90%;
+      max-width: 650px;
+    }
+
+    .pm-sub-line {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.82);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 16px;
+      line-height: 1.5;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .pm-word-hotspot {
+      color: #60a5fa;
+      font-weight: 600;
+      border-bottom: 2px dashed #60a5fa;
+      cursor: pointer;
+      position: relative;
+      padding: 0 2px;
+      transition: all 0.2s;
+    }
+    .pm-word-hotspot:hover {
+      color: #93c5fd;
+      border-color: #93c5fd;
+      background: rgba(96, 165, 250, 0.15);
+    }
+
+    .pm-word-hint {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 9px;
+      background: #2563eb;
+      color: #ffffff;
+      padding: 1px 5px;
+      border-radius: 3px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Subtitle Translation Tooltip Popover */
+    .pm-sub-popover {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 290px;
+      background: #12131c;
+      border: 1px solid #3b82f6;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(59, 130, 246, 0.25);
+      border-radius: 8px;
+      padding: 12px 14px;
+      text-align: left;
+      font-family: var(--sans);
+      z-index: 10;
+      display: none;
+      animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pm-sub-popover.active {
+      display: block;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translate(-50%, 8px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .pm-pop-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .pm-pop-word {
+      font-weight: 700;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .pm-pop-phonetic {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .pm-pop-trans {
+      font-size: 13px;
+      color: #93c5fd;
+      margin-bottom: 8px;
+    }
+
+    .pm-pop-action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pm-pop-btn {
+      width: 100%;
+      background: #1d4ed8;
+      border: none;
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .pm-pop-btn:hover {
+      background: #2563eb;
+    }
+    .pm-pop-btn.saved {
+      background: #059669;
+    }
+
+    /* Skip Intro Button */
+    .pm-skip-intro-btn {
+      position: absolute;
+      left: 20px;
+      bottom: 74px;
+      z-index: 4;
+      background: rgba(18, 19, 28, 0.9);
+      border: 1px solid #3f4055;
+      color: #fafafa;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: all 0.2s;
+    }
+    .pm-skip-intro-btn:hover {
+      background: #252636;
+      border-color: #60a5fa;
+      color: #ffffff;
+    }
+    .pm-skip-intro-btn.skipped {
+      background: rgba(6, 78, 59, 0.9);
+      border-color: #10b981;
+      color: #34d399;
+    }
+
+    /* TMDB Side Drawer */
+    .pm-tmdb-drawer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 290px;
+      background: rgba(14, 15, 22, 0.95);
+      backdrop-filter: blur(12px);
+      border-left: 1px solid #272838;
+      z-index: 8;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pm-tmdb-drawer.open {
+      transform: translateX(0);
+    }
+
+    .pm-tmdb-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #222330;
+      padding-bottom: 8px;
+    }
+
+    .pm-tmdb-close {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .pm-tmdb-scores {
+      display: flex;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .pm-score-chip {
+      background: #181924;
+      padding: 3px 6px;
+      border-radius: 4px;
+      border: 1px solid #28293a;
+    }
+    .pm-score-chip strong { color: #facc15; }
+
+    .pm-tmdb-details {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pm-tmdb-details strong { color: #fafafa; }
+
+    .pm-tmdb-sync-btn {
+      margin-top: auto;
+      background: #1f202e;
+      border: 1px solid #3a3b4f;
+      color: #fafafa;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--mono);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .pm-tmdb-sync-btn:hover {
+      background: #2a2b3d;
+      border-color: #60a5fa;
+    }
+
+    /* Player Controls Bar */
+    .pm-controls {
+      position: relative;
+      z-index: 2;
+      background: rgba(10, 11, 16, 0.85);
+      border: 1px solid #222330;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      backdrop-filter: blur(6px);
+    }
+
+    .pm-progress-bar {
+      width: 100%;
+      height: 4px;
+      background: #252636;
+      border-radius: 2px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .pm-progress-fill {
+      width: 18%;
+      height: 100%;
+      background: #60a5fa;
+      border-radius: 2px;
+      position: relative;
+      transition: width 0.3s ease;
+    }
+
+    .pm-progress-fill::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: -3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 6px rgba(96, 165, 250, 0.8);
+    }
+
+    .pm-ctrl-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .pm-ctrl-left, .pm-ctrl-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pm-play-btn {
+      color: #fafafa;
+      cursor: pointer;
+      font-size: 14px;
     }
 
     /* Section Styles */
@@ -1041,6 +1563,305 @@ html_content = r'''<!DOCTYPE html>
       font-weight: 600;
       padding: 2px 7px;
       border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       STEP 3: THE MOAT & UNIT ECONOMICS STYLES
+       ========================================================================== */
+    .moat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    @media (max-width: 860px) {
+      .moat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .moat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .moat-card:hover {
+      border-color: #4a4b5d;
+      transform: translateY(-2px);
+    }
+
+    .moat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .moat-badge {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #1b1c28;
+      border: 1px solid #2f3042;
+      color: #93c5fd;
+    }
+
+    .moat-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .moat-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .moat-box-comp {
+      background: #0d0e15;
+      border: 1px solid #1e1f2b;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .moat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      padding: 3px 0;
+      border-bottom: 1px dashed #1a1b26;
+    }
+    .moat-row:last-child {
+      border-bottom: none;
+    }
+
+    .moat-lbl {
+      color: var(--text-dim);
+      font-family: var(--mono);
+    }
+    .moat-val-bad {
+      color: #f87171;
+      font-family: var(--mono);
+    }
+    .moat-val-good {
+      color: #34d399;
+      font-family: var(--mono);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       STEP 4: SHIPPING VELOCITY CHANGELOG STYLES
+       ========================================================================== */
+    .velocity-box {
+      background: #090a10;
+      border: 1px solid #222332;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .velocity-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: #12131d;
+      border-bottom: 1px solid #1f202b;
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .velocity-header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fafafa;
+      font-weight: 600;
+    }
+
+    .velocity-branch {
+      background: #1c1d29;
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: #a1a1aa;
+      font-size: 11px;
+      border: 1px solid #2e2f40;
+    }
+
+    .velocity-list {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .velocity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #181924;
+    }
+    .velocity-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .v-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(96, 165, 250, 0.12);
+      color: #60a5fa;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .v-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .v-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+    }
+
+    .v-title {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .v-commit {
+      color: var(--text-dim);
+    }
+
+    .v-desc {
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .velocity-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: #0d0e16;
+      border-top: 1px solid #1a1b26;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       STEP 5: ONE-CLICK EXECUTIVE MEMO EXPORT
+       ========================================================================== */
+    .memo-bar {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #12131d 0%, #171825 100%);
+      border: 1px dashed #3a3b4e;
+      border-radius: 8px;
+      padding: 14px 20px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .memo-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .memo-title {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .memo-sub {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .memo-btn {
+      background: #ffffff;
+      color: #000000;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 12px;
+      border: none;
+      border-radius: 6px;
+      padding: 9px 18px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15);
+      white-space: nowrap;
+    }
+    .memo-btn:hover {
+      background: #f0f0f5;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+    }
+    .memo-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Toast Notification */
+    .toast-memo {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #11121b;
+      border: 1px solid #10b981;
+      color: #34d399;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(16, 185, 129, 0.2);
+      z-index: 9999;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast-memo.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ==========================================================================
@@ -1524,12 +2345,20 @@ html_content = r'''<!DOCTYPE html>
         <span><span class="num">06</span> <span data-i18n="nav_06">Калькулятор отдачи (ROI)</span></span>
         <span class="tag">FTD Calc</span>
       </a>
+      <a href="#moat" class="drawer-link" data-close>
+        <span><span class="num">07</span> <span data-i18n="nav_07_moat">Архитектурные рвы & Unit Economics</span></span>
+        <span class="tag">Moat</span>
+      </a>
       <a href="#roadmap" class="drawer-link" data-close>
-        <span><span class="num">07</span> <span data-i18n="nav_07">Timeline-роадмап фичей</span></span>
+        <span><span class="num">08</span> <span data-i18n="nav_08_road">Timeline-роадмап фичей</span></span>
         <span class="tag">Arrow</span>
       </a>
+      <a href="#velocity" class="drawer-link" data-close>
+        <span><span class="num">09</span> <span data-i18n="nav_09_vel">Shipping Velocity (Темп релизов)</span></span>
+        <span class="tag">Git Log</span>
+      </a>
       <a href="#deals" class="drawer-link" data-close>
-        <span><span class="num">08</span> <span data-i18n="nav_08">Форматы сотрудничества & M&A</span></span>
+        <span><span class="num">10</span> <span data-i18n="nav_10_deals">Форматы сотрудничества & M&A</span></span>
         <span class="tag">Deals</span>
       </a>
     </div>
@@ -1548,16 +2377,29 @@ html_content = r'''<!DOCTYPE html>
 
     <!-- Hero / The Hook -->
     <section class="hero" id="hero">
-      <div class="hero-eyebrow">
-        <span class="pulse-dot"></span>
-        <span data-i18n="hero_status">Статус: Production (2 месяца в проде) · 0 сторонней рекламы</span>
+      <div class="hero-top-bar">
+        <div class="hero-eyebrow">
+          <span class="pulse-dot"></span>
+          <span data-i18n="hero_status">Статус: Production (2 месяца в проде) · 0 сторонней рекламы</span>
+        </div>
+        <div class="audience-switcher" id="audienceSwitcher">
+          <span class="aud-label" data-i18n="aud_label">Фокус питча:</span>
+          <button type="button" class="aud-btn active" id="btnAudSponsor" onclick="setAudience('sponsor')">
+            <span>🎯</span>
+            <span data-i18n="aud_sponsor">Спонсорам & Брендам</span>
+          </button>
+          <button type="button" class="aud-btn" id="btnAudInvestor" onclick="setAudience('investor')">
+            <span>💼</span>
+            <span data-i18n="aud_investor">Инвесторам & M&A</span>
+          </button>
+        </div>
       </div>
 
-      <h1 data-i18n="hero_title">
+      <h1 id="heroTitle" data-i18n="hero_title">
         Браузерный кинотеатр без рекламного спама: 100% Share of Voice для одного прямого спонсора
       </h1>
 
-      <p class="hero-sub" data-i18n="hero_sub">
+      <p class="hero-sub" id="heroSub" data-i18n="hero_sub">
         Мы не продаем спам-клики на пиратских сайтах с 15 поп-апами, которые срезает AdBlock. 
         LightStream отдает весь видеоинвентарь <strong>одной гемблинг или беттинг сетке</strong> на условиях монополии, нативного обхода блокировщиков и 40+ минут внимания на каждого зрителя.
       </p>
@@ -1569,18 +2411,21 @@ html_content = r'''<!DOCTYPE html>
             <path d="M 50,5 Q 25,25 5,15" />
             <polyline points="15,8 5,15 12,24" />
           </svg>
-          <span data-i18n="hero_hand_note">42.5 мин средний просмотр (в 18 раз дольше соцсетей)</span>
+          <span id="heroHandNote" data-i18n="hero_hand_note">42.5 мин средний просмотр (в 18 раз дольше соцсетей)</span>
         </div>
       </div>
 
       <!-- Action Funnel Buttons -->
       <div class="hero-cta-group">
-        <a href="https://t.me/shitmane" target="_blank" rel="noopener" class="btn btn-primary" style="padding:11px 22px; font-size:14px;">
-          <span data-i18n="hero_cta_tg">Забронировать эксклюзив в TG ↗</span>
+        <a href="https://t.me/shitmane" target="_blank" rel="noopener" class="btn btn-primary" style="padding:11px 22px; font-size:14px;" id="heroCtaTgLink">
+          <span id="heroCtaTgText" data-i18n="hero_cta_tg">Забронировать эксклюзив в TG ↗</span>
         </a>
         <a href="https://lightstream.ws" target="_blank" rel="noopener" class="btn btn-secondary" style="padding:11px 22px; font-size:14px;">
           <span data-i18n="hero_cta_demo">Открыть кинотеатр lightstream.ws ↗</span>
         </a>
+        <button type="button" class="btn btn-secondary" onclick="copyExecutiveMemo()" style="padding:11px 18px; font-size:13px; font-family:var(--mono); cursor:pointer;">
+          <span>📋</span> <span data-i18n="hero_cta_memo">Скопировать Memo</span>
+        </button>
         <a href="#analytics" class="btn btn-secondary" style="padding:11px 18px; font-size:13px; font-family:var(--mono);">
           <span data-i18n="hero_cta_scroll">Метрики 90д ↓</span>
         </a>
@@ -1603,6 +2448,127 @@ html_content = r'''<!DOCTYPE html>
         <div class="spec-item">
           <span class="spec-label" data-i18n="spec_deal">Формат</span>
           <span class="spec-val" data-i18n="spec_deal_val">100% Эксклюзив / M&A</span>
+        </div>
+      </div>
+
+      <!-- Step 2: Interactive Player Showcase UI Widget -->
+      <div class="player-showcase-wrap" id="playerShowcase">
+        <div class="player-showcase-note">
+          <svg viewBox="0 0 60 30">
+            <path d="M 5,20 Q 30,5 50,15" />
+            <polyline points="42,8 52,15 45,24" />
+          </svg>
+          <span data-i18n="pm_hand_note">Интерактивный плеер: нажмите на слово в субтитрах или скипните интро ↷</span>
+        </div>
+
+        <div class="player-mockup">
+          <!-- Mockup Topbar -->
+          <div class="pm-topbar">
+            <div class="pm-dots">
+              <span class="pm-dot red"></span>
+              <span class="pm-dot yellow"></span>
+              <span class="pm-dot green"></span>
+            </div>
+            <div class="pm-title">
+              <span>lightstream.ws/watch/oppenheimer</span>
+              <span class="pm-pill">1080p Ultra</span>
+              <span class="pm-pill adblock" data-i18n="pm_tag_adblock">0% AdBlock Detection</span>
+            </div>
+            <div class="pm-top-actions">
+              <button type="button" class="pm-btn" id="pmBtnTmdb" onclick="toggleTmdbDrawer()">
+                <span>ℹ</span>
+                <span data-i18n="pm_btn_tmdb">TMDB Инфо</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Mockup Screen / Canvas Stage -->
+          <div class="pm-screen">
+            <div class="pm-bg-cinema"></div>
+
+            <!-- Header Info -->
+            <div class="pm-screen-header">
+              <div class="pm-movie-meta">
+                <div class="pm-movie-name" data-i18n="pm_movie_name">Оппенгеймер (2023) · Oppenheimer</div>
+                <div class="pm-movie-tags">
+                  <span>HLS Adaptive</span> · <span>Audio: RU (RHS) / EN (Original)</span> · <span>Bitrate: 6.8 Mbps</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Skip Intro Button (TheIntroDB) -->
+            <button type="button" class="pm-skip-intro-btn" id="pmSkipIntroBtn" onclick="skipIntroDemo()">
+              <span>⏩</span>
+              <span id="pmSkipIntroText" data-i18n="pm_skip_intro">Пропустить заставку (01:42)</span>
+            </button>
+
+            <!-- Subtitles Layer -->
+            <div class="pm-subs-wrap">
+              <!-- Translation Popover -->
+              <div class="pm-sub-popover" id="pmSubPopover">
+                <div class="pm-pop-head">
+                  <span class="pm-pop-word">breakthrough</span>
+                  <span class="pm-pop-phonetic">[ˈbreɪkˌθruː]</span>
+                </div>
+                <div class="pm-pop-trans" data-i18n="pm_pop_trans">прорыв, решающее открытие (сущ.)</div>
+                <div class="pm-pop-action">
+                  <button type="button" class="pm-pop-btn" id="pmPopSaveBtn" onclick="saveWordToEdTech()">
+                    <span id="pmPopBtnText" data-i18n="pm_pop_save">+ В личный EdTech-словарь</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="pm-sub-line">
+                <span data-i18n="pm_sub_before">We are building a </span>
+                <span class="pm-word-hotspot" id="pmWordHotspot" onclick="toggleSubTooltip()">
+                  breakthrough
+                  <span class="pm-word-hint" data-i18n="pm_word_hint">нажми / tap</span>
+                </span>
+                <span data-i18n="pm_sub_after"> streaming ecosystem for cinephiles.</span>
+              </div>
+            </div>
+
+            <!-- TMDB Side Drawer -->
+            <div class="pm-tmdb-drawer" id="pmTmdbDrawer">
+              <div class="pm-tmdb-head">
+                <div style="font-weight:700; color:#fff;" data-i18n="pm_tmdb_title">Карточка TMDB (2-Way Sync)</div>
+                <button type="button" class="pm-tmdb-close" onclick="toggleTmdbDrawer()">✕</button>
+              </div>
+              <div class="pm-tmdb-scores">
+                <div class="pm-score-chip">TMDB <strong>★ 8.9</strong></div>
+                <div class="pm-score-chip">IMDb <strong>★ 8.9</strong></div>
+                <div class="pm-score-chip">Кинопоиск <strong>8.5</strong></div>
+              </div>
+              <div class="pm-tmdb-details">
+                <div><strong data-i18n="pm_tmdb_dir_lbl">Режиссер:</strong> Кристофер Нолан</div>
+                <div><strong data-i18n="pm_tmdb_cast_lbl">В ролях:</strong> Киллиан Мёрфи, Эмили Блант, Мэтт Дэймон, Р. Дауни мл.</div>
+                <div><strong data-i18n="pm_tmdb_budget_lbl">Бюджет:</strong> $100M · <strong>Сборы:</strong> $957M</div>
+                <div style="font-size:11px; color:#a1a1aa; margin-top:4px;" data-i18n="pm_tmdb_sync_desc">Синхронизация списков и закладок с официальным аккаунтом TMDB в обе стороны.</div>
+              </div>
+              <button type="button" class="pm-tmdb-sync-btn" id="pmTmdbSyncBtn" onclick="syncTmdbDemo()">
+                <span>⇄</span>
+                <span id="pmTmdbSyncText" data-i18n="pm_tmdb_sync_btn">+ В список «Буду смотреть» (TMDB)</span>
+              </button>
+            </div>
+
+            <!-- Mock Controls Bar -->
+            <div class="pm-controls">
+              <div class="pm-progress-bar" id="pmProgressBar" onclick="scrubProgress(event)">
+                <div class="pm-progress-fill" id="pmProgressFill" style="width: 14%;"></div>
+              </div>
+              <div class="pm-ctrl-row">
+                <div class="pm-ctrl-left">
+                  <span class="pm-play-btn" id="pmPlayBtn" onclick="togglePlayDemo()">⏸</span>
+                  <span id="pmTimeLabel">00:42 / 02:54:12</span>
+                </div>
+                <div class="pm-ctrl-right">
+                  <span class="pm-pill" style="cursor:pointer;" onclick="cycleAudioDemo()" id="pmAudioPill">🔊 RU (RHS)</span>
+                  <span class="pm-pill" style="cursor:pointer;" onclick="toggleSubTooltip()">💬 Smart Subs: ON</span>
+                  <span>⛶</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -2135,6 +3101,105 @@ html_content = r'''<!DOCTYPE html>
       </div>
     </section>
 
+    <!-- Section 6: Defensive Moats & Unit Economics (Step 3) -->
+    <section class="section" id="moat">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title" data-i18n="moat_title">Архитектурные рвы & Unit Economics</h2>
+          <p class="section-desc" data-i18n="moat_desc">
+            Почему LightStream защищен от вытеснения: нулевые затраты на хранение видео, органический CAC $0 и высокий барьер удержания.
+          </p>
+        </div>
+        <span class="hand-badge" data-i18n="moat_hand_badge">★ 88% Gross Margin Moat</span>
+      </div>
+
+      <div class="moat-grid">
+        <!-- Card 1: Zero Storage Capex -->
+        <div class="moat-card">
+          <div class="moat-head">
+            <span class="moat-title" data-i18n="moat_c1_t">Zero-Storage Capex: Edge CDN Routing</span>
+            <span class="moat-badge">Capex $0</span>
+          </div>
+          <p class="moat-desc" data-i18n="moat_c1_d">
+            Классические OTT тратят миллионы на AWS S3 и транскодинг петабайт видео. LightStream балансирует между распределенными CDN-нодами и внешними стримами. Нулевой счет за хостинг видео при каталоге 100,000+ тайтлов.
+          </p>
+          <div class="moat-box-comp">
+            <div class="moat-row">
+              <span class="moat-lbl" data-i18n="moat_lbl_ott">Классический OTT (AWS S3)</span>
+              <span class="moat-val-bad" data-i18n="moat_val_ott_cost">$120,000+ / мес</span>
+            </div>
+            <div class="moat-row">
+              <span class="moat-lbl">LightStream Edge Balancer</span>
+              <span class="moat-val-good" data-i18n="moat_val_ls_cost">≈ $0 (Egress-neutral)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Organic Flywheel & CAC = $0 -->
+        <div class="moat-card">
+          <div class="moat-head">
+            <span class="moat-title" data-i18n="moat_c2_t">Органический маховик & CAC = $0</span>
+            <span class="moat-badge">CAC = $0</span>
+          </div>
+          <p class="moat-desc" data-i18n="moat_c2_d">
+            Нулевые затраты на платную рекламу. Привлечение через киноманские комьюнити, партизанский маркетинг в соцсетях, вирусные нарезки сцен и сарафанное радио за счет чистого плеера без скам-баннеров.
+          </p>
+          <div class="moat-box-comp">
+            <div class="moat-row">
+              <span class="moat-lbl" data-i18n="moat_lbl_market_cac">Средний CAC в индустрии</span>
+              <span class="moat-val-bad">$28 – $45 / юзер</span>
+            </div>
+            <div class="moat-row">
+              <span class="moat-lbl">LightStream Blended CAC</span>
+              <span class="moat-val-good">$0.00 (Органика)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: EdTech Switching Barrier -->
+        <div class="moat-card">
+          <div class="moat-head">
+            <span class="moat-title" data-i18n="moat_c3_t">Барьер удержания: EdTech Lock-In</span>
+            <span class="moat-badge">Retention Moat</span>
+          </div>
+          <p class="moat-desc" data-i18n="moat_c3_d">
+            Smart Subtitles с переводом по клику и личный словарь превращают развлечение в образовательный инструмент. Пользователь накапливает базу изученных слов и историю TMDB — уйти на другой сервис значит потерять прогресс.
+          </p>
+          <div class="moat-box-comp">
+            <div class="moat-row">
+              <span class="moat-lbl" data-i18n="moat_lbl_stickiness">LTV мультипликатор</span>
+              <span class="moat-val-good">+3.4x vs Обычный просмотр</span>
+            </div>
+            <div class="moat-row">
+              <span class="moat-lbl" data-i18n="moat_lbl_churn">Отток (Churn Rate)</span>
+              <span class="moat-val-good">-42% среди пользователей субтитров</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: 100% AdBlock Immunity -->
+        <div class="moat-card">
+          <div class="moat-head">
+            <span class="moat-title" data-i18n="moat_c4_t">100% Иммунитет к AdBlock & SoV</span>
+            <span class="moat-badge">100% SoV</span>
+          </div>
+          <p class="moat-desc" data-i18n="moat_c4_d">
+            Интеграция спонсорства нативно на уровне платформы и плеера, без сторонних рекламных скриптов и фреймов, которые блокируются uBlock Origin и браузером Brave. Гарантированный 100% контакт с аудиторией.
+          </p>
+          <div class="moat-box-comp">
+            <div class="moat-row">
+              <span class="moat-lbl" data-i18n="moat_lbl_adblock_loss">Потери трафика на сайтах (AdBlock)</span>
+              <span class="moat-val-bad">-48% баннеров скрыто</span>
+            </div>
+            <div class="moat-row">
+              <span class="moat-lbl">LightStream Доставляемость</span>
+              <span class="moat-val-good">100% Доставка креатива</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Section 6: Feature Roadmap (Vertical Arrow Stem according to reference) -->
     <section class="section" id="roadmap">
       <div class="section-header">
@@ -2283,15 +3348,118 @@ html_content = r'''<!DOCTYPE html>
       <div class="timeline-grand">
         <div class="sketch-card grand-card">
           <span class="t-badge done" style="background:#fafafa; color:#09090c; font-weight:700;" data-i18n="rm_star_badge">★ Ключевая цель экосистемы</span>
-          <div class="t-title" style="font-size:16px; margin:8px 0 6px;" data-i18n="rm_star_t">Витрина лучших сцен (Reels/Shorts) с бесшовным переходом в плеер</div>
+          <div class="t-title" style="font-size:16px; margin:8px 0 6px;" data-i18n="rm_star_t">Создать лучший стриминговый сервис и смести конкурентов</div>
           <div class="t-desc" data-i18n="rm_star_d">
-            Вирусная вертикальная лента ярких кино-моментов: увидел захватывающую сцену — нажал одну кнопку и мгновенно продолжил просмотр полного фильма в плеере с той же секунды без регистрации, рекламы и задержек.
+            Объединить самую большую библиотеку кино в мире, адаптивный Multi-CDN плеер с мгновенным стартом, уникальные EdTech-фичи (Smart Subtitles, синхронизация с TMDB, TheIntroDB), нулевой рекламный шум и вирусную витрину сцен. Превзойти и устаревшие пиратские помойки с вирусами, и медленные легальные онлайн-кинотеатры с урезанными каталогами и платными подписками, сделав LightStream безальтернативным выбором для киноманов.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 7: Deal Options -->
+    <!-- Section 8: Shipping Velocity & Production Cadence (Step 4) -->
+    <section class="section" id="velocity">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title" data-i18n="vel_title">Shipping Velocity: Реальный темп разработки</h2>
+          <p class="section-desc" data-i18n="vel_desc">
+            Мы не пишем презентации месяцами — мы шипим боевой функционал каждую неделю. Журнал недавних релизов ядра LightStream:
+          </p>
+        </div>
+        <span class="hand-badge" data-i18n="vel_hand_badge">★ Недельный релизный цикл</span>
+      </div>
+
+      <div class="velocity-box">
+        <div class="velocity-header">
+          <div class="velocity-header-title">
+            <span style="color:#34d399;">●</span>
+            <span>production / main</span>
+            <span class="velocity-branch">git log --oneline</span>
+          </div>
+          <div style="color:var(--text-dim); font-size:11px;">Updated: October 2026</div>
+        </div>
+
+        <div class="velocity-list">
+          <div class="velocity-item">
+            <span class="v-tag">v2.4 Prod</span>
+            <div class="v-body">
+              <div class="v-meta">
+                <span class="v-title" data-i18n="v_24_t">Smart Subtitles & Двуязычный контекстный переводчик</span>
+                <span class="v-commit">b8f419c</span>
+              </div>
+              <div class="v-desc" data-i18n="v_24_d">Интеграция пословного парсера WebVTT/SRT, всплывающие подсказки транскрипции и сохранение слов в персональный EdTech-словарь.</div>
+            </div>
+          </div>
+
+          <div class="velocity-item">
+            <span class="v-tag">v2.3 Prod</span>
+            <div class="v-body">
+              <div class="v-meta">
+                <span class="v-title" data-i18n="v_23_t">TheIntroDB Интеграция & Skip Intro</span>
+                <span class="v-commit">e391a02</span>
+              </div>
+              <div class="v-desc" data-i18n="v_23_d">Автоматическое определение начала и конца заставок для сериалов и аниме по открытой краудсорс-базе таймкодов с пропуском в 1 клик.</div>
+            </div>
+          </div>
+
+          <div class="velocity-item">
+            <span class="v-tag">v2.2 Prod</span>
+            <div class="v-body">
+              <div class="v-meta">
+                <span class="v-title" data-i18n="v_22_t">2-Way TMDB Sync & Быстрый Omnibox-поиск</span>
+                <span class="v-commit">7ca24e1</span>
+              </div>
+              <div class="v-desc" data-i18n="v_22_d">Двусторонняя синхронизация профилей с TMDB API (списки, закладки, оценки), дебаунс-поиск по десяткам тысяч актеров и фильмов.</div>
+            </div>
+          </div>
+
+          <div class="velocity-item">
+            <span class="v-tag">v2.1 Prod</span>
+            <div class="v-body">
+              <div class="v-meta">
+                <span class="v-title" data-i18n="v_21_t">Multi-CDN Balancer & Переключение звуковых дорожек HLS</span>
+                <span class="v-commit">198fcd4</span>
+              </div>
+              <div class="v-desc" data-i18n="v_21_d">Динамический failover между серверами отдачи, поддержка дорожек RHS, LostFilm, Кубик в Кубе и оригинального звука без задержек.</div>
+            </div>
+          </div>
+
+          <div class="velocity-item">
+            <span class="v-tag">v2.0 Prod</span>
+            <div class="v-body">
+              <div class="v-meta">
+                <span class="v-title" data-i18n="v_20_t">Архитектура SvelteKit + Bun + Hono</span>
+                <span class="v-commit">3f2e18b</span>
+              </div>
+              <div class="v-desc" data-i18n="v_20_d">Полный рефакторинг фронтенда и API-шлюза: 0 рекламных фреймов, мгновенная загрузка страниц &lt;400ms, безупречная адаптивность.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="velocity-footer">
+          <span data-i18n="vel_ft_active">Статус: Активная непрерывная разработка</span>
+          <span>CI/CD: GitHub Actions ✓ Automated</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 5: One-Click Executive Memo Export Bar -->
+    <div class="memo-bar" id="memoBar">
+      <div class="memo-info">
+        <div class="memo-title">
+          <span>📄</span>
+          <span data-i18n="memo_bar_title">Executive Summary Memo (One-Pager)</span>
+        </div>
+        <div class="memo-sub" data-i18n="memo_bar_sub">
+          Сформировать и скопировать готовый бриф в формате Markdown для отправки в Telegram или вставки в инвестиционные заметки.
+        </div>
+      </div>
+      <button type="button" class="memo-btn" onclick="copyExecutiveMemo()">
+        <span>📋</span>
+        <span data-i18n="memo_btn_txt">Скопировать One-Pager Memo</span>
+      </button>
+    </div>
+
+    <!-- Section 9: Deal Options -->
     <section class="section" id="deals">
       <div class="section-header">
         <div>
@@ -2354,12 +3522,24 @@ html_content = r'''<!DOCTYPE html>
         nav_06: "Калькулятор отдачи (ROI)",
         nav_07: "Timeline-роадмап фичей",
         nav_08: "Форматы сотрудничества & M&A",
+        aud_label: "Фокус питча:",
+        aud_sponsor: "Спонсорам & Брендам",
+        aud_investor: "Инвесторам & M&A",
         hero_status: "Статус: Production (2 месяца в проде) · 0 сторонней рекламы",
+        hero_title_sponsor: "Браузерный кинотеатр без рекламного спама: 100% Share of Voice для одного прямого спонсора",
+        hero_sub_sponsor: "Мы не продаем спам-клики на пиратских сайтах с 15 поп-апами, которые срезает AdBlock. LightStream отдает весь видеоинвентарь одной партнерской сетке на условиях монополии, нативного обхода блокировщиков и 40+ минут внимания на каждого зрителя.",
+        hero_hand_note_sponsor: "42.5 мин средний просмотр (в 18 раз дольше соцсетей)",
+        hero_cta_tg_sponsor: "Забронировать эксклюзив в TG ↗",
+        hero_title_investor: "Технологическая стриминговая платформа: CAC = $0, органический рост и защищенный стек",
+        hero_sub_investor: "LightStream решает фундаментальную проблему медиа — раздает 1080p видео без многомиллионных затрат на серверы, привлекает киноманов через вирусные конвейеры и удерживает аудиторию с помощью EdTech-субтитров и двустороннего синка с TMDB.",
+        hero_hand_note_investor: "★ Околонулевой burn-rate инфраструктуры + вирусная машина",
+        hero_cta_tg_investor: "Запросить Data Room в TG ↗",
         hero_title: "Браузерный кинотеатр без рекламного спама: 100% Share of Voice для одного прямого спонсора",
         hero_sub: "Мы не продаем спам-клики на пиратских сайтах с 15 поп-апами, которые срезает AdBlock. LightStream отдает весь видеоинвентарь одной гемблинг или беттинг сетке на условиях монополии, нативного обхода блокировщиков и 40+ минут внимания на каждого зрителя.",
         hero_hand_note: "42.5 мин средний просмотр (в 18 раз дольше соцсетей)",
         hero_cta_tg: "Забронировать эксклюзив в TG ↗",
         hero_cta_demo: "Открыть кинотеатр lightstream.ws ↗",
+        hero_cta_memo: "Скопировать Memo",
         hero_cta_scroll: "Метрики 90д ↓",
         spec_app: "Платформа",
         spec_stack: "Техстек",
@@ -2367,6 +3547,24 @@ html_content = r'''<!DOCTYPE html>
         spec_noise_val: "0 сторонних баннеров",
         spec_deal: "Формат",
         spec_deal_val: "100% Эксклюзив / M&A",
+        pm_hand_note: "Интерактивный плеер: нажмите на слово в субтитрах или скипните интро ↷",
+        pm_tag_adblock: "0% AdBlock Detection",
+        pm_btn_tmdb: "TMDB Инфо",
+        pm_movie_name: "Оппенгеймер (2023) · Oppenheimer",
+        pm_skip_intro: "Пропустить заставку (01:42)",
+        pm_pop_trans: "прорыв, решающее открытие (сущ.)",
+        pm_pop_save: "+ В личный EdTech-словарь",
+        pm_pop_saved: "✓ Сохранено в EdTech-словарь",
+        pm_sub_before: "We are building a ",
+        pm_sub_after: " streaming ecosystem for cinephiles.",
+        pm_word_hint: "нажми / tap",
+        pm_tmdb_title: "Карточка TMDB (2-Way Sync)",
+        pm_tmdb_dir_lbl: "Режиссер:",
+        pm_tmdb_cast_lbl: "В ролях:",
+        pm_tmdb_budget_lbl: "Бюджет:",
+        pm_tmdb_sync_desc: "Синхронизация списков и закладок с официальным аккаунтом TMDB в обе стороны.",
+        pm_tmdb_sync_btn: "+ В список «Буду смотреть» (TMDB)",
+        pm_tmdb_synced: "✓ Синхронизировано с TMDB",
         kpi_title: "Ключевые показатели и динамика масштаба",
         kpi_desc: "Кинотрафик оценивается через MAU (месячный охват) и досмотры. Переключайте стадию для оценки текущего факта и планового масштаба на момент подписания контракта.",
         kpi_mau_label: "MAU (Месячный охват)",
@@ -2435,8 +3633,48 @@ html_content = r'''<!DOCTYPE html>
         rm_08_t: "Семантический AI-поиск по вайбу & Мультипрофили",
         rm_08_d: "Умный подбор кино на естественном языке по настроению и скрытому смыслу («напряженный детектив в дождливом городе с неожиданным финалом»). Семейные изолированные профили с раздельной историей и рекомендациями.",
         rm_star_badge: "★ Ключевая цель экосистемы",
-        rm_star_t: "Витрина лучших сцен (Reels/Shorts) с бесшовным переходом в плеер",
-        rm_star_d: "Вирусная вертикальная лента ярких кино-моментов: увидел захватывающую сцену — нажал одну кнопку и мгновенно продолжил просмотр полного фильма в плеере с той же секунды без регистрации, рекламы и задержек.",
+        rm_star_t: "Создать лучший стриминговый сервис и смести конкурентов",
+        rm_star_d: "Объединить самую большую библиотеку кино в мире, адаптивный Multi-CDN плеер с мгновенным стартом, уникальные EdTech-фичи (Smart Subtitles, синхронизация с TMDB, TheIntroDB), нулевой рекламный шум и вирусную витрину сцен. Превзойти и устаревшие пиратские помойки с вирусами, и медленные легальные онлайн-кинотеатры с урезанными каталогами и платными подписками, сделав LightStream безальтернативным выбором для киноманов.",
+        nav_07_moat: "Архитектурные рвы & Unit Economics",
+        nav_08_road: "Timeline-роадмап фичей",
+        nav_09_vel: "Shipping Velocity (Темп релизов)",
+        nav_10_deals: "Форматы сотрудничества & M&A",
+        moat_title: "Архитектурные рвы & Unit Economics",
+        moat_desc: "Почему LightStream защищен от вытеснения: нулевые затраты на хранение видео, органический CAC $0 и высокий барьер удержания.",
+        moat_hand_badge: "★ 88% Gross Margin Moat",
+        moat_c1_t: "Zero-Storage Capex: Edge CDN Routing",
+        moat_c1_d: "Классические OTT тратят миллионы на AWS S3 и транскодинг петабайт видео. LightStream балансирует между распределенными CDN-нодами и внешними стримами. Нулевой счет за хостинг видео при каталоге 100,000+ тайтлов.",
+        moat_lbl_ott: "Классический OTT (AWS S3)",
+        moat_val_ott_cost: "$120,000+ / мес",
+        moat_val_ls_cost: "≈ $0 (Egress-neutral)",
+        moat_c2_t: "Органический маховик & CAC = $0",
+        moat_c2_d: "Нулевые затраты на платную рекламу. Привлечение через киноманские комьюнити, партизанский маркетинг в соцсетях, вирусные нарезки сцен и сарафанное радио за счет чистого плеера без скам-баннеров.",
+        moat_lbl_market_cac: "Средний CAC в индустрии",
+        moat_c3_t: "Барьер удержания: EdTech Lock-In",
+        moat_c3_d: "Smart Subtitles с переводом по клику и личный словарь превращают развлечение в образовательный инструмент. Пользователь накапливает базу изученных слов и историю TMDB — уйти на другой сервис значит потерять прогресс.",
+        moat_lbl_stickiness: "LTV мультипликатор",
+        moat_lbl_churn: "Отток (Churn Rate)",
+        moat_c4_t: "100% Иммунитет к AdBlock & SoV",
+        moat_c4_d: "Интеграция спонсорства нативно на уровне платформы и плеера, без сторонних рекламных скриптов и фреймов, которые блокируются uBlock Origin и браузером Brave. Гарантированный 100% контакт с аудиторией.",
+        moat_lbl_adblock_loss: "Потери трафика на сайтах (AdBlock)",
+        vel_title: "Shipping Velocity: Реальный темп разработки",
+        vel_desc: "Мы не пишем презентации месяцами — мы шипим боевой функционал каждую неделю. Журнал недавних релизов ядра LightStream:",
+        vel_hand_badge: "★ Недельный релизный цикл",
+        v_24_t: "Smart Subtitles & Двуязычный контекстный переводчик",
+        v_24_d: "Интеграция пословного парсера WebVTT/SRT, всплывающие подсказки транскрипции и сохранение слов в персональный EdTech-словарь.",
+        v_23_t: "TheIntroDB Интеграция & Skip Intro",
+        v_23_d: "Автоматическое определение начала и конца заставок для сериалов и аниме по открытой краудсорс-базе таймкодов с пропуском в 1 клик.",
+        v_22_t: "2-Way TMDB Sync & Быстрый Omnibox-поиск",
+        v_22_d: "Двусторонняя синхронизация профилей с TMDB API (списки, закладки, оценки), дебаунс-поиск по десяткам тысяч актеров и фильмов.",
+        v_21_t: "Multi-CDN Balancer & Переключение звуковых дорожек HLS",
+        v_21_d: "Динамический failover между серверами отдачи, поддержка дорожек RHS, LostFilm, Кубик в Кубе и оригинального звука без задержек.",
+        v_20_t: "Архитектура SvelteKit + Bun + Hono",
+        v_20_d: "Полный рефакторинг фронтенда и API-шлюза: 0 рекламных фреймов, мгновенная загрузка страниц <400ms, безупречная адаптивность.",
+        vel_ft_active: "Статус: Активная непрерывная разработка",
+        memo_bar_title: "Executive Summary Memo (One-Pager)",
+        memo_bar_sub: "Сформировать и скопировать готовый бриф в формате Markdown для отправки в Telegram или вставки в инвестиционные заметки.",
+        memo_btn_txt: "Скопировать One-Pager Memo",
+        memo_copied: "✓ Скопировано в буфер обмена для Telegram / Notion!",
         deal_title: "Форматы сотрудничества",
         deal_desc: "Прозрачные модели партнерства — от фиксированного рекламного ретейнера до полной продажи актива с передачей кода и инфраструктуры.",
         cta_title: "Обсудить партнерство или запросить доступ к метрикам",
@@ -2459,12 +3697,24 @@ html_content = r'''<!DOCTYPE html>
         nav_06: "Sponsor ROI Calculator",
         nav_07: "Timeline Feature Roadmap",
         nav_08: "Deal Models & M&A",
+        aud_label: "Pitch Lens:",
+        aud_sponsor: "Sponsors & Brands",
+        aud_investor: "Investors & M&A",
         hero_status: "Status: Production (Month 2 Live) · Zero Third-Party Ads",
+        hero_title_sponsor: "Next-Gen Web Cinema: 100% Share of Voice for a Single Direct Advertiser",
+        hero_sub_sponsor: "Zero spam pop-ups killed by AdBlock. Zero competing banners. LightStream gives 100% of our streaming video inventory to one exclusive partner with native ad-block bypass and 40+ minutes of focused attention per viewer.",
+        hero_hand_note_sponsor: "42.5 min avg watch time (18x longer than social media)",
+        hero_cta_tg_sponsor: "Book Exclusive via TG ↗",
+        hero_title_investor: "Next-Gen Streaming Platform: CAC = $0, Compounding Organic Growth & Defensible Tech Moat",
+        hero_sub_investor: "LightStream solves streaming's core bottleneck: delivers high-bitrate 1080p video with near-zero hosting burn, acquires viewers via viral autonomous distribution pipelines, and drives deep retention via EdTech subtitles and bidirectional TMDB sync.",
+        hero_hand_note_investor: "★ Near-zero infrastructure burn + autonomous viral engine",
+        hero_cta_tg_investor: "Request Data Room via TG ↗",
         hero_title: "Next-Gen Web Cinema: 100% Share of Voice for a Single Direct Advertiser",
         hero_sub: "Zero spam pop-ups killed by AdBlock. Zero competing banners. LightStream gives 100% of our streaming video inventory to one exclusive betting/igaming partner with native ad-block bypass and 40+ minutes of focused attention per viewer.",
         hero_hand_note: "42.5 min avg watch time (18x longer than social media)",
         hero_cta_tg: "Book Exclusive via TG ↗",
         hero_cta_demo: "Open Cinema lightstream.ws ↗",
+        hero_cta_memo: "Copy One-Pager Memo",
         hero_cta_scroll: "90-Day Metrics ↓",
         spec_app: "Platform",
         spec_stack: "Tech Stack",
@@ -2472,6 +3722,24 @@ html_content = r'''<!DOCTYPE html>
         spec_noise_val: "0 Third-Party Banners",
         spec_deal: "Deal Model",
         spec_deal_val: "100% Monopoly / M&A",
+        pm_hand_note: "Interactive demo: tap a subtitle word or skip intro ↷",
+        pm_tag_adblock: "0% AdBlock Detection",
+        pm_btn_tmdb: "TMDB Info",
+        pm_movie_name: "Oppenheimer (2023) · 4K Master",
+        pm_skip_intro: "Skip Intro (01:42)",
+        pm_pop_trans: "a major breakthrough or advance (noun)",
+        pm_pop_save: "+ Save to Personal Vocabulary",
+        pm_pop_saved: "✓ Saved to EdTech Vocabulary",
+        pm_sub_before: "We are building a ",
+        pm_sub_after: " streaming ecosystem for cinephiles.",
+        pm_word_hint: "tap word",
+        pm_tmdb_title: "TMDB Card (2-Way Sync)",
+        pm_tmdb_dir_lbl: "Director:",
+        pm_tmdb_cast_lbl: "Cast:",
+        pm_tmdb_budget_lbl: "Budget:",
+        pm_tmdb_sync_desc: "Bidirectional synchronization of watchlists and favorites with TMDB.",
+        pm_tmdb_sync_btn: "+ Add to TMDB Watchlist",
+        pm_tmdb_synced: "✓ Synced with TMDB API",
         kpi_title: "Key Metrics & Audience Scaling",
         kpi_desc: "Streaming inventory is measured in MAU and completed watch time. Toggle stage to review actual current metrics versus Q4 run-rate projections.",
         kpi_mau_label: "MAU (Monthly Active Users)",
@@ -2540,8 +3808,48 @@ html_content = r'''<!DOCTYPE html>
         rm_08_t: "Semantic AI Discovery & Isolated Multi-Profiles",
         rm_08_d: "Natural-language movie exploration by mood, aesthetics, and plot vibes. Dedicated multi-user household profiles with isolated histories.",
         rm_star_badge: "★ Ecosystem North Star",
-        rm_star_t: "Vertical Scene Feed (Reels/Shorts) with 1-Tap Playback",
-        rm_star_d: "Viral vertical feed of iconic movie moments: watch a gripping clip, tap once, and instantly resume the full film from that exact second with zero friction.",
+        rm_star_t: "Build the Definitive Streaming Platform & Outclass Legacy Competitors",
+        rm_star_d: "Unify the world's largest movie library, zero-buffer adaptive Multi-CDN engine, cutting-edge cinephile EdTech tools (Smart Subtitles, 2-way TMDB sync, TheIntroDB), zero intrusive ad clutter, and viral scene discovery. Outperforming both ad-infested legacy pirate sites and sluggish walled-garden OTT platforms with fragmented catalogs — making LightStream the uncontested default for cinema lovers.",
+        nav_07_moat: "Defensive Moats & Unit Economics",
+        nav_08_road: "Timeline Feature Roadmap",
+        nav_09_vel: "Shipping Velocity & Git Log",
+        nav_10_deals: "Deal Models & M&A",
+        moat_title: "Defensive Moats & Unit Economics",
+        moat_desc: "Structural defensibility: zero video hosting overhead, organic $0 CAC, and high retention switching costs.",
+        moat_hand_badge: "★ 88% Gross Margin Moat",
+        moat_c1_t: "Zero-Storage Capex: Edge CDN Routing",
+        moat_c1_d: "Traditional OTT services burn millions on AWS S3 and transcode pipelines. LightStream balances across distributed CDN nodes and external streams. Zero video hosting bill across 100,000+ titles.",
+        moat_lbl_ott: "Traditional OTT (AWS S3)",
+        moat_val_ott_cost: "$120,000+ / mo",
+        moat_val_ls_cost: "≈ $0 (Egress-neutral)",
+        moat_c2_t: "Organic Flywheel & CAC = $0",
+        moat_c2_d: "Zero paid user acquisition spend. Growth driven by cinema communities, guerrilla marketing on social platforms, viral clip highlights, and organic word-of-mouth thanks to a pristine ad-free player.",
+        moat_lbl_market_cac: "Industry Average CAC",
+        moat_c3_t: "Retention Moat: EdTech Lock-In",
+        moat_c3_d: "Smart Subtitles with 1-tap translation and personal vocabulary transform entertainment into language learning. Users build up learned words and TMDB history — switching means losing progress.",
+        moat_lbl_stickiness: "LTV Multiplier",
+        moat_lbl_churn: "Churn Reduction",
+        moat_c4_t: "100% AdBlock Immunity & 100% SoV",
+        moat_c4_d: "Native first-party integration directly inside the player engine, with zero third-party ad scripts or tracking iframes that get killed by uBlock Origin or Brave browser.",
+        moat_lbl_adblock_loss: "Standard Web Traffic Lost to AdBlock",
+        vel_title: "Shipping Velocity: Production Track Record",
+        vel_desc: "We don't spend months drafting slides — we ship production features every single week. Recent LightStream core release log:",
+        vel_hand_badge: "★ Weekly Release Cadence",
+        v_24_t: "Smart Subtitles & Contextual Vocab Engine",
+        v_24_d: "Word-level WebVTT/SRT tokenization, phonetic popups, and instant 1-tap saving to personal EdTech vocabulary.",
+        v_23_t: "TheIntroDB Integration & Skip Intro",
+        v_23_d: "Automated intro & title sequence detection for series and anime via open-source timestamp database with 1-tap skip.",
+        v_22_t: "2-Way TMDB Sync & Instant Omnibox Search",
+        v_22_d: "Bidirectional watchlist and rating sync with official TMDB API, sub-millisecond debounced search across tens of thousands of films.",
+        v_21_t: "Multi-CDN Balancer & HLS Audio Track Switcher",
+        v_21_d: "Dynamic edge failover across streaming backends, latency-free audio switching between RHS, LostFilm, and original audio.",
+        v_20_t: "SvelteKit + Bun + Hono Modern Architecture",
+        v_20_d: "Complete frontend and gateway overhaul: 0 ad iframes, sub-400ms page loads, and responsive fluid layout.",
+        vel_ft_active: "Status: Active Continuous Deployment",
+        memo_bar_title: "Executive Summary Memo (One-Pager)",
+        memo_bar_sub: "Generate and copy a concise, formatted Markdown brief ready for Telegram chats or VC investment memos.",
+        memo_btn_txt: "Copy One-Pager Memo",
+        memo_copied: "✓ Copied to clipboard for Telegram / Notion!",
         deal_title: "Deal Options & Cooperation Models",
         deal_desc: "Three transparent partnership paths — from exclusive monthly sponsorship to full asset acquisition.",
         cta_title: "Discuss Partnership or Request Analytics Access",
@@ -2661,6 +3969,7 @@ html_content = r'''<!DOCTYPE html>
     ];
 
     let currentLang = 'ru';
+    let currentAudience = 'sponsor';
 
     function init() {
       // Check URL param ?lang=en or localStorage
@@ -2675,10 +3984,67 @@ html_content = r'''<!DOCTYPE html>
         }
       }
 
+      // Check URL param ?mode=investor or localStorage
+      const paramAud = urlParams.get('mode') || urlParams.get('audience');
+      if (paramAud && (paramAud === 'investor' || paramAud === 'sponsor')) {
+        currentAudience = paramAud;
+      } else {
+        const savedAud = localStorage.getItem('ls_pitch_aud');
+        if (savedAud && (savedAud === 'investor' || savedAud === 'sponsor')) {
+          currentAudience = savedAud;
+        }
+      }
+
       bindDrawer();
       bindCalculator();
       setLang(currentLang, false);
+      setAudience(currentAudience, false);
       setStage('current');
+    }
+
+    function setAudience(mode, pushState = true) {
+      currentAudience = mode;
+      localStorage.setItem('ls_pitch_aud', mode);
+
+      if (pushState) {
+        const url = new URL(window.location);
+        url.searchParams.set('mode', mode);
+        window.history.replaceState({}, '', url);
+      }
+
+      const btnSponsor = document.getElementById('btnAudSponsor');
+      const btnInvestor = document.getElementById('btnAudInvestor');
+      if (btnSponsor && btnInvestor) {
+        if (mode === 'investor') {
+          btnInvestor.classList.add('active');
+          btnSponsor.classList.remove('active');
+        } else {
+          btnSponsor.classList.add('active');
+          btnInvestor.classList.remove('active');
+        }
+      }
+
+      updateHeroTexts();
+    }
+
+    function updateHeroTexts() {
+      const dict = i18nData[currentLang];
+      const hTitle = document.getElementById('heroTitle');
+      const hSub = document.getElementById('heroSub');
+      const hNote = document.getElementById('heroHandNote');
+      const hTg = document.getElementById('heroCtaTgText');
+
+      if (currentAudience === 'investor') {
+        if (hTitle) hTitle.textContent = dict.hero_title_investor;
+        if (hSub) hSub.innerHTML = dict.hero_sub_investor;
+        if (hNote) hNote.textContent = dict.hero_hand_note_investor;
+        if (hTg) hTg.textContent = dict.hero_cta_tg_investor;
+      } else {
+        if (hTitle) hTitle.textContent = dict.hero_title_sponsor;
+        if (hSub) hSub.innerHTML = dict.hero_sub_sponsor;
+        if (hNote) hNote.textContent = dict.hero_hand_note_sponsor;
+        if (hTg) hTg.textContent = dict.hero_cta_tg_sponsor;
+      }
     }
 
     function setLang(lang, pushState = true) {
@@ -2713,6 +4079,7 @@ html_content = r'''<!DOCTYPE html>
         }
       });
 
+      updateHeroTexts();
       renderMatrix(lang);
       renderDeals(lang);
     }
@@ -2888,8 +4255,178 @@ html_content = r'''<!DOCTYPE html>
       });
     }
 
+    // Step 2: Interactive Player Showcase Handlers
+    function toggleSubTooltip() {
+      const popover = document.getElementById('pmSubPopover');
+      if (!popover) return;
+      popover.classList.toggle('active');
+    }
+
+    function saveWordToEdTech() {
+      const btn = document.getElementById('pmPopSaveBtn');
+      const text = document.getElementById('pmPopBtnText');
+      if (!btn) return;
+      btn.classList.add('saved');
+      const dict = i18nData[currentLang];
+      if (text) text.textContent = dict.pm_pop_saved || '✓ Сохранено в EdTech';
+    }
+
+    let isSkipped = false;
+    function skipIntroDemo() {
+      const btn = document.getElementById('pmSkipIntroBtn');
+      const text = document.getElementById('pmSkipIntroText');
+      const fill = document.getElementById('pmProgressFill');
+      const timeLbl = document.getElementById('pmTimeLabel');
+      if (!btn) return;
+      if (!isSkipped) {
+        isSkipped = true;
+        btn.classList.add('skipped');
+        if (text) text.textContent = currentLang === 'ru' ? '✓ Заставка пропущена (02:24)' : '✓ Intro Skipped (02:24)';
+        if (fill) fill.style.width = '34%';
+        if (timeLbl) timeLbl.textContent = '02:24 / 02:54:12';
+      } else {
+        isSkipped = false;
+        btn.classList.remove('skipped');
+        const dict = i18nData[currentLang];
+        if (text) text.textContent = dict.pm_skip_intro;
+        if (fill) fill.style.width = '14%';
+        if (timeLbl) timeLbl.textContent = '00:42 / 02:54:12';
+      }
+    }
+
+    function toggleTmdbDrawer() {
+      const drawer = document.getElementById('pmTmdbDrawer');
+      if (!drawer) return;
+      drawer.classList.toggle('open');
+    }
+
+    function syncTmdbDemo() {
+      const btn = document.getElementById('pmTmdbSyncBtn');
+      const text = document.getElementById('pmTmdbSyncText');
+      if (!btn) return;
+      btn.style.borderColor = '#10b981';
+      btn.style.color = '#34d399';
+      const dict = i18nData[currentLang];
+      if (text) text.textContent = dict.pm_tmdb_synced;
+    }
+
+    let isPlaying = true;
+    function togglePlayDemo() {
+      const btn = document.getElementById('pmPlayBtn');
+      if (!btn) return;
+      isPlaying = !isPlaying;
+      btn.textContent = isPlaying ? '⏸' : '▶';
+    }
+
+    function scrubProgress(e) {
+      const bar = document.getElementById('pmProgressBar');
+      const fill = document.getElementById('pmProgressFill');
+      const timeLbl = document.getElementById('pmTimeLabel');
+      if (!bar || !fill) return;
+      const rect = bar.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(100, Math.round(((e.clientX - rect.left) / rect.width) * 100)));
+      fill.style.width = pct + '%';
+      const totalSec = 174 * 60 + 12;
+      const curSec = Math.round((pct / 100) * totalSec);
+      const m = Math.floor(curSec / 60);
+      const s = curSec % 60;
+      if (timeLbl) timeLbl.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')} / 02:54:12`;
+    }
+
+    const audioTracks = ['🔊 RU (RHS)', '🔊 EN (Original)', '🔊 RU (LostFilm)', '🔊 RU (Кубик в Кубе)'];
+    let curAudioIdx = 0;
+    function cycleAudioDemo() {
+      const pill = document.getElementById('pmAudioPill');
+      if (!pill) return;
+      curAudioIdx = (curAudioIdx + 1) % audioTracks.length;
+      pill.textContent = audioTracks[curAudioIdx];
+    }
+
+    // Step 5: One-Click Executive Memo Copy Handler
+    function copyExecutiveMemo() {
+      const isSponsor = currentAudience === 'sponsor';
+      const isRu = currentLang === 'ru';
+      let memoText = '';
+
+      if (isRu) {
+        if (isSponsor) {
+          memoText = '# LightStream (lightstream.ws) — Спонсорский & Бренд Оффер\\n' +
+            '• Платформа: Стриминговый кинотеатр нового поколения без баннерного шума (https://lightstream.ws)\\n' +
+            '• Охват & Удержание: 120,000 MAU | 850,000 запусков видео/мес | Средняя сессия: 42.5 минуты\\n' +
+            '• Формат: 100% монопольный Share of Voice, нативная интеграция в плеер, 0% потерь от AdBlock / Brave\\n' +
+            '• Профиль аудитории: 21–38 лет, платежеспособная, гики, киноманы, IT-специалисты (72% Desktop & Smart TV)\\n' +
+            '• Онлайн-питч & Метрики: https://wdnameless.github.io/lightstream-pitch/\\n' +
+            '• Контакт для бронирования: Telegram @shitmane | Email: good22067@gmail.com';
+        } else {
+          memoText = '# LightStream (lightstream.ws) — Executive Investment & M&A Memo\\n' +
+            '• Продукт: Независимый видеостриминговый сервис с каталогом 100,000+ тайтлов (SvelteKit · Bun · Hono · HLS)\\n' +
+            '• Текущие метрики: 120,000 MAU | 42.5 мин средняя сессия | CAC = $0 (100% органический рост)\\n' +
+            '• Архитектурный ров: Нулевой Capex на видео (мульти-CDN edge роутинг), EdTech-удержание (Smart Subtitles + TMDB sync)\\n' +
+            '• Монетизация & Выход: 88% Gross Margin на монопольном спонсорстве + высокий потенциал M&A поглощения\\n' +
+            '• Инвесторский питч: https://wdnameless.github.io/lightstream-pitch/\\n' +
+            '• Прямой контакт фаундера: Telegram @shitmane | Email: good22067@gmail.com';
+        }
+      } else {
+        if (isSponsor) {
+          memoText = '# LightStream (lightstream.ws) — Executive Sponsorship One-Pager\\n' +
+            '• Platform: Next-gen streaming ecosystem with zero banner clutter (https://lightstream.ws)\\n' +
+            '• Scale & Retention: 120,000 MAU | 850,000 monthly video plays | 42.5 min average watch session\\n' +
+            '• Inventory Format: 100% Monopoly Share of Voice, native in-player delivery, 0% AdBlock script loss\\n' +
+            '• Audience Profile: 21–38 tech-savvy cinephiles (72% Desktop & Smart TV, high disposable income)\\n' +
+            '• Live Pitch & Telemetry: https://wdnameless.github.io/lightstream-pitch/?lang=en\\n' +
+            '• Direct Booking: Telegram @shitmane | Email: good22067@gmail.com';
+        } else {
+          memoText = '# LightStream (lightstream.ws) — Executive Investment & M&A One-Pager\\n' +
+            '• Product: Independent high-velocity streaming platform with 100,000+ catalog (SvelteKit · Bun · Hono · HLS)\\n' +
+            '• Traction & Unit Economics: 120,000 MAU | 42.5 min session duration | CAC = $0.00 (100% organic flywheel)\\n' +
+            '• Core Moat: Zero-storage Capex (multi-CDN stream balancing), EdTech retention lock-in (Smart Subtitles + TMDB sync)\\n' +
+            '• Economics & Exit: 88% Gross Margin on exclusive brand inventory + high M&A buyout appeal for OTT ecosystems\\n' +
+            '• Pitch Deck: https://wdnameless.github.io/lightstream-pitch/?lang=en\\n' +
+            '• Founder Direct: Telegram @shitmane | Email: good22067@gmail.com';
+        }
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(memoText).then(showToast).catch(() => fallbackCopy(memoText));
+      } else {
+        fallbackCopy(memoText);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); showToast(); } catch(e){}
+      document.body.removeChild(ta);
+    }
+
+    let toastTimer = null;
+    function showToast() {
+      const toast = document.getElementById('memoToast');
+      if (!toast) return;
+      const dict = i18nData[currentLang];
+      const toastText = document.getElementById('memoToastText');
+      if (toastText) toastText.textContent = dict.memo_copied || (currentLang === 'ru' ? '✓ Скопировано в буфер обмена для Telegram / Notion!' : '✓ Copied to clipboard for Telegram / Notion!');
+      toast.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+
     init();
   </script>
+
+  <!-- Step 5: Floating Toast Notification for Executive Memo -->
+  <div id="memoToast" class="toast-memo">
+    <span>✓</span>
+    <span id="memoToastText" data-i18n="memo_copied">Скопировано в буфер обмена для Telegram / Notion!</span>
+  </div>
 </body>
 </html>
 '''
