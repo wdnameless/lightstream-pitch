@@ -611,475 +611,6 @@
       word-break: break-all;
     }
 
-    /* Step 2: Interactive Player Showcase UI Widget */
-    .player-showcase-wrap {
-      margin-top: 36px;
-      position: relative;
-    }
-
-    .player-showcase-note {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      font-family: var(--hand);
-      font-size: 20px;
-      color: #fafafa;
-    }
-
-    .player-showcase-note svg {
-      width: 44px;
-      height: 20px;
-      stroke: #fafafa;
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .player-mockup {
-      background: #090a0f;
-      border: 1px solid #272838;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
-      position: relative;
-      user-select: none;
-    }
-
-    .pm-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      background: #11121a;
-      border-bottom: 1px solid #1f202b;
-      font-family: var(--mono);
-      font-size: 11px;
-    }
-
-    .pm-dots {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .pm-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .pm-dot.red { background: #ff5f56; }
-    .pm-dot.yellow { background: #ffbd2e; }
-    .pm-dot.green { background: #27c93f; }
-
-    .pm-title {
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pm-top-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .pm-btn {
-      background: #1b1c26;
-      border: 1px solid var(--sketch-line);
-      color: #fafafa;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.2s;
-    }
-    .pm-btn:hover {
-      background: #272838;
-      border-color: #3f4055;
-    }
-
-    .pm-screen {
-      position: relative;
-      height: 380px;
-      background: radial-gradient(circle at 60% 40%, #171926 0%, #0a0b10 80%), #000;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 20px;
-    }
-
-    .pm-bg-cinema {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        radial-gradient(ellipse at 50% 30%, rgba(56, 189, 248, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .pm-screen-header {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      z-index: 2;
-    }
-
-    .pm-movie-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .pm-movie-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.01em;
-    }
-
-    .pm-movie-tags {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    .pm-pill {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 1px 6px;
-      border-radius: 3px;
-    }
-
-    .pm-pill.adblock {
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-
-    /* Subtitles Container */
-    .pm-subs-wrap {
-      position: absolute;
-      left: 50%;
-      bottom: 74px;
-      transform: translateX(-50%);
-      text-align: center;
-      z-index: 5;
-      width: 90%;
-      max-width: 650px;
-    }
-
-    .pm-sub-line {
-      display: inline-block;
-      background: rgba(0, 0, 0, 0.82);
-      color: #ffffff;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 16px;
-      line-height: 1.5;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-    }
-
-    .pm-word-hotspot {
-      color: #60a5fa;
-      font-weight: 600;
-      border-bottom: 2px dashed #60a5fa;
-      cursor: pointer;
-      position: relative;
-      padding: 0 2px;
-      transition: all 0.2s;
-    }
-    .pm-word-hotspot:hover {
-      color: #93c5fd;
-      border-color: #93c5fd;
-      background: rgba(96, 165, 250, 0.15);
-    }
-
-    .pm-word-hint {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--mono);
-      font-size: 9px;
-      background: #2563eb;
-      color: #ffffff;
-      padding: 1px 5px;
-      border-radius: 3px;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    /* Subtitle Translation Tooltip Popover */
-    .pm-sub-popover {
-      position: absolute;
-      bottom: 48px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 290px;
-      background: #12131c;
-      border: 1px solid #3b82f6;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(59, 130, 246, 0.25);
-      border-radius: 8px;
-      padding: 12px 14px;
-      text-align: left;
-      font-family: var(--sans);
-      z-index: 10;
-      display: none;
-      animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .pm-sub-popover.active {
-      display: block;
-    }
-
-    @keyframes popIn {
-      from { opacity: 0; transform: translate(-50%, 8px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-
-    .pm-pop-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 4px;
-    }
-
-    .pm-pop-word {
-      font-weight: 700;
-      font-size: 15px;
-      color: #ffffff;
-    }
-
-    .pm-pop-phonetic {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    .pm-pop-trans {
-      font-size: 13px;
-      color: #93c5fd;
-      margin-bottom: 8px;
-    }
-
-    .pm-pop-action {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .pm-pop-btn {
-      width: 100%;
-      background: #1d4ed8;
-      border: none;
-      color: #ffffff;
-      padding: 5px 10px;
-      border-radius: 4px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: background 0.2s;
-    }
-    .pm-pop-btn:hover {
-      background: #2563eb;
-    }
-    .pm-pop-btn.saved {
-      background: #059669;
-    }
-
-    /* Skip Intro Button */
-    .pm-skip-intro-btn {
-      position: absolute;
-      left: 20px;
-      bottom: 74px;
-      z-index: 4;
-      background: rgba(18, 19, 28, 0.9);
-      border: 1px solid #3f4055;
-      color: #fafafa;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-family: var(--mono);
-      font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      transition: all 0.2s;
-    }
-    .pm-skip-intro-btn:hover {
-      background: #252636;
-      border-color: #60a5fa;
-      color: #ffffff;
-    }
-    .pm-skip-intro-btn.skipped {
-      background: rgba(6, 78, 59, 0.9);
-      border-color: #10b981;
-      color: #34d399;
-    }
-
-    /* TMDB Side Drawer */
-    .pm-tmdb-drawer {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 290px;
-      background: rgba(14, 15, 22, 0.95);
-      backdrop-filter: blur(12px);
-      border-left: 1px solid #272838;
-      z-index: 8;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .pm-tmdb-drawer.open {
-      transform: translateX(0);
-    }
-
-    .pm-tmdb-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #222330;
-      padding-bottom: 8px;
-    }
-
-    .pm-tmdb-close {
-      background: transparent;
-      border: none;
-      color: var(--text-dim);
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .pm-tmdb-scores {
-      display: flex;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-    }
-
-    .pm-score-chip {
-      background: #181924;
-      padding: 3px 6px;
-      border-radius: 4px;
-      border: 1px solid #28293a;
-    }
-    .pm-score-chip strong { color: #facc15; }
-
-    .pm-tmdb-details {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .pm-tmdb-details strong { color: #fafafa; }
-
-    .pm-tmdb-sync-btn {
-      margin-top: auto;
-      background: #1f202e;
-      border: 1px solid #3a3b4f;
-      color: #fafafa;
-      padding: 7px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-family: var(--mono);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .pm-tmdb-sync-btn:hover {
-      background: #2a2b3d;
-      border-color: #60a5fa;
-    }
-
-    /* Player Controls Bar */
-    .pm-controls {
-      position: relative;
-      z-index: 2;
-      background: rgba(10, 11, 16, 0.85);
-      border: 1px solid #222330;
-      border-radius: 8px;
-      padding: 8px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      backdrop-filter: blur(6px);
-    }
-
-    .pm-progress-bar {
-      width: 100%;
-      height: 4px;
-      background: #252636;
-      border-radius: 2px;
-      position: relative;
-      cursor: pointer;
-    }
-
-    .pm-progress-fill {
-      width: 18%;
-      height: 100%;
-      background: #60a5fa;
-      border-radius: 2px;
-      position: relative;
-      transition: width 0.3s ease;
-    }
-
-    .pm-progress-fill::after {
-      content: '';
-      position: absolute;
-      right: -4px;
-      top: -3px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #ffffff;
-      box-shadow: 0 0 6px rgba(96, 165, 250, 0.8);
-    }
-
-    .pm-ctrl-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    .pm-ctrl-left, .pm-ctrl-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pm-play-btn {
-      color: #fafafa;
-      cursor: pointer;
-      font-size: 14px;
-    }
-
     /* Section Styles */
     .section {
       padding: 64px 0 32px;
@@ -1346,57 +877,298 @@
       transition: width 0.5s ease;
     }
 
-    /* Punchcard Heatmap */
-    .punchcard-wrap {
+    /* Interactive & Intuitive Heatmap Matrix */
+    .heat-card {
       padding: 24px;
       margin-bottom: 24px;
-      overflow: hidden;
     }
 
-    .punchcard-scroll {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 6px;
+    .heat-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
     }
 
-    .punchcard-table {
-      min-width: 580px;
-      width: 100%;
-      border-collapse: collapse;
+    .heat-presets {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .heat-preset-btn {
       font-family: var(--mono);
       font-size: 11px;
+      padding: 6px 12px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .punchcard-table th {
-      padding: 6px;
+    .heat-preset-btn:hover {
+      border-color: #717180;
+      color: #fafafa;
+    }
+
+    .heat-preset-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #fafafa;
+      color: #fafafa;
+      font-weight: 600;
+    }
+
+    .heat-legend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--text-dim);
+    }
+
+    .heat-legend-dots {
+      display: flex;
+      gap: 3px;
+    }
+
+    .heat-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    .heat-main-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 992px) {
+      .heat-main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Heatmap Table */
+    .heat-table-wrap {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .heat-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 4px;
+      font-family: var(--mono);
+      min-width: 520px;
+    }
+
+    .heat-th {
+      font-size: 10px;
       color: var(--text-dim);
       font-weight: 500;
       text-align: center;
+      padding: 4px;
     }
 
-    .punchcard-table td {
-      padding: 8px 6px;
-      text-align: center;
+    .heat-th.prime {
+      color: #fafafa;
+      font-weight: 700;
     }
 
-    .p-day {
-      text-align: left !important;
-      color: var(--text-muted);
+    .heat-day-lbl {
+      font-size: 11px;
       font-weight: 600;
-      width: 50px;
+      color: var(--text-muted);
+      padding-right: 8px;
+      white-space: nowrap;
     }
 
-    .p-dot {
-      display: inline-block;
-      border-radius: 50%;
-      background: #fafafa;
+    .heat-day-lbl.record {
+      color: #fafafa;
+    }
+
+    .heat-cell {
+      height: 26px;
+      border-radius: 4px;
+      cursor: pointer;
       transition: all 0.15s ease;
+      position: relative;
     }
 
-    .p-dot:hover {
-      transform: scale(1.4);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    .heat-cell:hover {
+      transform: scale(1.15);
+      z-index: 10;
+      outline: 2px solid #ffffff;
+      outline-offset: 1px;
+    }
+
+    .heat-cell.is-selected {
+      outline: 2px solid var(--accent-green);
+      outline-offset: 2px;
+      transform: scale(1.1);
+      z-index: 9;
+    }
+
+    /* Intensity levels */
+    .heat-lvl-1 { background: #181923; }
+    .heat-lvl-2 { background: #272836; }
+    .heat-lvl-3 { background: #3f4258; }
+    .heat-lvl-4 { background: #686c8c; }
+    .heat-lvl-5 {
+      background: #fafafa;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Live Telemetry Inspector Card */
+    .heat-inspector {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .insp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .insp-slot-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fafafa;
+      margin-bottom: 4px;
+    }
+
+    .insp-slot-status {
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--accent-green);
+    }
+
+    .insp-gauge-wrap {
+      margin-bottom: 16px;
+    }
+
+    .insp-gauge-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--text-dim);
+      margin-bottom: 5px;
+    }
+
+    .insp-gauge-track {
+      width: 100%;
+      height: 7px;
+      background: #191a26;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .insp-gauge-fill {
+      height: 100%;
+      background: #fafafa;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+      transition: width 0.3s ease;
+    }
+
+    .insp-metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .insp-m-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      padding: 8px 10px;
+    }
+
+    .insp-m-k {
+      font-size: 10px;
+      font-family: var(--mono);
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .insp-m-v {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .insp-tip {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 10px;
+    }
+
+    /* 3 Bottom Takeaway Cards */
+    .heat-takeaways {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .heat-takeaways {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .heat-takeaway-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .heat-takeaway-tag {
+      font-size: 10px;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .heat-takeaway-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .heat-takeaway-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.45;
     }
 
     /* ROI Calculator */
@@ -2320,34 +2092,26 @@
         <span><span class="num">03</span> <span data-i18n="nav_03">Верифицированная аналитика 90д</span></span>
         <span class="tag">Plausible</span>
       </a>
-      <a href="#benchmark" class="drawer-link" data-close>
-        <span><span class="num">04</span> <span data-i18n="nav_04">Радар & Матрица vs Netflix</span></span>
-        <span class="tag">7 / 9</span>
+      <a href="#audience" class="drawer-link" data-close>
+        <span><span class="num">04</span> <span data-i18n="nav_05">Устройства, ГЕО и Прайм-тайм</span></span>
+        <span class="tag">Audience</span>
       </a>
 
       <div class="drawer-category" data-i18n="menu_cat_funnel">ВОРОНКА И ПРОДУКТ</div>
-      <a href="#audience" class="drawer-link" data-close>
-        <span><span class="num">05</span> <span data-i18n="nav_05">Устройства, ГЕО и Прайм-тайм</span></span>
-        <span class="tag">Audience</span>
-      </a>
       <a href="#calculator" class="drawer-link" data-close>
-        <span><span class="num">06</span> <span data-i18n="nav_06">Калькулятор отдачи (ROI)</span></span>
+        <span><span class="num">05</span> <span data-i18n="nav_06">Калькулятор отдачи (ROI)</span></span>
         <span class="tag">FTD Calc</span>
       </a>
       <a href="#moat" class="drawer-link" data-close>
-        <span><span class="num">07</span> <span data-i18n="nav_07_moat">Архитектурные рвы & Unit Economics</span></span>
+        <span><span class="num">06</span> <span data-i18n="nav_07_moat">Архитектурные рвы & Unit Economics</span></span>
         <span class="tag">Moat</span>
       </a>
       <a href="#roadmap" class="drawer-link" data-close>
-        <span><span class="num">08</span> <span data-i18n="nav_08_road">Timeline-роадмап фичей</span></span>
+        <span><span class="num">07</span> <span data-i18n="nav_08_road">Timeline-роадмап фичей</span></span>
         <span class="tag">Arrow</span>
       </a>
-      <a href="#velocity" class="drawer-link" data-close>
-        <span><span class="num">09</span> <span data-i18n="nav_09_vel">Shipping Velocity (Темп релизов)</span></span>
-        <span class="tag">Git Log</span>
-      </a>
       <a href="#deals" class="drawer-link" data-close>
-        <span><span class="num">10</span> <span data-i18n="nav_10_deals">Форматы сотрудничества & M&A</span></span>
+        <span><span class="num">08</span> <span data-i18n="nav_10_deals">Форматы сотрудничества & M&A</span></span>
         <span class="tag">Deals</span>
       </a>
     </div>
@@ -2439,127 +2203,6 @@
           <span class="spec-val" data-i18n="spec_deal_val">100% Эксклюзив / M&A</span>
         </div>
       </div>
-
-      <!-- Step 2: Interactive Player Showcase UI Widget -->
-      <div class="player-showcase-wrap" id="playerShowcase">
-        <div class="player-showcase-note">
-          <svg viewBox="0 0 60 30">
-            <path d="M 5,20 Q 30,5 50,15" />
-            <polyline points="42,8 52,15 45,24" />
-          </svg>
-          <span data-i18n="pm_hand_note">Интерактивный плеер: нажмите на слово в субтитрах или скипните интро ↷</span>
-        </div>
-
-        <div class="player-mockup">
-          <!-- Mockup Topbar -->
-          <div class="pm-topbar">
-            <div class="pm-dots">
-              <span class="pm-dot red"></span>
-              <span class="pm-dot yellow"></span>
-              <span class="pm-dot green"></span>
-            </div>
-            <div class="pm-title">
-              <span>lightstream.ws/watch/oppenheimer</span>
-              <span class="pm-pill">1080p Ultra</span>
-              <span class="pm-pill adblock" data-i18n="pm_tag_adblock">0% AdBlock Detection</span>
-            </div>
-            <div class="pm-top-actions">
-              <button type="button" class="pm-btn" id="pmBtnTmdb" onclick="toggleTmdbDrawer()">
-                <span>ℹ</span>
-                <span data-i18n="pm_btn_tmdb">TMDB Инфо</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Mockup Screen / Canvas Stage -->
-          <div class="pm-screen">
-            <div class="pm-bg-cinema"></div>
-
-            <!-- Header Info -->
-            <div class="pm-screen-header">
-              <div class="pm-movie-meta">
-                <div class="pm-movie-name" data-i18n="pm_movie_name">Оппенгеймер (2023) · Oppenheimer</div>
-                <div class="pm-movie-tags">
-                  <span>HLS Adaptive</span> · <span>Audio: RU (RHS) / EN (Original)</span> · <span>Bitrate: 6.8 Mbps</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Skip Intro Button (TheIntroDB) -->
-            <button type="button" class="pm-skip-intro-btn" id="pmSkipIntroBtn" onclick="skipIntroDemo()">
-              <span>⏩</span>
-              <span id="pmSkipIntroText" data-i18n="pm_skip_intro">Пропустить заставку (01:42)</span>
-            </button>
-
-            <!-- Subtitles Layer -->
-            <div class="pm-subs-wrap">
-              <!-- Translation Popover -->
-              <div class="pm-sub-popover" id="pmSubPopover">
-                <div class="pm-pop-head">
-                  <span class="pm-pop-word">breakthrough</span>
-                  <span class="pm-pop-phonetic">[ˈbreɪkˌθruː]</span>
-                </div>
-                <div class="pm-pop-trans" data-i18n="pm_pop_trans">прорыв, решающее открытие (сущ.)</div>
-                <div class="pm-pop-action">
-                  <button type="button" class="pm-pop-btn" id="pmPopSaveBtn" onclick="saveWordToEdTech()">
-                    <span id="pmPopBtnText" data-i18n="pm_pop_save">+ В личный EdTech-словарь</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="pm-sub-line">
-                <span data-i18n="pm_sub_before">We are building a </span>
-                <span class="pm-word-hotspot" id="pmWordHotspot" onclick="toggleSubTooltip()">
-                  breakthrough
-                  <span class="pm-word-hint" data-i18n="pm_word_hint">нажми / tap</span>
-                </span>
-                <span data-i18n="pm_sub_after"> streaming ecosystem for cinephiles.</span>
-              </div>
-            </div>
-
-            <!-- TMDB Side Drawer -->
-            <div class="pm-tmdb-drawer" id="pmTmdbDrawer">
-              <div class="pm-tmdb-head">
-                <div style="font-weight:700; color:#fff;" data-i18n="pm_tmdb_title">Карточка TMDB (2-Way Sync)</div>
-                <button type="button" class="pm-tmdb-close" onclick="toggleTmdbDrawer()">✕</button>
-              </div>
-              <div class="pm-tmdb-scores">
-                <div class="pm-score-chip">TMDB <strong>★ 8.9</strong></div>
-                <div class="pm-score-chip">IMDb <strong>★ 8.9</strong></div>
-                <div class="pm-score-chip">Кинопоиск <strong>8.5</strong></div>
-              </div>
-              <div class="pm-tmdb-details">
-                <div><strong data-i18n="pm_tmdb_dir_lbl">Режиссер:</strong> Кристофер Нолан</div>
-                <div><strong data-i18n="pm_tmdb_cast_lbl">В ролях:</strong> Киллиан Мёрфи, Эмили Блант, Мэтт Дэймон, Р. Дауни мл.</div>
-                <div><strong data-i18n="pm_tmdb_budget_lbl">Бюджет:</strong> $100M · <strong>Сборы:</strong> $957M</div>
-                <div style="font-size:11px; color:#a1a1aa; margin-top:4px;" data-i18n="pm_tmdb_sync_desc">Синхронизация списков и закладок с официальным аккаунтом TMDB в обе стороны.</div>
-              </div>
-              <button type="button" class="pm-tmdb-sync-btn" id="pmTmdbSyncBtn" onclick="syncTmdbDemo()">
-                <span>⇄</span>
-                <span id="pmTmdbSyncText" data-i18n="pm_tmdb_sync_btn">+ В список «Буду смотреть» (TMDB)</span>
-              </button>
-            </div>
-
-            <!-- Mock Controls Bar -->
-            <div class="pm-controls">
-              <div class="pm-progress-bar" id="pmProgressBar" onclick="scrubProgress(event)">
-                <div class="pm-progress-fill" id="pmProgressFill" style="width: 14%;"></div>
-              </div>
-              <div class="pm-ctrl-row">
-                <div class="pm-ctrl-left">
-                  <span class="pm-play-btn" id="pmPlayBtn" onclick="togglePlayDemo()">⏸</span>
-                  <span id="pmTimeLabel">00:42 / 02:54:12</span>
-                </div>
-                <div class="pm-ctrl-right">
-                  <span class="pm-pill" style="cursor:pointer;" onclick="cycleAudioDemo()" id="pmAudioPill">🔊 RU (RHS)</span>
-                  <span class="pm-pill" style="cursor:pointer;" onclick="toggleSubTooltip()">💬 Smart Subs: ON</span>
-                  <span>⛶</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Section 1: Executive KPI Cards & Projections -->
@@ -2648,130 +2291,67 @@
         </div>
       </div>
 
-      <div class="infographics-grid">
-        <!-- Chart 1: Traffic dynamics (Blueprint Handcrafted SVG) -->
-        <div class="sketch-card chart-card">
-          <div class="chart-card-header">
-            <div>
-              <div class="chart-card-title" data-i18n="ana_chart_title">Динамика просмотров (7 июл – 3 окт)</div>
-              <div class="chart-card-sub" data-i18n="ana_chart_sub">Органический взлет в сентябре с пиком >2,100 просмотров/сутки</div>
-            </div>
-            <span class="hand-badge" style="color:var(--accent-green); border-color:#064e3b;">+100% Growth</span>
+      <!-- Verified Traffic dynamics (Full-Width Blueprint SVG) -->
+      <div class="sketch-card chart-card" style="margin-bottom: 24px;">
+        <div class="chart-card-header">
+          <div>
+            <div class="chart-card-title" data-i18n="ana_chart_title">Динамика просмотров (7 июл – 3 окт)</div>
+            <div class="chart-card-sub" data-i18n="ana_chart_sub">Органический взлет в сентябре с пиком >2,100 просмотров/сутки</div>
           </div>
-
-          <div class="svg-traffic-wrap">
-            <svg viewBox="0 0 500 200" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="sketchBar" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-                  <stop offset="100%" stop-color="#717180" stop-opacity="0.3"/>
-                </linearGradient>
-              </defs>
-              <!-- Dashed Blueprint Gridlines -->
-              <line x1="0" y1="40" x2="500" y2="40" stroke="#252632" stroke-dasharray="4 4"/>
-              <line x1="0" y1="90" x2="500" y2="90" stroke="#252632" stroke-dasharray="4 4"/>
-              <line x1="0" y1="140" x2="500" y2="140" stroke="#252632" stroke-dasharray="4 4"/>
-              <line x1="0" y1="180" x2="500" y2="180" stroke="#3a3b48"/>
-
-              <!-- Sketch Bars -->
-              <rect x="35" y="170" width="40" height="10" rx="3" fill="#252632" stroke="#3a3b48" stroke-width="1"/>
-              <rect x="125" y="145" width="40" height="35" rx="3" fill="#323340" stroke="#454656" stroke-width="1"/>
-              <rect x="215" y="115" width="40" height="65" rx="3" fill="#424354" stroke="#5a5b70" stroke-width="1"/>
-              <rect x="305" y="25" width="45" height="155" rx="4" fill="url(#sketchBar)" stroke="#ffffff" stroke-width="1.5"/>
-              <rect x="395" y="80" width="40" height="100" rx="3" fill="#626376" stroke="#7e7f96" stroke-width="1"/>
-
-              <!-- Hand-drawn Peak Callout -->
-              <circle cx="327" cy="25" r="4.5" fill="#fafafa"/>
-              <line x1="327" y1="25" x2="327" y2="10" stroke="#fafafa" stroke-width="1.5"/>
-              <text x="327" y="6" fill="#fafafa" font-size="11" font-family="'Caveat', cursive" text-anchor="middle" font-weight="700">★ Рекорд 2.1k / день</text>
-
-              <!-- Month Labels -->
-              <text x="55" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Июль</text>
-              <text x="145" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Авг (1-15)</text>
-              <text x="235" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Авг (16-31)</text>
-              <text x="327" y="196" fill="#fafafa" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">Сентябрь</text>
-              <text x="415" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Октябрь</text>
-            </svg>
-          </div>
-
-          <div class="chart-footer-stats">
-            <div>
-              <div class="c-stat-k" data-i18n="stat_views">Просмотры</div>
-              <div class="c-stat-v">26.6k</div>
-            </div>
-            <div>
-              <div class="c-stat-k" data-i18n="stat_sessions">Сессии</div>
-              <div class="c-stat-v">5.82k</div>
-            </div>
-            <div>
-              <div class="c-stat-k" data-i18n="stat_uniques">Уники</div>
-              <div class="c-stat-v">2.88k</div>
-            </div>
-            <div>
-              <div class="c-stat-k" data-i18n="stat_duration">Глубина</div>
-              <div class="c-stat-v">4m 18s</div>
-            </div>
-          </div>
+          <span class="hand-badge" style="color:var(--accent-green); border-color:#064e3b;">+1100% Growth ★</span>
         </div>
 
-        <!-- Chart 2: Radar matrix (LightStream 7/9 vs Netflix 2/9) -->
-        <div class="sketch-card chart-card" id="benchmark">
-          <div class="chart-card-header">
-            <div>
-              <div class="chart-card-title" data-i18n="radar_title">Радар функционала: LightStream vs Netflix</div>
-              <div class="chart-card-sub" data-i18n="radar_sub">Сравнение по 6 ключевым осям стриминга и технологий</div>
-            </div>
-            <span class="hand-badge" style="color:#fafafa; border-color:#525363;">7 / 9 фич</span>
+        <div class="svg-traffic-wrap">
+          <svg viewBox="0 0 500 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="sketchBar" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#717180" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+            <!-- Dashed Blueprint Gridlines -->
+            <line x1="0" y1="40" x2="500" y2="40" stroke="#252632" stroke-dasharray="4 4"/>
+            <line x1="0" y1="90" x2="500" y2="90" stroke="#252632" stroke-dasharray="4 4"/>
+            <line x1="0" y1="140" x2="500" y2="140" stroke="#252632" stroke-dasharray="4 4"/>
+            <line x1="0" y1="180" x2="500" y2="180" stroke="#3a3b48"/>
+
+            <!-- Sketch Bars -->
+            <rect x="35" y="170" width="40" height="10" rx="3" fill="#252632" stroke="#3a3b48" stroke-width="1"/>
+            <rect x="125" y="145" width="40" height="35" rx="3" fill="#323340" stroke="#454656" stroke-width="1"/>
+            <rect x="215" y="115" width="40" height="65" rx="3" fill="#424354" stroke="#5a5b70" stroke-width="1"/>
+            <rect x="305" y="25" width="45" height="155" rx="4" fill="url(#sketchBar)" stroke="#ffffff" stroke-width="1.5"/>
+            <rect x="395" y="80" width="40" height="100" rx="3" fill="#626376" stroke="#7e7f96" stroke-width="1"/>
+
+            <!-- Hand-drawn Peak Callout -->
+            <circle cx="327" cy="25" r="4.5" fill="#fafafa"/>
+            <line x1="327" y1="25" x2="327" y2="10" stroke="#fafafa" stroke-width="1.5"/>
+            <text x="327" y="6" fill="#fafafa" font-size="11" font-family="'Caveat', cursive" text-anchor="middle" font-weight="700">★ Рекорд 2.1k / день</text>
+
+            <!-- Month Labels -->
+            <text x="55" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Июль</text>
+            <text x="145" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Авг (1-15)</text>
+            <text x="235" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Авг (16-31)</text>
+            <text x="327" y="196" fill="#fafafa" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">Сентябрь</text>
+            <text x="415" y="196" fill="#717180" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle">Октябрь</text>
+          </svg>
+        </div>
+
+        <div class="chart-footer-stats">
+          <div>
+            <div class="c-stat-k" data-i18n="stat_views">Просмотры</div>
+            <div class="c-stat-v">26.6k</div>
           </div>
-
-          <div class="radar-svg-box">
-            <svg viewBox="0 0 380 270" width="100%" height="100%">
-              <!-- Rings -->
-              <polygon points="190,38 272,86 272,180 190,228 108,180 108,86" fill="none" stroke="#252632" stroke-width="1.5" stroke-dasharray="3 3"/>
-              <polygon points="190,70 245,101 245,165 190,196 135,165 135,101" fill="none" stroke="#1f202b" stroke-width="1"/>
-              <polygon points="190,102 218,118 218,150 190,166 162,150 162,118" fill="none" stroke="#171822" stroke-width="1"/>
-
-              <!-- Axes -->
-              <line x1="190" y1="134" x2="190" y2="38" stroke="#252632" stroke-width="1"/>
-              <line x1="190" y1="134" x2="272" y2="86" stroke="#252632" stroke-width="1"/>
-              <line x1="190" y1="134" x2="272" y2="180" stroke="#252632" stroke-width="1"/>
-              <line x1="190" y1="134" x2="190" y2="228" stroke="#252632" stroke-width="1"/>
-              <line x1="190" y1="134" x2="108" y2="180" stroke="#252632" stroke-width="1"/>
-              <line x1="190" y1="134" x2="108" y2="86" stroke="#252632" stroke-width="1"/>
-
-              <!-- Netflix Polygon -->
-              <polygon points="190,55 246,101 210,146 190,154 128,168 128,99" 
-                       fill="rgba(239, 68, 68, 0.12)" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="4 3"/>
-
-              <!-- LightStream Polygon -->
-              <polygon points="190,42 268,89 264,176 190,216 112,177 112,89" 
-                       fill="rgba(250, 250, 250, 0.22)" stroke="#fafafa" stroke-width="2.2"/>
-              <circle cx="190" cy="42" r="3.5" fill="#fafafa"/>
-              <circle cx="268" cy="89" r="3.5" fill="#fafafa"/>
-              <circle cx="264" cy="176" r="3.5" fill="#fafafa"/>
-              <circle cx="190" cy="216" r="3.5" fill="#fafafa"/>
-              <circle cx="112" cy="177" r="3.5" fill="#fafafa"/>
-              <circle cx="112" cy="89" r="3.5" fill="#fafafa"/>
-
-              <!-- Labels -->
-              <text x="190" y="24" fill="#fafafa" font-size="10.5" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">Библиотека (TMDB)</text>
-              <text x="282" y="87" fill="#fafafa" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="start">Плеер (UX)</text>
-              <text x="280" y="184" fill="#fafafa" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="start">Интеграции</text>
-              <text x="190" y="252" fill="#fafafa" font-size="10.5" font-family="'JetBrains Mono', monospace" text-anchor="middle" font-weight="600">Аудио / Voice</text>
-              <text x="98" y="184" fill="#fafafa" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="end">Субтитры (RU+EN)</text>
-              <text x="98" y="87" fill="#fafafa" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="end">ИИ-поиск</text>
-            </svg>
+          <div>
+            <div class="c-stat-k" data-i18n="stat_sessions">Сессии</div>
+            <div class="c-stat-v">5.82k</div>
           </div>
-
-          <div class="radar-legend">
-            <div class="legend-tag">
-              <span class="legend-color-box" style="background:#fafafa; box-shadow:0 0 8px rgba(255,255,255,0.6);"></span>
-              <span><strong>LightStream</strong> (7/9 фич, 100% SoV)</span>
-            </div>
-            <div class="legend-tag">
-              <span class="legend-color-box" style="background:#ef4444;"></span>
-              <span style="color:#ef4444;">Netflix (2/9 фич)</span>
-            </div>
+          <div>
+            <div class="c-stat-k" data-i18n="stat_uniques">Уники</div>
+            <div class="c-stat-v">2.88k</div>
+          </div>
+          <div>
+            <div class="c-stat-k" data-i18n="stat_duration">Глубина</div>
+            <div class="c-stat-v">4m 18s</div>
           </div>
         </div>
       </div>
@@ -2888,119 +2468,238 @@
         </div>
       </div>
 
-      <!-- Traffic Punchcard Heatmap -->
-      <div class="sketch-card punchcard-wrap">
+      <!-- Audience Interactive Heatmap Matrix & Prime-Time Inspector -->
+      <div class="sketch-card heat-card" id="heatmapWidget">
         <div class="chart-card-header">
           <div>
-            <div class="chart-card-title" data-i18n="punch_title">Тепловая карта активности (Punchcard Heatmap)</div>
-            <div class="chart-card-sub" data-i18n="punch_sub">Пик внимания: среда 14:00+ и вечерние сеансы 19:00–23:00</div>
+            <div class="chart-card-title" data-i18n="prime_title">Интерактивная карта внимания & Prime-Time (Heatmap Matrix)</div>
+            <div class="chart-card-sub" data-i18n="prime_sub">Кликните по любому тайм-слоту (дни недели × часы) для инспекции телеметрии, длительности сессий и Share of Voice.</div>
           </div>
-          <span class="hand-badge" style="color:var(--accent-green); border-color:#064e3b;">Prime-Time</span>
+          <span class="hand-badge" style="color:var(--accent-green); border-color:#064e3b;" data-i18n="prime_badge">★ 19:00 – 23:30 Prime-Time (64% эфира)</span>
         </div>
 
-        <div class="punchcard-scroll">
-          <table class="punchcard-table">
-            <thead>
-              <tr>
-                <th class="p-day">День</th>
-                <th>00ч</th><th>03ч</th><th>06ч</th><th>09ч</th><th>12ч</th>
-                <th>14ч ★</th><th>16ч</th><th>18ч</th><th>20ч</th><th>22ч</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="p-day">Вс</td>
-                <td><span class="p-dot" style="width:5px; height:5px; opacity:0.4;"></span></td>
-                <td><span class="p-dot" style="width:3px; height:3px; opacity:0.3;"></span></td>
-                <td><span class="p-dot" style="width:2px; height:2px; opacity:0.2;"></span></td>
-                <td><span class="p-dot" style="width:4px; height:4px; opacity:0.3;"></span></td>
-                <td><span class="p-dot" style="width:8px; height:8px; opacity:0.6;"></span></td>
-                <td><span class="p-dot" style="width:10px; height:10px; opacity:0.7;"></span></td>
-                <td><span class="p-dot" style="width:8px; height:8px; opacity:0.6;"></span></td>
-                <td><span class="p-dot" style="width:12px; height:12px; opacity:0.8;"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-                <td><span class="p-dot" style="width:12px; height:12px; opacity:0.8;"></span></td>
-              </tr>
-              <tr>
-                <td class="p-day">Пн</td>
-                <td><span class="p-dot" style="width:6px; height:6px; opacity:0.5;"></span></td>
-                <td><span class="p-dot" style="width:3px; height:3px; opacity:0.3;"></span></td>
-                <td><span class="p-dot" style="width:2px; height:2px; opacity:0.2;"></span></td>
-                <td><span class="p-dot" style="width:5px; height:5px; opacity:0.4;"></span></td>
-                <td><span class="p-dot" style="width:10px; height:10px; opacity:0.7;"></span></td>
-                <td><span class="p-dot" style="width:13px; height:13px; opacity:0.85;"></span></td>
-                <td><span class="p-dot" style="width:11px; height:11px; opacity:0.75;"></span></td>
-                <td><span class="p-dot" style="width:15px; height:15px; opacity:0.95;"></span></td>
-                <td><span class="p-dot" style="width:16px; height:16px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:13px; height:13px; opacity:0.85;"></span></td>
-              </tr>
-              <tr>
-                <td class="p-day">Вт</td>
-                <td><span class="p-dot" style="width:6px; height:6px; opacity:0.5;"></span></td>
-                <td><span class="p-dot" style="width:3px; height:3px; opacity:0.3;"></span></td>
-                <td><span class="p-dot" style="width:2px; height:2px; opacity:0.2;"></span></td>
-                <td><span class="p-dot" style="width:5px; height:5px; opacity:0.4;"></span></td>
-                <td><span class="p-dot" style="width:11px; height:11px; opacity:0.75;"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-                <td><span class="p-dot" style="width:12px; height:12px; opacity:0.8;"></span></td>
-                <td><span class="p-dot" style="width:15px; height:15px; opacity:0.95;"></span></td>
-                <td><span class="p-dot" style="width:16px; height:16px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-              </tr>
-              <tr style="background: rgba(255,255,255,0.03);">
-                <td class="p-day" style="color:#fafafa;">Ср ★</td>
-                <td><span class="p-dot" style="width:8px; height:8px; opacity:0.6;"></span></td>
-                <td><span class="p-dot" style="width:4px; height:4px; opacity:0.35;"></span></td>
-                <td><span class="p-dot" style="width:3px; height:3px; opacity:0.25;"></span></td>
-                <td><span class="p-dot" style="width:7px; height:7px; opacity:0.5;"></span></td>
-                <td><span class="p-dot" style="width:13px; height:13px; opacity:0.85;"></span></td>
-                <td><span class="p-dot" style="width:18px; height:18px; opacity:1.0; box-shadow:0 0 12px rgba(255,255,255,0.8);"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-                <td><span class="p-dot" style="width:16px; height:16px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:17px; height:17px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:15px; height:15px; opacity:0.95;"></span></td>
-              </tr>
-              <tr>
-                <td class="p-day">Чт</td>
-                <td><span class="p-dot" style="width:6px; height:6px; opacity:0.5;"></span></td>
-                <td><span class="p-dot" style="width:3px; height:3px; opacity:0.3;"></span></td>
-                <td><span class="p-dot" style="width:2px; height:2px; opacity:0.2;"></span></td>
-                <td><span class="p-dot" style="width:5px; height:5px; opacity:0.4;"></span></td>
-                <td><span class="p-dot" style="width:11px; height:11px; opacity:0.75;"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-                <td><span class="p-dot" style="width:12px; height:12px; opacity:0.8;"></span></td>
-                <td><span class="p-dot" style="width:15px; height:15px; opacity:0.95;"></span></td>
-                <td><span class="p-dot" style="width:16px; height:16px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-              </tr>
-              <tr>
-                <td class="p-day">Пт</td>
-                <td><span class="p-dot" style="width:7px; height:7px; opacity:0.55;"></span></td>
-                <td><span class="p-dot" style="width:4px; height:4px; opacity:0.35;"></span></td>
-                <td><span class="p-dot" style="width:2px; height:2px; opacity:0.2;"></span></td>
-                <td><span class="p-dot" style="width:5px; height:5px; opacity:0.4;"></span></td>
-                <td><span class="p-dot" style="width:12px; height:12px; opacity:0.8;"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-                <td><span class="p-dot" style="width:13px; height:13px; opacity:0.85;"></span></td>
-                <td><span class="p-dot" style="width:16px; height:16px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:17px; height:17px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:15px; height:15px; opacity:0.95;"></span></td>
-              </tr>
-              <tr>
-                <td class="p-day">Сб</td>
-                <td><span class="p-dot" style="width:8px; height:8px; opacity:0.6;"></span></td>
-                <td><span class="p-dot" style="width:4px; height:4px; opacity:0.35;"></span></td>
-                <td><span class="p-dot" style="width:2px; height:2px; opacity:0.2;"></span></td>
-                <td><span class="p-dot" style="width:4px; height:4px; opacity:0.3;"></span></td>
-                <td><span class="p-dot" style="width:9px; height:9px; opacity:0.65;"></span></td>
-                <td><span class="p-dot" style="width:11px; height:11px; opacity:0.75;"></span></td>
-                <td><span class="p-dot" style="width:12px; height:12px; opacity:0.8;"></span></td>
-                <td><span class="p-dot" style="width:15px; height:15px; opacity:0.95;"></span></td>
-                <td><span class="p-dot" style="width:16px; height:16px; opacity:1.0;"></span></td>
-                <td><span class="p-dot" style="width:14px; height:14px; opacity:0.9;"></span></td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Scenario Presets & Legend Toolbar -->
+        <div class="heat-toolbar">
+          <div class="heat-presets">
+            <button type="button" class="heat-preset-btn active" id="presetPrime" onclick="applyHeatPreset('prime')" data-i18n="heat_pre_prime">★ Вечерний Prime-Time</button>
+            <button type="button" class="heat-preset-btn" id="presetLunch" onclick="applyHeatPreset('lunch')" data-i18n="heat_pre_lunch">⚡ Среда 14:00 Lunch Spike</button>
+            <button type="button" class="heat-preset-btn" id="presetWeekend" onclick="applyHeatPreset('weekend')" data-i18n="heat_pre_weekend">🍿 Weekend Кинозал</button>
+            <button type="button" class="heat-preset-btn" id="presetNight" onclick="applyHeatPreset('night')" data-i18n="heat_pre_night">🌙 Ночные сеансы</button>
+            <button type="button" class="heat-preset-btn" id="presetAll" onclick="applyHeatPreset('all')" data-i18n="heat_pre_all">🔄 Сброс</button>
+          </div>
+          <div class="heat-legend">
+            <span data-i18n="heat_leg_title">Активность:</span>
+            <div class="heat-legend-dots">
+              <span class="heat-dot heat-lvl-1" title="0-20%"></span>
+              <span class="heat-dot heat-lvl-2" title="20-40%"></span>
+              <span class="heat-dot heat-lvl-3" title="40-65%"></span>
+              <span class="heat-dot heat-lvl-4" title="65-85%"></span>
+              <span class="heat-dot heat-lvl-5" title="85-100% Пик"></span>
+            </div>
+            <span style="color:#fafafa; font-weight:600;" data-i18n="heat_leg_peak">Пик эфира</span>
+          </div>
+        </div>
+
+        <!-- 2-Column Interactive Main Grid -->
+        <div class="heat-main-grid">
+          <!-- 7x12 Heatmap Matrix Table -->
+          <div class="heat-table-wrap">
+            <table class="heat-table" id="heatTable">
+              <thead>
+                <tr>
+                  <th class="heat-th" style="text-align:left;" data-i18n="heat_th_day">День</th>
+                  <th class="heat-th">00ч</th>
+                  <th class="heat-th">02ч</th>
+                  <th class="heat-th">04ч</th>
+                  <th class="heat-th">06ч</th>
+                  <th class="heat-th">08ч</th>
+                  <th class="heat-th">10ч</th>
+                  <th class="heat-th">12ч</th>
+                  <th class="heat-th">14ч</th>
+                  <th class="heat-th">16ч</th>
+                  <th class="heat-th prime">18ч</th>
+                  <th class="heat-th prime">20ч★</th>
+                  <th class="heat-th prime">22ч★</th>
+                </tr>
+              </thead>
+              <tbody id="heatTableBody">
+                <!-- Dynamically generated or fallback rows -->
+                <tr data-day-key="mon">
+                  <td class="heat-day-lbl">Пн</td>
+                  <td class="heat-cell heat-lvl-1" data-d="mon" data-h="0" data-idx="16"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="mon" data-h="2" data-idx="11"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="mon" data-h="4" data-idx="7"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="mon" data-h="6" data-idx="9"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="mon" data-h="8" data-idx="21"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="mon" data-h="10" data-idx="32"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="mon" data-h="12" data-idx="48"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="mon" data-h="14" data-idx="52"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="mon" data-h="16" data-idx="46"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="mon" data-h="18" data-idx="72"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="mon" data-h="20" data-idx="84"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="mon" data-h="22" data-idx="76"></td>
+                </tr>
+                <tr data-day-key="tue">
+                  <td class="heat-day-lbl">Вт</td>
+                  <td class="heat-cell heat-lvl-1" data-d="tue" data-h="0" data-idx="18"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="tue" data-h="2" data-idx="12"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="tue" data-h="4" data-idx="8"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="tue" data-h="6" data-idx="10"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="tue" data-h="8" data-idx="23"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="tue" data-h="10" data-idx="35"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="tue" data-h="12" data-idx="50"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="tue" data-h="14" data-idx="58"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="tue" data-h="16" data-idx="49"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="tue" data-h="18" data-idx="76"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="tue" data-h="20" data-idx="88"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="tue" data-h="22" data-idx="79"></td>
+                </tr>
+                <tr data-day-key="wed">
+                  <td class="heat-day-lbl record">Ср ★</td>
+                  <td class="heat-cell heat-lvl-2" data-d="wed" data-h="0" data-idx="24"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="wed" data-h="2" data-idx="15"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="wed" data-h="4" data-idx="9"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="wed" data-h="6" data-idx="14"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="wed" data-h="8" data-idx="28"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="wed" data-h="10" data-idx="41"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="wed" data-h="12" data-idx="62"></td>
+                  <td class="heat-cell heat-lvl-5" data-d="wed" data-h="14" data-idx="94" title="14:00 Lunch Spike (+45%)"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="wed" data-h="16" data-idx="59"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="wed" data-h="18" data-idx="82"></td>
+                  <td class="heat-cell heat-lvl-5 is-selected" data-d="wed" data-h="20" data-idx="100" title="20:00 Абсолютный пик недели"></td>
+                  <td class="heat-cell heat-lvl-5" data-d="wed" data-h="22" data-idx="92"></td>
+                </tr>
+                <tr data-day-key="thu">
+                  <td class="heat-day-lbl">Чт</td>
+                  <td class="heat-cell heat-lvl-1" data-d="thu" data-h="0" data-idx="19"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="thu" data-h="2" data-idx="13"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="thu" data-h="4" data-idx="8"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="thu" data-h="6" data-idx="11"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="thu" data-h="8" data-idx="24"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="thu" data-h="10" data-idx="36"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="thu" data-h="12" data-idx="52"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="thu" data-h="14" data-idx="56"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="thu" data-h="16" data-idx="51"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="thu" data-h="18" data-idx="78"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="thu" data-h="20" data-idx="89"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="thu" data-h="22" data-idx="81"></td>
+                </tr>
+                <tr data-day-key="fri">
+                  <td class="heat-day-lbl">Пт ★</td>
+                  <td class="heat-cell heat-lvl-2" data-d="fri" data-h="0" data-idx="28"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="fri" data-h="2" data-idx="18"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="fri" data-h="4" data-idx="10"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="fri" data-h="6" data-idx="12"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="fri" data-h="8" data-idx="25"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="fri" data-h="10" data-idx="38"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="fri" data-h="12" data-idx="54"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="fri" data-h="14" data-idx="60"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="fri" data-h="16" data-idx="58"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="fri" data-h="18" data-idx="85"></td>
+                  <td class="heat-cell heat-lvl-5" data-d="fri" data-h="20" data-idx="97" title="Ночной кинозал"></td>
+                  <td class="heat-cell heat-lvl-5" data-d="fri" data-h="22" data-idx="95"></td>
+                </tr>
+                <tr data-day-key="sat">
+                  <td class="heat-day-lbl">Сб</td>
+                  <td class="heat-cell heat-lvl-2" data-d="sat" data-h="0" data-idx="34"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="sat" data-h="2" data-idx="22"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="sat" data-h="4" data-idx="12"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="sat" data-h="6" data-idx="11"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="sat" data-h="8" data-idx="22"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="sat" data-h="10" data-idx="42"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="sat" data-h="12" data-idx="64"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="sat" data-h="14" data-idx="68"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="sat" data-h="16" data-idx="74"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="sat" data-h="18" data-idx="88"></td>
+                  <td class="heat-cell heat-lvl-5" data-d="sat" data-h="20" data-idx="98" title="Семейный уикенд"></td>
+                  <td class="heat-cell heat-lvl-5" data-d="sat" data-h="22" data-idx="94"></td>
+                </tr>
+                <tr data-day-key="sun">
+                  <td class="heat-day-lbl">Вс</td>
+                  <td class="heat-cell heat-lvl-2" data-d="sun" data-h="0" data-idx="30"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="sun" data-h="2" data-idx="17"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="sun" data-h="4" data-idx="10"></td>
+                  <td class="heat-cell heat-lvl-1" data-d="sun" data-h="6" data-idx="9"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="sun" data-h="8" data-idx="20"></td>
+                  <td class="heat-cell heat-lvl-2" data-d="sun" data-h="10" data-idx="39"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="sun" data-h="12" data-idx="61"></td>
+                  <td class="heat-cell heat-lvl-3" data-d="sun" data-h="14" data-idx="66"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="sun" data-h="16" data-idx="72"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="sun" data-h="18" data-idx="86"></td>
+                  <td class="heat-cell heat-lvl-5" data-d="sun" data-h="20" data-idx="96"></td>
+                  <td class="heat-cell heat-lvl-4" data-d="sun" data-h="22" data-idx="82"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Live Interactive Telemetry Inspector Card -->
+          <div class="heat-inspector" id="heatInspector">
+            <div>
+              <div class="insp-header">
+                <div>
+                  <div class="insp-slot-title" id="inspSlotTitle">Среда · 20:00 – 22:00</div>
+                  <div class="insp-slot-status" id="inspSlotStatus">★ Абсолютный пик недели (Киносеанс)</div>
+                </div>
+                <span class="pm-pill" style="color:#fafafa; border:1px solid #3f4055; background:rgba(255,255,255,0.06);" id="inspTagSlot">100% SoV</span>
+              </div>
+
+              <!-- Engagement Index Gauge -->
+              <div class="insp-gauge-wrap">
+                <div class="insp-gauge-head">
+                  <span data-i18n="insp_gauge_lbl">Индекс вовлеченности & эфира</span>
+                  <strong style="color:#fafafa;" id="inspIdxVal">100 / 100</strong>
+                </div>
+                <div class="insp-gauge-track">
+                  <div class="insp-gauge-fill" id="inspGaugeFill" style="width: 100%;"></div>
+                </div>
+              </div>
+
+              <!-- 4 Telemetry Metrics Grid -->
+              <div class="insp-metrics-grid">
+                <div class="insp-m-item">
+                  <div class="insp-m-k" data-i18n="insp_m_session">Длительность сессии</div>
+                  <div class="insp-m-v" id="inspSessionVal">48.5 мин</div>
+                </div>
+                <div class="insp-m-item">
+                  <div class="insp-m-k" data-i18n="insp_m_devices">Большие экраны</div>
+                  <div class="insp-m-v" id="inspDeviceVal">64% Smart TV & PC</div>
+                </div>
+                <div class="insp-m-item">
+                  <div class="insp-m-k" data-i18n="insp_m_sov">Share of Voice</div>
+                  <div class="insp-m-v" id="inspSovVal" style="color:var(--accent-green);">100% Exclusive</div>
+                </div>
+                <div class="insp-m-item">
+                  <div class="insp-m-k" data-i18n="insp_m_retention">AdBlock Bypass</div>
+                  <div class="insp-m-v" id="inspAdblockVal">100% Доставка</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Investor / Sponsor Context Memo -->
+            <div class="insp-tip" id="inspDesc">
+              «Золотое окно полного внимания. Пользователи смотрят полнометражные премьеры на больших экранах без перемотки. Премиальный слот для монопольного брендинга и нативных pre-roll вставок без потерь от блокировщиков.»
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Key Takeaways -->
+        <div class="heat-takeaways">
+          <div class="heat-takeaway-card">
+            <span class="heat-takeaway-tag" data-i18n="prime_c1_tag">Прайм-слот 19:00 – 23:30</span>
+            <div class="heat-takeaway-val" data-i18n="prime_c1_val">64% суточного эфира</div>
+            <div class="heat-takeaway-desc" data-i18n="prime_c1_desc">Максимальная вовлеченность. Просмотр полнометражных фильмов со средней длительностью сессии 42+ мин.</div>
+          </div>
+          <div class="heat-takeaway-card">
+            <span class="heat-takeaway-tag" data-i18n="prime_c2_tag">Среда 14:00 Lunch Spike</span>
+            <div class="heat-takeaway-val" data-i18n="prime_c2_val">+45% дневной всплеск</div>
+            <div class="heat-takeaway-desc" data-i18n="prime_c2_desc">Аномальный всплеск дневного внимания в середине рабочей недели (обеденный тайм-аут и фоновые просмотры сериалов).</div>
+          </div>
+          <div class="heat-takeaway-card">
+            <span class="heat-takeaway-tag" data-i18n="prime_c3_tag">Desktop & Smart TV</span>
+            <div class="heat-takeaway-val" data-i18n="prime_c3_val">58% большие экраны</div>
+            <div class="heat-takeaway-desc" data-i18n="prime_c3_desc">В вечернее время аудитория переключается на полноэкранный режим, обеспечивая абсолютный 100% Share of Voice.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -3060,37 +2759,7 @@
       </div>
     </section>
 
-    <!-- Section 5: Comparison Matrix -->
-    <section class="section" id="matrix">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title" data-i18n="mat_title">Сравнение стека: Data instead of marketing</h2>
-          <p class="section-desc" data-i18n="mat_desc">
-            Технологические возможности LightStream против устаревших пиратских плееров и Netflix.
-          </p>
-        </div>
-        <span class="hand-badge" style="color:var(--accent-green); border-color:#064e3b;">LightStream: 7/9 фич</span>
-      </div>
-
-      <div class="sketch-card matrix-box">
-        <table class="matrix-tbl">
-          <thead>
-            <tr>
-              <th style="width: 32%;" data-i18n="th_feature">Критерий / Фича</th>
-              <th style="width: 17%;">LightStream</th>
-              <th style="width: 17%;">Netflix</th>
-              <th style="width: 17%;">Кинопоиск</th>
-              <th style="width: 17%;" data-i18n="th_pirates">Пиратские сайты</th>
-            </tr>
-          </thead>
-          <tbody id="matrixBody">
-            <!-- Rendered by JS based on language -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Section 6: Defensive Moats & Unit Economics (Step 3) -->
+    <!-- Section: Defensive Moats & Unit Economics -->
     <section class="section" id="moat">
       <div class="section-header">
         <div>
@@ -3345,93 +3014,7 @@
       </div>
     </section>
 
-    <!-- Section 8: Shipping Velocity & Production Cadence (Step 4) -->
-    <section class="section" id="velocity">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title" data-i18n="vel_title">Shipping Velocity: Реальный темп разработки</h2>
-          <p class="section-desc" data-i18n="vel_desc">
-            Мы не пишем презентации месяцами — мы шипим боевой функционал каждую неделю. Журнал недавних релизов ядра LightStream:
-          </p>
-        </div>
-        <span class="hand-badge" data-i18n="vel_hand_badge">★ Недельный релизный цикл</span>
-      </div>
-
-      <div class="velocity-box">
-        <div class="velocity-header">
-          <div class="velocity-header-title">
-            <span style="color:#34d399;">●</span>
-            <span>production / main</span>
-            <span class="velocity-branch">git log --oneline</span>
-          </div>
-          <div style="color:var(--text-dim); font-size:11px;">Updated: October 2026</div>
-        </div>
-
-        <div class="velocity-list">
-          <div class="velocity-item">
-            <span class="v-tag">v2.4 Prod</span>
-            <div class="v-body">
-              <div class="v-meta">
-                <span class="v-title" data-i18n="v_24_t">Smart Subtitles & Двуязычный контекстный переводчик</span>
-                <span class="v-commit">b8f419c</span>
-              </div>
-              <div class="v-desc" data-i18n="v_24_d">Интеграция пословного парсера WebVTT/SRT, всплывающие подсказки транскрипции и сохранение слов в персональный EdTech-словарь.</div>
-            </div>
-          </div>
-
-          <div class="velocity-item">
-            <span class="v-tag">v2.3 Prod</span>
-            <div class="v-body">
-              <div class="v-meta">
-                <span class="v-title" data-i18n="v_23_t">TheIntroDB Интеграция & Skip Intro</span>
-                <span class="v-commit">e391a02</span>
-              </div>
-              <div class="v-desc" data-i18n="v_23_d">Автоматическое определение начала и конца заставок для сериалов и аниме по открытой краудсорс-базе таймкодов с пропуском в 1 клик.</div>
-            </div>
-          </div>
-
-          <div class="velocity-item">
-            <span class="v-tag">v2.2 Prod</span>
-            <div class="v-body">
-              <div class="v-meta">
-                <span class="v-title" data-i18n="v_22_t">2-Way TMDB Sync & Быстрый Omnibox-поиск</span>
-                <span class="v-commit">7ca24e1</span>
-              </div>
-              <div class="v-desc" data-i18n="v_22_d">Двусторонняя синхронизация профилей с TMDB API (списки, закладки, оценки), дебаунс-поиск по десяткам тысяч актеров и фильмов.</div>
-            </div>
-          </div>
-
-          <div class="velocity-item">
-            <span class="v-tag">v2.1 Prod</span>
-            <div class="v-body">
-              <div class="v-meta">
-                <span class="v-title" data-i18n="v_21_t">Multi-CDN Balancer & Переключение звуковых дорожек HLS</span>
-                <span class="v-commit">198fcd4</span>
-              </div>
-              <div class="v-desc" data-i18n="v_21_d">Динамический failover между серверами отдачи, поддержка дорожек RHS, LostFilm, Кубик в Кубе и оригинального звука без задержек.</div>
-            </div>
-          </div>
-
-          <div class="velocity-item">
-            <span class="v-tag">v2.0 Prod</span>
-            <div class="v-body">
-              <div class="v-meta">
-                <span class="v-title" data-i18n="v_20_t">Архитектура SvelteKit + Bun + Hono</span>
-                <span class="v-commit">3f2e18b</span>
-              </div>
-              <div class="v-desc" data-i18n="v_20_d">Полный рефакторинг фронтенда и API-шлюза: 0 рекламных фреймов, мгновенная загрузка страниц &lt;400ms, безупречная адаптивность.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="velocity-footer">
-          <span data-i18n="vel_ft_active">Статус: Активная непрерывная разработка</span>
-          <span>CI/CD: GitHub Actions ✓ Automated</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Step 5: One-Click Executive Memo Export Bar -->
+    <!-- Executive Summary Memo Export Bar -->
     <div class="memo-bar" id="memoBar">
       <div class="memo-info">
         <div class="memo-title">
@@ -3584,8 +3167,31 @@
         aud_dev_sub: "Десктопный и премиальный iOS трафик",
         aud_geo_title: "Верифицированная география аудитории",
         aud_geo_sub: "Сплит по странам и среднему чеку",
-        punch_title: "Тепловая карта активности (Punchcard Heatmap)",
-        punch_sub: "Пик внимания: среда 14:00+ и вечерние сеансы 19:00–23:00",
+        prime_title: "Интерактивная карта внимания & Prime-Time (Heatmap Matrix)",
+        prime_sub: "Кликните по любому тайм-слоту (дни недели × часы) для инспекции телеметрии, длительности сессий и Share of Voice.",
+        prime_badge: "★ 19:00 – 23:30 Prime-Time (64% эфира)",
+        heat_pre_prime: "★ Вечерний Prime-Time",
+        heat_pre_lunch: "⚡ Среда 14:00 Lunch Spike",
+        heat_pre_weekend: "🍿 Weekend Кинозал",
+        heat_pre_night: "🌙 Ночные сеансы",
+        heat_pre_all: "🔄 Сброс",
+        heat_leg_title: "Активность:",
+        heat_leg_peak: "Пик эфира",
+        heat_th_day: "День",
+        insp_gauge_lbl: "Индекс вовлеченности & эфира",
+        insp_m_session: "Длительность сессии",
+        insp_m_devices: "Большие экраны",
+        insp_m_sov: "Share of Voice",
+        insp_m_retention: "AdBlock Bypass",
+        prime_c1_tag: "Прайм-слот 19:00 – 23:30",
+        prime_c1_val: "64% суточного эфира",
+        prime_c1_desc: "Максимальная вовлеченность. Просмотр полнометражных фильмов со средней длительностью сессии 42+ мин.",
+        prime_c2_tag: "Среда 14:00 Lunch Spike",
+        prime_c2_val: "+45% дневной всплеск",
+        prime_c2_desc: "Аномальный всплеск дневного внимания в середине рабочей недели (обеденный тайм-аут и фоновые просмотры сериалов).",
+        prime_c3_tag: "Desktop & Smart TV",
+        prime_c3_val: "58% большие экраны",
+        prime_c3_desc: "В вечернее время аудитория переключается на полноэкранный режим, обеспечивая абсолютный 100% Share of Voice.",
         calc_title: "Интерактивный калькулятор отдачи (ROI)",
         calc_desc: "Оцените отдачу от 100% Share of Voice в плеере LightStream при масштабировании аудитории до целевых значений.",
         calc_lbl_mau: "Месячный охват аудитории (MAU)",
@@ -3759,8 +3365,31 @@
         aud_dev_sub: "Dominance of desktop and high-converting iOS traffic",
         aud_geo_title: "Verified Geographic Distribution",
         aud_geo_sub: "Split by countries, deposit power, and tier",
-        punch_title: "Traffic Punchcard Heatmap",
-        punch_sub: "Prime-time peaks: Wednesday 14:00+ and evenings 19:00–23:00",
+        prime_title: "Interactive Attention Heatmap & Prime-Time Matrix",
+        prime_sub: "Click any time slot (days of week × hours) to inspect telemetry, session length, and Share of Voice.",
+        prime_badge: "★ 19:00 – 23:30 Prime-Time (64% share)",
+        heat_pre_prime: "★ Evening Prime-Time",
+        heat_pre_lunch: "⚡ Wed 14:00 Lunch Spike",
+        heat_pre_weekend: "🍿 Weekend Cinema",
+        heat_pre_night: "🌙 Late Night Sessions",
+        heat_pre_all: "🔄 Reset",
+        heat_leg_title: "Activity:",
+        heat_leg_peak: "Peak Airtime",
+        heat_th_day: "Day",
+        insp_gauge_lbl: "Engagement & Attention Index",
+        insp_m_session: "Avg Session Length",
+        insp_m_devices: "Large Screens",
+        insp_m_sov: "Share of Voice",
+        insp_m_retention: "AdBlock Bypass",
+        prime_c1_tag: "Prime Window 19:00 – 23:30",
+        prime_c1_val: "64% Daily Share",
+        prime_c1_desc: "Peak attention period. Feature-length cinema viewing with average session duration exceeding 42 minutes.",
+        prime_c2_tag: "Wednesday 14:00 Lunch Spike",
+        prime_c2_val: "+45% Daytime Surge",
+        prime_c2_desc: "Anomalous mid-week daytime surge driven by lunch-break viewing and short episodic series.",
+        prime_c3_tag: "Desktop & Smart TV Dominance",
+        prime_c3_val: "58% Large Screens",
+        prime_c3_desc: "In evening hours viewers switch to full-screen mode, securing absolute 100% Share of Voice for partners.",
         calc_title: "Interactive Sponsor ROI Calculator",
         calc_desc: "Estimate direct returns from 100% Share of Voice on LightStream at target scale.",
         calc_lbl_mau: "Monthly Audience Reach (MAU)",
@@ -3847,49 +3476,6 @@
         cta_btn_app: "Open Cinema: lightstream.ws ↗"
       }
     };
-
-    const matrixData = [
-      {
-        ru: { feature: "Закладки и история (Bookmarks)", note: "Синхронизация прогресса с точностью до секунды" },
-        en: { feature: "Bookmarks & Watch History", note: "Second-accurate cross-device progress sync" },
-        lightstream: "YES", netflix: "YES", kinopoisk: "YES", pirate_sites: "PARTIAL"
-      },
-      {
-        ru: { feature: "Watch Party (Совместный просмотр)", note: "Синхронное воспроизведение и чат для друзей" },
-        en: { feature: "Social Watch Party Rooms", note: "Synchronized playback & chat room for friends" },
-        lightstream: "SOON", netflix: "NO", kinopoisk: "NO", pirate_sites: "NO"
-      },
-      {
-        ru: { feature: "Двуязычные субтитры (Smart Subs)", note: "Оригинальный звук + умное переключение дорожек" },
-        en: { feature: "Dual Smart Subtitles (RU+EN)", note: "Original audio + instant track switching" },
-        lightstream: "YES", netflix: "YES", kinopoisk: "PARTIAL", pirate_sites: "NO"
-      },
-      {
-        ru: { feature: "Горячие клавиши плеера (Hotkeys)", note: "Управление воспроизведением без лишних кликов" },
-        en: { feature: "Pro Keyboard Shortcuts", note: "Intuitive hotkey playback controls without menus" },
-        lightstream: "YES", netflix: "PARTIAL", kinopoisk: "PARTIAL", pirate_sites: "NO"
-      },
-      {
-        ru: { feature: "Нативная TMDB интеграция", note: "Рейтинги, актеры, трейлеры, даты выхода в 1 клик" },
-        en: { feature: "Native TMDB Metadata Integration", note: "Ratings, cast, trailers, and release dates in 1 tap" },
-        lightstream: "YES", netflix: "NO", kinopoisk: "NO", pirate_sites: "PARTIAL"
-      },
-      {
-        ru: { feature: "Распознавание музыки (Shazam)", note: "Определение саундтрека прямо во время сцены" },
-        en: { feature: "In-Player Shazam Soundtrack Finder", note: "Live scene soundtrack recognition to Spotify" },
-        lightstream: "SOON", netflix: "NO", kinopoisk: "NO", pirate_sites: "NO"
-      },
-      {
-        ru: { feature: "Voice EQ (Улучшение голоса)", note: "Выравнивание громкости и усиление диалогов" },
-        en: { feature: "Smart Audio & Voice Clarifier", note: "Dialog normalization over explosive sound effects" },
-        lightstream: "SOON", netflix: "NO", kinopoisk: "NO", pirate_sites: "NO"
-      },
-      {
-        ru: { feature: "AI Подбор кино по настроению", note: "Поиск кино на естественном языке без шаблонных тегов" },
-        en: { feature: "Semantic AI Movie Assistant", note: "Natural language discovery by mood & plot vibes" },
-        lightstream: "SOON", netflix: "NO", kinopoisk: "NO", pirate_sites: "NO"
-      }
-    ];
 
     const dealsData = [
       {
@@ -3986,6 +3572,7 @@
 
       bindDrawer();
       bindCalculator();
+      initHeatmapEvents();
       setLang(currentLang, false);
       setAudience(currentAudience, false);
       setStage('current');
@@ -4069,8 +3656,10 @@
       });
 
       updateHeroTexts();
-      renderMatrix(lang);
       renderDeals(lang);
+      if (typeof updateHeatInspector === 'function') {
+        updateHeatInspector(activeHeatKey);
+      }
     }
 
     function bindDrawer() {
@@ -4185,35 +3774,6 @@
       recalculate();
     }
 
-    function renderMatrix(lang) {
-      const tbody = document.getElementById('matrixBody');
-      if (!tbody) return;
-      tbody.innerHTML = '';
-
-      function tag(v) {
-        if (v === 'YES') return '<span class="tag-yes">YES ✓</span>';
-        if (v === 'SOON') return '<span class="tag-soon">SOON ⚡</span>';
-        if (v === 'PARTIAL') return '<span class="tag-partial">PARTIAL</span>';
-        return '<span class="tag-no">NO ✕</span>';
-      }
-
-      matrixData.forEach(row => {
-        const item = row[lang] || row.ru;
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>
-            <strong>${item.feature}</strong>
-            <div style="font-size:11px; color:var(--text-dim); margin-top:2px;">${item.note}</div>
-          </td>
-          <td>${tag(row.lightstream)}</td>
-          <td>${tag(row.netflix)}</td>
-          <td>${tag(row.kinopoisk)}</td>
-          <td>${tag(row.pirate_sites)}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
     function renderDeals(lang) {
       const container = document.getElementById('dealsContainer');
       if (!container) return;
@@ -4244,91 +3804,209 @@
       });
     }
 
-    // Step 2: Interactive Player Showcase Handlers
-    function toggleSubTooltip() {
-      const popover = document.getElementById('pmSubPopover');
-      if (!popover) return;
-      popover.classList.toggle('active');
-    }
+    // Step 2: Interactive Heatmap Matrix & Inspector Engine
+    const heatSlotProfiles = {
+      'wed-20': {
+        title_ru: 'Среда · 20:00 – 22:00',
+        title_en: 'Wednesday · 20:00 – 22:00',
+        status_ru: '★ Абсолютный пик недели (Киносеанс)',
+        status_en: '★ All-Time Weekly Peak (Cinema Prime)',
+        tag: '100% SoV',
+        idx: 100,
+        session: '48.5 мин',
+        devices: '64% Smart TV & PC',
+        sov: '100% Exclusive',
+        adblock: '100% Доставка',
+        desc_ru: '«Золотое окно полного внимания. Пользователи смотрят полнометражные премьеры на больших экранах без перемотки. Премиальный слот для монопольного брендинга и нативных pre-roll вставок без потерь от блокировщиков.»',
+        desc_en: '“Golden prime attention slot. Cinephiles stream full-length premieres on big screens without skips. Monopoly sponsor real-estate with zero AdBlock drop-off.”'
+      },
+      'wed-14': {
+        title_ru: 'Среда · 14:00 (Lunch Spike)',
+        title_en: 'Wednesday · 14:00 (Lunch Spike)',
+        status_ru: '⚡ Дневной аномальный пик (+45%)',
+        status_en: '⚡ Daytime Viral Surge (+45%)',
+        tag: 'High CTR',
+        idx: 94,
+        session: '28.2 мин',
+        devices: '54% Mobile, 46% PC',
+        sov: '100% Exclusive',
+        adblock: '100% Доставка',
+        desc_ru: '«Обеденный тайм-аут: фоновые сериалы и короткометражки в офисах и на смартфонах. Самый высокий показатель CTR на единицу времени среди дневных слотов.»',
+        desc_en: '“Midday lunch break anomaly: episodic streaming and short viewing sessions across mobile and desktop. Highest daytime click-through intent.”'
+      },
+      'fri-20': {
+        title_ru: 'Пятница · 20:00 – 23:30',
+        title_en: 'Friday · 20:00 – 23:30',
+        status_ru: '🍿 Старт уикенда (Ночной кинозал)',
+        status_en: '🍿 Weekend Kickoff (Late Night Cinema)',
+        tag: 'Max Duration',
+        idx: 97,
+        session: '54.0 мин',
+        devices: '71% Smart TV & PC',
+        sov: '100% Exclusive',
+        adblock: '100% Доставка',
+        desc_ru: '«Рекордная средняя продолжительность одного сеанса (54 мин). Парный и семейный просмотр в высоком битрейте 1080p Ultra. Максимальная запоминаемость спонсорского посыла.»',
+        desc_en: '“Highest single-session watch duration (54 min avg). Living room and family viewing in 1080p Ultra adaptive bitrate. Maximum sponsor brand recall.”'
+      },
+      'sat-20': {
+        title_ru: 'Суббота · 20:00 – 22:30',
+        title_en: 'Saturday · 20:00 – 22:30',
+        status_ru: '🎬 Семейный прайм-кинозал',
+        status_en: '🎬 Family Prime Cinema Evening',
+        tag: 'Co-Viewing',
+        idx: 98,
+        session: '52.4 мин',
+        devices: '73% Smart TV',
+        sov: '100% Exclusive',
+        adblock: '100% Доставка',
+        desc_ru: '«Пиковый охват домашних экранов. 73% аудитории смотрят через браузер Smart TV / HDMI, обеспечивая эффект со-смотрения (в среднем 2.3 зрителя на экран).»',
+        desc_en: '“Peak living room reach. 73% big-screen viewing delivering natural co-viewing multipliers (avg 2.3 persons per screen).”'
+      },
+      'sun-20': {
+        title_ru: 'Воскресенье · 20:00 – 22:00',
+        title_en: 'Sunday · 20:00 – 22:00',
+        status_ru: '☕ Финал уикенда (Досмотры)',
+        status_en: '☕ Weekend Finale (Catch-up Sessions)',
+        tag: 'High Focus',
+        idx: 96,
+        session: '46.8 мин',
+        devices: '62% Smart TV & PC',
+        sov: '100% Exclusive',
+        adblock: '100% Доставка',
+        desc_ru: '«Вдумчивые просмотры авторского кино и финалов сезонов сериалов перед рабочей неделей. Высокое вовлечение и отсутствие оттока.»',
+        desc_en: '“Deep dive into season finales and cinephile picks before the workweek starts. Low bounce rate, premium viewer engagement.”'
+      },
+      'night': {
+        title_ru: 'Ночной слот · 00:00 – 04:00',
+        title_en: 'Night Slot · 00:00 – 04:00',
+        status_ru: '🌙 Фоновый ночной стриминг (8%)',
+        status_en: '🌙 Late Night Background Streaming (8%)',
+        tag: 'Niche Tech',
+        idx: 32,
+        session: '38.0 мин',
+        devices: '68% Desktop (IT/Devs)',
+        sov: '100% Exclusive',
+        adblock: '100% Доставка',
+        desc_ru: '«Ядро ночной аудитории — программисты, дизайнеры и ночные киноманы. Превосходный таргетинг для IT-продуктов, крипто-сервисов и edtech.»',
+        desc_en: '“Core night audience: developers, creatives and nocturnal cinephiles. Precision targeting for developer tools, Web3, and EdTech.”'
+      }
+    };
 
-    function saveWordToEdTech() {
-      const btn = document.getElementById('pmPopSaveBtn');
-      const text = document.getElementById('pmPopBtnText');
-      if (!btn) return;
-      btn.classList.add('saved');
-      const dict = i18nData[currentLang];
-      if (text) text.textContent = dict.pm_pop_saved || '✓ Сохранено в EdTech';
-    }
+    const dayNames = {
+      ru: { mon: 'Понедельник', tue: 'Вторник', wed: 'Среда', thu: 'Четверг', fri: 'Пятница', sat: 'Суббота', sun: 'Воскресенье' },
+      en: { mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday', fri: 'Friday', sat: 'Saturday', sun: 'Sunday' }
+    };
 
-    let isSkipped = false;
-    function skipIntroDemo() {
-      const btn = document.getElementById('pmSkipIntroBtn');
-      const text = document.getElementById('pmSkipIntroText');
-      const fill = document.getElementById('pmProgressFill');
-      const timeLbl = document.getElementById('pmTimeLabel');
-      if (!btn) return;
-      if (!isSkipped) {
-        isSkipped = true;
-        btn.classList.add('skipped');
-        if (text) text.textContent = currentLang === 'ru' ? '✓ Заставка пропущена (02:24)' : '✓ Intro Skipped (02:24)';
-        if (fill) fill.style.width = '34%';
-        if (timeLbl) timeLbl.textContent = '02:24 / 02:54:12';
+    let activeHeatKey = 'wed-20';
+
+    function updateHeatInspector(key, dayKey = 'wed', hour = '20', idx = '100') {
+      activeHeatKey = key;
+      const lang = currentLang;
+      const prof = heatSlotProfiles[key];
+      const titleEl = document.getElementById('inspSlotTitle');
+      const statusEl = document.getElementById('inspSlotStatus');
+      const tagEl = document.getElementById('inspTagSlot');
+      const idxEl = document.getElementById('inspIdxVal');
+      const gaugeFill = document.getElementById('inspGaugeFill');
+      const sessionEl = document.getElementById('inspSessionVal');
+      const devEl = document.getElementById('inspDeviceVal');
+      const sovEl = document.getElementById('inspSovVal');
+      const adbEl = document.getElementById('inspAdblockVal');
+      const descEl = document.getElementById('inspDesc');
+
+      if (prof) {
+        if (titleEl) titleEl.textContent = lang === 'ru' ? prof.title_ru : prof.title_en;
+        if (statusEl) statusEl.textContent = lang === 'ru' ? prof.status_ru : prof.status_en;
+        if (tagEl) tagEl.textContent = prof.tag;
+        if (idxEl) idxEl.textContent = `${prof.idx} / 100`;
+        if (gaugeFill) gaugeFill.style.width = `${prof.idx}%`;
+        if (sessionEl) sessionEl.textContent = prof.session;
+        if (devEl) devEl.textContent = prof.devices;
+        if (sovEl) sovEl.textContent = prof.sov;
+        if (adbEl) adbEl.textContent = prof.adblock;
+        if (descEl) descEl.textContent = lang === 'ru' ? prof.desc_ru : prof.desc_en;
       } else {
-        isSkipped = false;
-        btn.classList.remove('skipped');
-        const dict = i18nData[currentLang];
-        if (text) text.textContent = dict.pm_skip_intro;
-        if (fill) fill.style.width = '14%';
-        if (timeLbl) timeLbl.textContent = '00:42 / 02:54:12';
+        const dName = (dayNames[lang] && dayNames[lang][dayKey]) || dayKey;
+        const hNum = parseInt(hour, 10);
+        const hEnd = (hNum + 2) % 24;
+        const hStr = `${String(hNum).padStart(2,'0')}:00 – ${String(hEnd).padStart(2,'0')}:00`;
+        const isPrime = hNum >= 18 && hNum <= 22;
+        const valIdx = parseInt(idx, 10) || 40;
+
+        if (titleEl) titleEl.textContent = `${dName} · ${hStr}`;
+        if (statusEl) statusEl.textContent = isPrime 
+          ? (lang === 'ru' ? '🎬 Вечерний кинозал (Prime-Time)' : '🎬 Prime-Time Cinema Slot')
+          : (lang === 'ru' ? 'Телеметрия слота' : 'Slot Telemetry');
+        if (tagEl) tagEl.textContent = isPrime ? '100% SoV' : 'Active';
+        if (idxEl) idxEl.textContent = `${valIdx} / 100`;
+        if (gaugeFill) gaugeFill.style.width = `${valIdx}%`;
+        if (sessionEl) sessionEl.textContent = isPrime ? '44.2 мин' : `${Math.round(20 + valIdx * 0.25)} мин`;
+        if (devEl) devEl.textContent = isPrime ? '60% Smart TV & PC' : '48% Desktop, 52% Mobile';
+        if (sovEl) sovEl.textContent = '100% Exclusive';
+        if (adbEl) adbEl.textContent = '100% Доставка';
+        if (descEl) descEl.textContent = isPrime
+          ? (lang === 'ru' ? '«Вечерний сеанс. Высокое удержание аудитории, непрерывный просмотр фильмов в 1080p без баннерного шума.»' : '“Evening session. High engagement rate, uninterrupted 1080p movie streaming with zero banner fatigue.”')
+          : (lang === 'ru' ? '«Регулярный трафик кинотеатра. Плеер обеспечивает 100% доставку спонсорского контента мимо всех блокировщиков рекламы.»' : '“Standard platform traffic. Proprietary player delivers 100% sponsor creative bypassing all adblockers.”');
       }
     }
 
-    function toggleTmdbDrawer() {
-      const drawer = document.getElementById('pmTmdbDrawer');
-      if (!drawer) return;
-      drawer.classList.toggle('open');
+    function initHeatmapEvents() {
+      const cells = document.querySelectorAll('.heat-cell');
+      cells.forEach(cell => {
+        cell.addEventListener('click', () => {
+          cells.forEach(c => c.classList.remove('is-selected'));
+          cell.classList.add('is-selected');
+          const d = cell.dataset.d;
+          const h = cell.dataset.h;
+          const idx = cell.dataset.idx;
+          const key = `${d}-${h}`;
+          updateHeatInspector(key, d, h, idx);
+        });
+        cell.addEventListener('mouseenter', () => {
+          const d = cell.dataset.d;
+          const h = cell.dataset.h;
+          const idx = cell.dataset.idx;
+          const key = `${d}-${h}`;
+          updateHeatInspector(key, d, h, idx);
+        });
+      });
     }
 
-    function syncTmdbDemo() {
-      const btn = document.getElementById('pmTmdbSyncBtn');
-      const text = document.getElementById('pmTmdbSyncText');
-      if (!btn) return;
-      btn.style.borderColor = '#10b981';
-      btn.style.color = '#34d399';
-      const dict = i18nData[currentLang];
-      if (text) text.textContent = dict.pm_tmdb_synced;
-    }
+    function applyHeatPreset(type) {
+      document.querySelectorAll('.heat-preset-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(type === 'prime' ? 'presetPrime' : type === 'lunch' ? 'presetLunch' : type === 'weekend' ? 'presetWeekend' : type === 'night' ? 'presetNight' : 'presetAll');
+      if (activeBtn) activeBtn.classList.add('active');
 
-    let isPlaying = true;
-    function togglePlayDemo() {
-      const btn = document.getElementById('pmPlayBtn');
-      if (!btn) return;
-      isPlaying = !isPlaying;
-      btn.textContent = isPlaying ? '⏸' : '▶';
-    }
+      const cells = document.querySelectorAll('.heat-cell');
+      cells.forEach(c => {
+        c.classList.remove('is-selected');
+        c.style.outline = '';
+      });
 
-    function scrubProgress(e) {
-      const bar = document.getElementById('pmProgressBar');
-      const fill = document.getElementById('pmProgressFill');
-      const timeLbl = document.getElementById('pmTimeLabel');
-      if (!bar || !fill) return;
-      const rect = bar.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(100, Math.round(((e.clientX - rect.left) / rect.width) * 100)));
-      fill.style.width = pct + '%';
-      const totalSec = 174 * 60 + 12;
-      const curSec = Math.round((pct / 100) * totalSec);
-      const m = Math.floor(curSec / 60);
-      const s = curSec % 60;
-      if (timeLbl) timeLbl.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')} / 02:54:12`;
-    }
-
-    const audioTracks = ['🔊 RU (RHS)', '🔊 EN (Original)', '🔊 RU (LostFilm)', '🔊 RU (Кубик в Кубе)'];
-    let curAudioIdx = 0;
-    function cycleAudioDemo() {
-      const pill = document.getElementById('pmAudioPill');
-      if (!pill) return;
-      curAudioIdx = (curAudioIdx + 1) % audioTracks.length;
-      pill.textContent = audioTracks[curAudioIdx];
+      if (type === 'prime') {
+        const primeCells = document.querySelectorAll('.heat-cell[data-h="18"], .heat-cell[data-h="20"], .heat-cell[data-h="22"]');
+        primeCells.forEach(c => c.style.outline = '1px solid rgba(255,255,255,0.4)');
+        setTimeout(() => primeCells.forEach(c => c.style.outline = ''), 1500);
+        const sel = document.querySelector('.heat-cell[data-d="wed"][data-h="20"]');
+        if (sel) sel.classList.add('is-selected');
+        updateHeatInspector('wed-20', 'wed', '20', '100');
+      } else if (type === 'lunch') {
+        const sel = document.querySelector('.heat-cell[data-d="wed"][data-h="14"]');
+        if (sel) sel.classList.add('is-selected');
+        updateHeatInspector('wed-14', 'wed', '14', '94');
+      } else if (type === 'weekend') {
+        const sel = document.querySelector('.heat-cell[data-d="fri"][data-h="20"]');
+        if (sel) sel.classList.add('is-selected');
+        updateHeatInspector('fri-20', 'fri', '20', '97');
+      } else if (type === 'night') {
+        const sel = document.querySelector('.heat-cell[data-d="wed"][data-h="0"]');
+        if (sel) sel.classList.add('is-selected');
+        updateHeatInspector('night', 'wed', '0', '32');
+      } else {
+        const sel = document.querySelector('.heat-cell[data-d="wed"][data-h="20"]');
+        if (sel) sel.classList.add('is-selected');
+        updateHeatInspector('wed-20', 'wed', '20', '100');
+      }
     }
 
     // Step 5: One-Click Executive Memo Copy Handler
